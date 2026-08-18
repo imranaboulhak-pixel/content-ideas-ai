@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<title>Content Ideas AI</title>
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ29udGVudCBJZGVhcyBBSSIsInNob3J0X25hbWUiOiJDb250ZW50QUkiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBhMGEwYSIsInRoZW1lX2NvbG9yIjoiIzNiODJmNiJ9">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh;line-height:1.6}
+.container{max-width:420px;margin:0 auto;padding:16px}
+.card{background:#141414;border:1px solid #222;border-radius:14px;padding:18px;margin-bottom:14px}
+input,textarea,select{background:#1a1a1a;border:1px solid #333;color:#fff;padding:12px 14px;border-radius:10px;width:100%;font-size:15px;outline:none;font-family:inherit}
+input:focus,textarea:focus,select:focus{border-color:#3b82f6}
+.btn{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;padding:14px 24px;border-radius:12px;font-weight:700;border:none;cursor:pointer;width:100%;font-size:16px;transition:opacity .2s}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-secondary{background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:14px}
+.logo{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+h1{text-align:center;font-size:22px;margin-bottom:6px}
+.subtitle{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+label{display:block;font-size:13px;color:#aaa;margin-bottom:6px;font-weight:500}
+.input-wrap{position:relative;margin-bottom:14px}
+.toggle-eye{position:absolute;left:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#666;cursor:pointer;font-size:18px}
+.checkbox-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer}
+.checkbox-wrap input{width:auto}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid #2a2a4a;border-radius:12px;padding:16px;text-align:center}
+.stat-num{font-size:26px;font-weight:800;background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:11px;color:#888;margin-top:4px}
+.idea-card{background:#141414;border:1px solid #222;border-radius:12px;padding:16px;margin-bottom:12px}
+.idea-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.idea-title{font-size:15px;font-weight:700;line-height:1.4;flex:1}
+.tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;margin-left:6px}
+.tag-high{background:#dc262620;color:#ef4444;border:1px solid #dc262640}
+.tag-med{background:#f59e0b20;color:#f59e0b;border:1px solid #f59e0b40}
+.tag-low{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.tag-format{background:#3b82f610;color:#60a5fa;border:1px solid #3b82f630}
+.idea-desc{color:#aaa;font-size:13px;margin-bottom:10px}
+.evidence-box{background:#0f0f0f;border-right:3px solid #3b82f6;padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px}
+.evidence-text{color:#bbb;font-size:12px;font-style:italic}
+.demand-bar{height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden;margin-top:8px}
+.demand-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#a855f7);border-radius:3px;transition:width 1s}
+.section-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.icon{font-size:18px}
+.question-row{background:#141414;border:1px solid #222;border-radius:10px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.question-text{font-size:13px;flex:1}
+.question-badge{font-size:10px;padding:4px 10px;border-radius:20px;white-space:nowrap;margin-right:8px}
+.badge-answered{background:#22c55e20;color:#22c55e}
+.badge-unanswered{background:#ef444420;color:#ef4444}
+.topic-row{background:#141414;border:1px solid #222;border-radius:10px;padding:12px;margin-bottom:8px}
+.topic-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.topic-name{font-weight:600;font-size:14px}
+.topic-meta{display:flex;gap:8px;align-items:center}
+.topic-count{font-size:12px;color:#888}
+.sentiment{font-size:11px;padding:3px 10px;border-radius:20px}
+.sent-pos{background:#22c55e20;color:#22c55e}
+.sent-neg{background:#ef444420;color:#ef4444}
+.sent-neu{background:#6b728020;color:#9ca3af}
+.sample-comment{color:#777;font-size:12px;border-right:2px solid #333;padding-right:8px;margin-top:6px}
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.insight-box{background:#0f0f0f;padding:12px;border-radius:10px}
+.insight-label{font-size:11px;color:#666;margin-bottom:4px}
+.insight-value{font-size:14px;font-weight:600}
+.tools-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tool-tag{background:#3b82f610;color:#60a5fa;padding:5px 12px;border-radius:20px;font-size:12px}
+.pain-list{margin-top:8px}
+.pain-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#bbb;margin-bottom:6px}
+.pain-icon{color:#f59e0b;font-size:14px;margin-top:2px}
+.error-box{background:#ef444410;border:1px solid #ef444430;color:#ef4444;padding:12px;border-radius:10px;margin-bottom:14px;font-size:13px}
+.loading-box{text-align:center;padding:40px 20px}
+.spinner{width:40px;height:40px;border:3px solid #222;border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:#888;font-size:14px}
+.loading-step{color:#666;font-size:12px;margin-top:6px}
+.hidden{display:none}
+.copy-btn{background:#1a1a1a;border:1px solid #333;color:#888;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+.copy-btn:active{background:#222}
+.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
+.step-dot{width:8px;height:8px;border-radius:50%;background:#333}
+.step-dot.active{background:#3b82f6}
+.video-info{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.video-thumb{width:80px;height:60px;background:#222;border-radius:8px;object-fit:cover}
+.video-details{flex:1}
+.video-title{font-size:14px;font-weight:600;line-height:1.3;margin-bottom:4px}
+.video-channel{font-size:12px;color:#888}
+.video-stats{display:flex;gap:12px;margin-top:6px;font-size:11px;color:#666}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- STEP 1: Setup Keys -->
+<div id="step-setup">
+  <div class="logo">🤖</div>
+  <h1>Content Ideas AI</h1>
+  <p class="subtitle">حوّل تعليقات YouTube إلى أفكار محتوى</p>
+
+  <div class="card">
+    <label class="checkbox-wrap">
+      <input type="checkbox" id="use-defaults" checked>
+      <span style="font-size:14px;color:#ccc">استخدام المفاتيح الافتراضية (للاختبار)</span>
+    </label>
+  </div>
+
+  <div id="custom-keys" class="hidden">
+    <div class="card">
+      <label>🔑 YouTube API Key</label>
+      <div class="input-wrap">
+        <input type="password" id="yt-key" placeholder="ألصق مفتاح YouTube هنا">
+        <button class="toggle-eye" onclick="toggleEye('yt-key',this)">👁</button>
+      </div>
+      <p style="font-size:11px;color:#666;margin-top:6px">console.cloud.google.com → APIs → YouTube Data API v3</p>
+    </div>
+
+    <div class="card">
+      <label>✨ Gemini API Key</label>
+      <div class="input-wrap">
+        <input type="password" id="gem-key" placeholder="ألصق مفتاح Gemini هنا">
+        <button class="toggle-eye" onclick="toggleEye('gem-key',this)">👁</button>
+      </div>
+      <p style="font-size:11px;color:#666;margin-top:6px">aistudio.google.com → API Keys</p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="saveKeys()">🚀 بدء التحليل</button>
+</div>
+
+<!-- STEP 2: Dashboard -->
+<div id="step-dashboard" class="hidden">
+  <div style="text-align:center;margin-bottom:20px">
+    <h1 style="font-size:18px">Content Ideas AI</h1>
+    <p class="subtitle">ألصق رابط فيديو YouTube</p>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;gap:8px">
+      <input type="text" id="video-url" placeholder="https://youtube.com/watch?v=..." style="flex:1" onkeypress="if(event.key==='Enter')analyze()">
+      <button class="btn" onclick="analyze()" id="analyze-btn" style="width:auto;padding:12px 20px">🔍 تحليل</button>
+    </div>
+    <div id="error-box" class="error-box hidden"></div>
+  </div>
+
+  <div id="loading" class="loading-box hidden">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loading-text">جاري جلب التعليقات...</div>
+    <div class="loading-step" id="loading-step">الخطوة 1 من 2</div>
+  </div>
+
+  <div id="results"></div>
+</div>
+
+</div>
+
+<script>
+// ===== CONFIG =====
+const DEFAULT_KEYS = {
+  youtube: "AIzaSyCRRFCfdUUO3U_-dm1BAN2AyI6MXpTj5oM",
+  gemini: "AQ.Ab8RN6ItapjLavkC11ZBvOkBRQCeic0MAf773boT1MsT2Fb4Pg"
+};
+const GEMINI_MODEL = "gemini-2.5-flash";
+
+let keys = { youtube: "", gemini: "" };
+
+// ===== UI HELPERS =====
+function $(id){return document.getElementById(id)}
+function toggleEye(inputId, btn){
+  const inp = $(inputId);
+  inp.type = inp.type === "password" ? "text" : "password";
+  btn.textContent = inp.type === "password" ? "👁" : "🙈";
+}
+
+$("use-defaults").onchange = function(){
+  $("custom-keys").classList.toggle("hidden", this.checked);
+};
+
+function saveKeys(){
+  const useDefaults = $("use-defaults").checked;
+  keys.youtube = useDefaults ? DEFAULT_KEYS.youtube : $("yt-key").value.trim();
+  keys.gemini = useDefaults ? DEFAULT_KEYS.gemini : $("gem-key").value.trim();
+
+  if(!keys.youtube || !keys.gemini){
+    alert("يرجى إدخال كلا المفتاحين");
+    return;
+  }
+  $("step-setup").classList.add("hidden");
+  $("step-dashboard").classList.remove("hidden");
+}
+
+function showError(msg){
+  const box = $("error-box");
+  box.textContent = "⚠️ " + msg;
+  box.classList.remove("hidden");
+}
+function hideError(){$("error-box").classList.add("hidden")}
+
+function setLoading(show, text, step){
+  $("loading").classList.toggle("hidden", !show);
+  if(text) $("loading-text").textContent = text;
+  if(step) $("loading-step").textContent = step;
+}
+
+// ===== YOUTUBE =====
+function extractVideoId(url){
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/);
+  if(m) return m[1];
+  if(/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
+  return null;
+}
+
+async function fetchComments(videoId){
+  const comments = [];
+  let nextPage = null;
+  let pages = 0;
+  const maxPages = 5;
+
+  do{
+    const params = new URLSearchParams({
+      part: "snippet", videoId, maxResults: "100", key: keys.youtube, order: "relevance",
+      ...(nextPage ? {pageToken: nextPage} : {})
+    });
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/commentThreads?${params}`);
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.error?.message || "خطأ في YouTube API");
+    }
+    const data = await res.json();
+    for(const item of data.items || []){
+      const s = item.snippet?.topLevelComment?.snippet;
+      if(s) comments.push({text: s.textDisplay || s.textOriginal || "", author: s.authorDisplayName || "", likes: s.likeCount || 0});
+    }
+    nextPage = data.nextPageToken || null;
+    pages++;
+  } while(nextPage && pages < maxPages);
+
+  // Video info
+  const vRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoId}&key=${keys.youtube}`);
+  let vInfo = null;
+  if(vRes.ok){
+    const vd = await vRes.json();
+    if(vd.items?.[0]){
+      vInfo = {
+        title: vd.items[0].snippet?.title,
+        channel: vd.items[0].snippet?.channelTitle,
+        views: vd.items[0].statistics?.viewCount,
+        likes: vd.items[0].statistics?.likeCount,
+        commentCount: vd.items[0].statistics?.commentCount,
+        thumb: vd.items[0].snippet?.thumbnails?.medium?.url || vd.items[0].snippet?.thumbnails?.default?.url
+      };
+    }
+  }
+  return {comments, videoInfo: vInfo};
+}
+
+// ===== GEMINI =====
+async function analyzeWithGemini(comments, videoTitle){
+  const valid = comments.filter(c => c.text && c.text.trim().length > 3).map(c => c.text.trim());
+  if(valid.length === 0) throw new Error("لا توجد تعليقات صالحة للتحليل");
+
+  const sample = valid.length > 300 ? shuffle([...valid]).slice(0,300) : valid;
+
+  const prompt = buildPrompt(sample, videoTitle);
+
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${keys.gemini}`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({
+      contents:[{role:"user",parts:[{text:prompt}]}],
+      generationConfig:{temperature:0.3,maxOutputTokens:4096,responseMimeType:"application/json"}
+    })
+  });
+
+  if(!res.ok){
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.error?.message || "خطأ في Gemini API");
+  }
+
+  const data = await res.json();
+  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+
+  let analysis;
+  try{ analysis = JSON.parse(raw); }
+  catch{
+    const m = raw.match(/```json\s*([\s\S]*?)```/);
+    if(m) analysis = JSON.parse(m[1]);
+    else analysis = {raw};
+  }
+  return analysis;
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function buildPrompt(comments, title){
+  const text = comments.map((c,i)=>`${i+1}. ${c}`).join("\n");
+  return `You are an expert content strategist. Analyze these YouTube comments and return ONLY valid JSON:\n\nVIDEO: ${title||"Unknown"}\n\nCOMMENTS (${comments.length}):\n${text}\n\nReturn this exact JSON structure (all text in Arabic):\n{\n  "summary": {"totalComments":number,"questionsCount":number,"requestsCount":number,"complaintsCount":number,"praiseCount":number},\n  "topTopics": [{"topic":"string in Arabic","mentions":number,"sentiment":"positive|negative|neutral","sampleComments":["string"]}],\n  "contentIdeas": [{"title":"string in Arabic","description":"string","priority":"high|medium|low","evidence":["string"],"estimatedDemand":number,"format":"tutorial|comparison|review|qna|deep_dive|news"}],\n  "trendingQuestions": [{"question":"string in Arabic","frequency":number,"answersInVideo":boolean}],\n  "audienceInsights": {"skillLevel":"beginner|intermediate|advanced|mixed","mainPainPoints":["string"],"toolsMentioned":["string"],"languagePreference":"Arabic|English|Mixed"}\n}\n\nRules: Return ONLY JSON. Be specific in titles. Prioritize high-frequency requests.`;
+}
+
+// ===== MAIN FLOW =====
+async function analyze(){
+  const url = $("video-url").value.trim();
+  const videoId = extractVideoId(url);
+
+  if(!videoId){ showError("رابط YouTube غير صالح"); return; }
+  hideError();
+
+  $("analyze-btn").disabled = true;
+  setLoading(true, "جاري جلب التعليقات...", "الخطوة 1 من 2");
+
+  try{
+    const {comments, videoInfo} = await fetchComments(videoId);
+
+    setLoading(true, "جاري التحليل بالذكاء الاصطناعي...", "الخطوة 2 من 2");
+    const analysis = await analyzeWithGemini(comments, videoInfo?.title);
+
+    setLoading(false);
+    renderResults({videoInfo, totalComments: comments.length, analysis});
+  } catch(e){
+    setLoading(false);
+    showError(e.message || "حدث خطأ غير متوقع");
+  } finally{
+    $("analyze-btn").disabled = false;
+  }
+}
+
+// ===== RENDER RESULTS =====
+function renderResults(data){
+  const {videoInfo, totalComments, analysis} = data;
+  const s = analysis.summary || {};
+  const ideas = analysis.contentIdeas || [];
+  const topics = analysis.topTopics || [];
+  const questions = analysis.trendingQuestions || [];
+  const insights = analysis.audienceInsights || {};
+
+  let html = "";
+
+  // Video info
+  if(videoInfo){
+    html += `<div class="card"><div class="video-info">`;
+    if(videoInfo.thumb) html += `<img src="${videoInfo.thumb}" class="video-thumb" alt="">`;
+    html += `<div class="video-details">
+      <div class="video-title">${escapeHtml(videoInfo.title)}</div>
+      <div class="video-channel">${escapeHtml(videoInfo.channel)}</div>
+      <div class="video-stats">
+        <span>👁 ${fmtNum(videoInfo.views)}</span>
+        <span>❤️ ${fmtNum(videoInfo.likes)}</span>
+        <span>💬 ${fmtNum(videoInfo.commentCount)}</span>
+      </div>
+    </div></div></div>`;
+  }
+
+  // Stats
+  html += `<div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">${fmtNum(totalComments)}</div><div class="stat-label">تعليق محلل</div></div>
+    <div class="stat-card"><div class="stat-num">${fmtNum(s.questionsCount||0)}</div><div class="stat-label">سؤال مكتشف</div></div>
+    <div class="stat-card"><div class="stat-num">${fmtNum(ideas.length)}</div><div class="stat-label">فكرة محتوى</div></div>
+    <div class="stat-card"><div class="stat-num">${fmtNum(topics.length)}</div><div class="stat-label">موضوع متكرر</div></div>
+  </div>`;
+
+  // Audience insights
+  if(insights.skillLevel){
+    html += `<div class="card">
+      <div class="section-title"><span class="icon">📊</span> رؤى الجمهور</div>
+      <div class="insight-grid">
+        <div class="insight-box"><div class="insight-label">مستوى المهارة</div><div class="insight-value">${trSkill(insights.skillLevel)}</div></div>
+        <div class="insight-box"><div class="insight-label">اللغة المفضلة</div><div class="insight-value">${trLang(insights.languagePreference)}</div></div>
+      </div>`;
+    if(insights.toolsMentioned?.length){
+      html += `<div class="tools-list">${insights.toolsMentioned.map((t)=>`<span class="tool-tag">${escapeHtml(t)}</span>`).join("")}</div>`;
+    }
+    if(insights.mainPainPoints?.length){
+      html += `<div class="pain-list">${insights.mainPainPoints.map((p)=>`<div class="pain-item"><span class="pain-icon">⚡</span>${escapeHtml(p)}</div>`).join("")}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Content ideas
+  if(ideas.length){
+    html += `<div class="card"><div class="section-title"><span class="icon">💡</span> اقتراحات الفيديوهات</div>`;
+    ideas.forEach((idea, idx)=>{
+      html += `<div class="idea-card">
+        <div class="idea-header">
+          <div style="flex:1">
+            <div style="margin-bottom:6px">
+              <span class="tag tag-${idea.priority}">${trPriority(idea.priority)}</span>
+              <span class="tag tag-format">${trFormat(idea.format)}</span>
+            </div>
+            <div class="idea-title">${escapeHtml(idea.title)}</div>
+          </div>
+          <button class="copy-btn" onclick="copyText(this,'${escapeHtml(idea.title)}\n${escapeHtml(idea.description)}')">📋 نسخ</button>
+        </div>
+        <div class="idea-desc">${escapeHtml(idea.description)}</div>
+        <div style="font-size:12px;color:#666;margin-bottom:8px">الأدلة:</div>`;
+      (idea.evidence||[]).forEach(ev=>{
+        html += `<div class="evidence-box"><div class="evidence-text">"${escapeHtml(ev)}"</div></div>`;
+      });
+      html += `<div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+        <span style="font-size:11px;color:#666;white-space:nowrap">الطلب: ${idea.estimatedDemand||50}%</span>
+        <div class="demand-bar" style="flex:1"><div class="demand-fill" style="width:${idea.estimatedDemand||50}%"></div></div>
+      </div></div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Trending questions
+  if(questions.length){
+    html += `<div class="card"><div class="section-title"><span class="icon">❓</span> الأسئلة المتكررة</div>`;
+    questions.forEach(q=>{
+      html += `<div class="question-row">
+        <div class="question-text">${escapeHtml(q.question)}</div>
+        <span class="question-badge ${q.answersInVideo?'badge-answered':'badge-unanswered'}">${q.answersInVideo?'✓ مجاب':'✗ غير مجاب'}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Top topics
+  if(topics.length){
+    html += `<div class="card"><div class="section-title"><span class="icon">🔥</span> المواضيع الأكثر ذكراً</div>`;
+    topics.forEach(t=>{
+      html += `<div class="topic-row">
+        <div class="topic-header">
+          <span class="topic-name">${escapeHtml(t.topic)}</span>
+          <div class="topic-meta">
+            <span class="topic-count">${t.mentions} مرة</span>
+            <span class="sentiment ${t.sentiment==='positive'?'sent-pos':t.sentiment==='negative'?'sent-neg':'sent-neu'}">
+              ${t.sentiment==='positive'?'😊':t.sentiment==='negative'?'😠':'😐'}
+            </span>
+          </div>
+        </div>`;
+      (t.sampleComments||[]).forEach(c=>{
+        html += `<div class="sample-comment">"${escapeHtml(c)}"</div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div>`;
+  }
+
+  $("results").innerHTML = html;
+}
+
+// ===== UTILS =====
+function fmtNum(n){
+  const num = typeof n==="string"?parseInt(n)||0:n;
+  if(num>=1000000) return (num/1000000).toFixed(1)+"M";
+  if(num>=1000) return (num/1000).toFixed(1)+"K";
+  return num.toString();
+}
+function escapeHtml(t){return (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function trPriority(p){const m={high:"عالي",medium:"متوسط",low:"منخفض"};return m[p]||p;}
+function trFormat(f){const m={tutorial:"تعليمي",comparison:"مقارنة",review:"مراجعة",qna:"سؤال وجواب",deep_dive:"تعمق",news:"أخبار"};return m[f]||f;}
+function trSkill(s){const m={beginner:"مبتدئ",intermediate:"متوسط",advanced:"متقدم",mixed:"متنوع"};return m[s]||s;}
+function trLang(l){const m={Arabic:"عربي",English:"إنجليزي",Mixed:"مختلط"};return m[l]||l;}
+function copyText(btn, text){
+  navigator.clipboard.writeText(text);
+  const old = btn.textContent;
+  btn.textContent = "✓ تم النسخ";
+  setTimeout(()=>btn.textContent=old, 2000);
+}
+</script>
+</body>
+</html>
