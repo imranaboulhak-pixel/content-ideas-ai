@@ -337,7 +337,8 @@ body {
       gid('loadTxt').textContent = 'جاري التحليل...';
 
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/analyze', true);
+      xhr.open('POST', 'https://content-ideas-ai.imranaboulhak.workers.dev', true);
+    
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onreadystatechange = function(){
         if(xhr.readyState !== 4) return;
