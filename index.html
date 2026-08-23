@@ -826,7 +826,6 @@ body::before {
   <a href="#main" class="skip-link">تخطي إلى المحتوى</a>
   <div class="container">
     <main id="main" tabindex="-1">
-      
       <!-- Brand Header -->
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">
@@ -835,8 +834,7 @@ body::before {
         <h1>Content Ideas AI</h1>
         <p>حوّل تعليقات YouTube إلى أفكار فيديوهات جديدة بالذكاء الاصطناعي</p>
       </div>
-
-      <!-- Input Card -->
+       <!-- Input Card -->
       <div class="input-card">
         <div class="input-row">
           <input type="text" id="url" class="url-inp" placeholder="الصق رابط فيديو YouTube هنا..." aria-label="رابط فيديو YouTube" autocomplete="off">
@@ -864,12 +862,7 @@ body::before {
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    
-    // ═══════════════════════════════════════════
-    // PART 3 — JAVASCRIPT (Security-Hardened)
-    // ═══════════════════════════════════════════
     function gid(id){ return document.getElementById(id); }
-
     function showMsg(elId, txt, isOk){
       var el = gid(elId);
       el.textContent = txt;
