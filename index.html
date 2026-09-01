@@ -18,7 +18,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .brand h1 span{color:var(--accent)}
 .brand p{font-size:1.0625rem;color:var(--text-secondary);max-width:480px;line-height:1.6}
 
-/* شريط الاستخدام */
 .usage-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:var(--space-6);font-size:0.875rem}
 .usage-info{display:flex;align-items:center;gap:var(--space-3)}
 .usage-dots{display:flex;gap:var(--space-1)}
@@ -27,7 +26,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .upgrade-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:700;font-family:var(--font);cursor:pointer}
 .upgrade-btn:hover{background:var(--accent);color:#fff}
 
-/* التبويبات */
 .tabs{display:flex;gap:var(--space-2);margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
 .tab{flex:1;padding:var(--space-3) var(--space-4);background:transparent;border:none;color:var(--text-muted);font-family:var(--font);font-size:0.9375rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
 .tab.active{color:var(--text);border-bottom-color:var(--accent)}
@@ -54,7 +52,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .res.visible{display:block;animation:fadeIn 0.4s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* بطاقة الفيديو */
 .v-card{display:flex;gap:var(--space-5);align-items:flex-start;padding-bottom:var(--space-6);margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
 .v-thumb{width:140px;height:100px;border-radius:var(--radius-md);object-fit:cover;flex-shrink:0;background:var(--bg-surface)}
 .v-info{flex:1;min-width:0}
@@ -64,13 +61,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .v-stat{display:flex;align-items:center;gap:var(--space-2);font-size:0.8125rem;color:var(--text-secondary)}
 .v-stat svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
 
-/* إحصائيات */
 .st-row{display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-5) 0;margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
 .st-itm{text-align:center;flex:1}
 .st-n{font-size:1.75rem;font-weight:900;line-height:1;margin-bottom:var(--space-1)}
 .st-l{font-size:0.6875rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
 
-/* أقسام */
 .sec{margin-bottom:var(--space-8)}
 .sec-h{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
 .sec-h svg{width:18px;height:18px;stroke:var(--accent);stroke-width:2.5;fill:none}
@@ -83,9 +78,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .chip{background:var(--bg-elevated);color:var(--text-secondary);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:600;border:1px solid var(--border)}
 .pain-list{list-style:none}
 .pain-list li{padding:var(--space-3) 0;border-bottom:1px solid var(--border);font-size:0.875rem;color:var(--text-secondary);display:flex;gap:var(--space-3);align-items:flex-start}
-.pain-list li::before{content:"—";color:var(--accent);font-weight:800;flex-shrink:0}
+.pain-list li::before{content:"\2014";color:var(--accent);font-weight:800;flex-shrink:0}
 
-/* أفكار */
 .idea{padding:var(--space-5) 0;border-bottom:1px solid var(--border)}
 .idea:first-child{padding-top:0}
 .idea-h{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-3);margin-bottom:var(--space-3)}
@@ -106,7 +100,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .demand-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 1s ease}
 .demand-val{font-size:0.6875rem;font-weight:800;min-width:2rem}
 
-/* أسئلة */
 .q-list{list-style:none}
 .q-list li{padding:var(--space-4) 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4)}
 .q-text{flex:1;font-size:0.9375rem;font-weight:500}
@@ -114,7 +107,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .q-yes{background:rgba(34,197,94,0.1);color:#4ade80}
 .q-no{background:rgba(255,0,0,0.08);color:#ff6666}
 
-/* مواضيع */
 .tp-list{list-style:none}
 .tp-list li{padding:var(--space-4) 0;border-bottom:1px solid var(--border)}
 .tp-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2)}
@@ -127,7 +119,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .tp-s-neu{background:var(--bg-elevated);color:var(--text-muted)}
 .tp-sample{color:var(--text-muted);font-size:0.8125rem;margin-top:var(--space-2);padding-right:var(--space-3);border-right:2px solid var(--border)}
 
-/* المحفوظات */
 .hist-empty{text-align:center;padding:var(--space-12) 0;color:var(--text-muted)}
 .hist-empty svg{width:48px;height:48px;stroke:var(--text-muted);margin-bottom:var(--space-4)}
 .hist-list{list-style:none}
@@ -140,11 +131,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .hist-delete{background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:1.25rem;padding:var(--space-1)}
 .hist-delete:hover{color:#ff6666}
 
-/* Toast */
 .toast{position:fixed;bottom:var(--space-6);left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-elevated);color:var(--text);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-size:0.875rem;font-weight:700;opacity:0;z-index:1000;border:1px solid var(--border);transition:all 0.3s ease}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:2000;display:none;align-items:center;justify-content:center;padding:var(--space-4)}
 .modal-overlay.active{display:flex}
 .modal{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-md);max-width:420px;width:100%;padding:var(--space-6)}
@@ -164,34 +153,32 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   .usage-bar{flex-direction:column;align-items:flex-start;gap:var(--space-2)}
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 <div class="container">
   <div class="brand">
     <h1>Content Ideas <span>AI</span></h1>
-    <p>حوّل تعليقات YouTube إلى أفكار فيديو جديدة </p>
+    <p>حول تعليقات YouTube الى افكار فيديو جديدة باستخدام الذكاء الاصطناعي</p>
   </div>
 
-  <!-- شريط الاستخدام -->
   <div class="usage-bar" id="usageBar" style="display:none">
     <div class="usage-info">
       <span id="usageText">جاري التحميل...</span>
       <div class="usage-dots" id="usageDots"></div>
     </div>
-    <button class="upgrade-btn" id="upgradeBtn" onclick="showUpgradeModal()" style="display:none">ترقية</button>
+    <button class="upgrade-btn" id="upgradeBtn" style="display:none">ترقية</button>
   </div>
 
-  <!-- التبويبات -->
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('analyze')" id="tabAnalyze">تحليل جديد</button>
-    <button class="tab" onclick="switchTab('history')" id="tabHistory">المحفوظات</button>
+    <button class="tab active" id="tabAnalyze">تحليل جديد</button>
+    <button class="tab" id="tabHistory">المحفوظات</button>
   </div>
 
-  <!-- تبويب التحليل -->
   <div class="tab-content active" id="contentAnalyze">
     <div class="input-wrap">
-      <input type="text" class="url-inp" id="urlInp" placeholder="ألصق رابط فيديو YouTube هنا...">
-      <button class="anlz-btn" id="anlzBtn" onclick="analyze()">تحليل</button>
+      <input type="text" class="url-inp" id="urlInp" placeholder="الصق رابط فيديو YouTube هنا...">
+      <button class="anlz-btn" id="anlzBtn">تحليل</button>
     </div>
 
     <div class="msg-box" id="msgBox"></div>
@@ -205,7 +192,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     <div class="res" id="resBox"></div>
   </div>
 
-  <!-- تبويب المحفوظات -->
   <div class="tab-content" id="contentHistory">
     <div id="historyContainer">
       <div class="hist-empty">
@@ -216,32 +202,30 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- Modal Upgrade -->
-<div class="modal-overlay" id="upgradeModal" onclick="if(event.target===this)closeUpgradeModal()">
+<div class="modal-overlay" id="upgradeModal">
   <div class="modal">
     <div class="modal-h">الترقية للنسخة المدفوعة</div>
     <div class="modal-p">
       النسخة المجانية: <strong>3 تحليلات يومية</strong><br><br>
       النسخة المدفوعة تشمل:<br>
-      • 500 تحليل يومي<br>
-      • حفظ غير محدود في المحفوظات<br>
-      • تصدير التحليلات PDF<br>
-      • دعم فني أولوي<br><br>
+      &bull; 500 تحليل يومي<br>
+      &bull; حفظ غير محدود في المحفوظات<br>
+      &bull; تصدير التحليلات PDF<br>
+      &bull; دعم فني اولوي<br><br>
       السعر: <strong>5$ / شهر</strong><br><br>
-      <em>قريباً: ربط Stripe للدفع المباشر</em>
+      <em>قريبا: ربط Stripe للدفع المباشر</em>
     </div>
-    <button class="modal-close" onclick="closeUpgradeModal()">فهمت</button>
+    <button class="modal-close" id="modalClose">فهمت</button>
   </div>
 </div>
 
 <script>
 // ============================================
-// غيّر هذا إلى رابط Cloudflare Worker حقك
+// غير هذا الى رابط Cloudflare Worker حقك
 // ============================================
-const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
+const WORKER_URL = 'https://your-worker.your-subdomain.workers.dev';
 // ============================================
 
 const urlInp = document.getElementById('urlInp');
@@ -256,20 +240,22 @@ const usageText = document.getElementById('usageText');
 const usageDots = document.getElementById('usageDots');
 const upgradeBtn = document.getElementById('upgradeBtn');
 const historyContainer = document.getElementById('historyContainer');
+const tabAnalyze = document.getElementById('tabAnalyze');
+const tabHistory = document.getElementById('tabHistory');
+const contentAnalyze = document.getElementById('contentAnalyze');
+const contentHistory = document.getElementById('contentHistory');
+const upgradeModal = document.getElementById('upgradeModal');
+const modalClose = document.getElementById('modalClose');
 
 // ====== استخراج ID ======
 function extractVideoId(input) {
   input = input.trim();
   if (!input) return null;
   if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
-  const patterns = [
-    /(?:youtube\\.com\\/watch\\?v=|youtu\\.be\\/|youtube\\.com\\/embed\\/|youtube\\.com\\/v\\/|youtube\\.com\\/shorts\\/)([a-zA-Z0-9_-]{11})/,
-    /[?&]v=([a-zA-Z0-9_-]{11})/
-  ];
-  for (const p of patterns) {
-    const m = input.match(p);
-    if (m) return m[1];
-  }
+  var m = input.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+  if (m) return m[1];
+  m = input.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+  if (m) return m[1];
   return null;
 }
 
@@ -279,11 +265,13 @@ function showMsg(text, type) {
   msgBox.className = 'msg-box ' + (type || 'error');
   msgBox.style.display = 'block';
 }
-function hideMsg() { msgBox.style.display = 'none'; }
+function hideMsg() {
+  msgBox.style.display = 'none';
+}
 function showToast(text) {
   toast.textContent = text;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
+  setTimeout(function() { toast.classList.remove('show'); }, 2000);
 }
 function setLoading(on, sub) {
   anlzBtn.disabled = on;
@@ -293,59 +281,76 @@ function setLoading(on, sub) {
 }
 function fmtNum(n) {
   if (!n) return '0';
-  const num = parseInt(n);
+  var num = parseInt(n);
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
   return num.toString();
 }
 function escHtml(str) {
   if (!str) return '';
-  return str.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 function copyText(text, btn) {
-  navigator.clipboard.writeText(text).then(() => {
-    const old = btn.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var old = btn.textContent;
     btn.textContent = 'تم النسخ';
     showToast('تم النسخ');
-    setTimeout(() => btn.textContent = old, 1500);
+    setTimeout(function() { btn.textContent = old; }, 1500);
   });
 }
 
 // ====== التبويبات ======
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  
+  tabAnalyze.classList.remove('active');
+  tabHistory.classList.remove('active');
+  contentAnalyze.classList.remove('active');
+  contentHistory.classList.remove('active');
+
   if (tab === 'analyze') {
-    document.getElementById('tabAnalyze').classList.add('active');
-    document.getElementById('contentAnalyze').classList.add('active');
+    tabAnalyze.classList.add('active');
+    contentAnalyze.classList.add('active');
   } else {
-    document.getElementById('tabHistory').classList.add('active');
-    document.getElementById('contentHistory').classList.add('active');
+    tabHistory.classList.add('active');
+    contentHistory.classList.add('active');
     loadHistory();
   }
 }
 
+tabAnalyze.addEventListener('click', function() { switchTab('analyze'); });
+tabHistory.addEventListener('click', function() { switchTab('history'); });
+
+// ====== Modal ======
+function showUpgradeModal() {
+  upgradeModal.classList.add('active');
+}
+function closeUpgradeModal() {
+  upgradeModal.classList.remove('active');
+}
+upgradeBtn.addEventListener('click', showUpgradeModal);
+modalClose.addEventListener('click', closeUpgradeModal);
+upgradeModal.addEventListener('click', function(e) {
+  if (e.target === upgradeModal) closeUpgradeModal();
+});
+
 // ====== الاستخدام ======
 async function loadUsage() {
   try {
-    const res = await fetch(WORKER_URL + '/usage');
-    const data = await res.json();
-    
+    var res = await fetch(WORKER_URL + '/usage');
+    var data = await res.json();
+
     usageBar.style.display = 'flex';
-    const limit = data.limit || 3;
-    const used = data.used || 0;
-    const remaining = Math.max(0, limit - used);
-    
-    usageText.textContent = `استخدمت ${used} من ${limit} تحليلات اليوم`;
-    
+    var limit = data.limit || 3;
+    var used = data.used || 0;
+
+    usageText.textContent = 'استخدمت ' + used + ' من ' + limit + ' تحليلات اليوم';
+
     usageDots.innerHTML = '';
-    for (let i = 0; i < limit; i++) {
-      const dot = document.createElement('div');
+    for (var i = 0; i < limit; i++) {
+      var dot = document.createElement('div');
       dot.className = 'usage-dot' + (i < used ? '' : ' active');
       usageDots.appendChild(dot);
     }
-    
+
     if (!data.isSubscribed && used >= limit) {
       upgradeBtn.style.display = 'block';
     } else {
@@ -362,25 +367,25 @@ async function analyze() {
   resBox.innerHTML = '';
   resBox.classList.remove('visible');
 
-  const raw = urlInp.value.trim();
-  const videoId = extractVideoId(raw);
+  var raw = urlInp.value.trim();
+  var videoId = extractVideoId(raw);
 
   if (!videoId) {
-    showMsg('الرابط غير صحيح. ألصق رابط فيديو YouTube كامل أو ID الفيديو (11 حرف)', 'error');
+    showMsg('الرابط غير صحيح. الصق رابط فيديو YouTube كامل او ID الفيديو (11 حرف)', 'error');
     return;
   }
 
   setLoading(true, 'نجلب معلومات الفيديو...');
 
   try {
-    const res = await fetch(WORKER_URL + '/analyze', {
+    var res = await fetch(WORKER_URL + '/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ videoId })
+      body: JSON.stringify({ videoId: videoId })
     });
 
     setLoading(true, 'نحلل التعليقات بالذكاء الاصطناعي...');
-    const data = await res.json();
+    var data = await res.json();
 
     if (!res.ok || data.error) {
       if (data.code === 'RATE_LIMIT') {
@@ -395,77 +400,7 @@ async function analyze() {
 
     render(data);
     setLoading(false);
-    loadUsage(); // تحديث العداد
-    
-    // حفظ محلي أيضاً
-    saveLocalHistory(data);
-  } catch (err) 
-  usageBar.style.display = 'flex';
-    const limit = data.limit || 3;
-    const used = data.used || 0;
-    const remaining = Math.max(0, limit - used);
-    
-    usageText.textContent = `استخدمت ${used} من ${limit} تحليلات اليوم`;
-    
-    usageDots.innerHTML = '';
-    for (let i = 0; i < limit; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'usage-dot' + (i < used ? '' : ' active');
-      usageDots.appendChild(dot);
-    }
-    
-    if (!data.isSubscribed && used >= limit) {
-      upgradeBtn.style.display = 'block';
-    } else {
-      upgradeBtn.style.display = 'none';
-    }
-  } catch (e) {
-    usageBar.style.display = 'none';
-  }
-}
-
-// ====== التحليل ======
-async function analyze() {
-  hideMsg();
-  resBox.innerHTML = '';
-  resBox.classList.remove('visible');
-
-  const raw = urlInp.value.trim();
-  const videoId = extractVideoId(raw);
-
-  if (!videoId) {
-    showMsg('الرابط غير صحيح. ألصق رابط فيديو YouTube كامل أو ID الفيديو (11 حرف)', 'error');
-    return;
-  }
-
-  setLoading(true, 'نجلب معلومات الفيديو...');
-
-  try {
-    const res = await fetch(WORKER_URL + '/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ videoId })
-    });
-
-    setLoading(true, 'نحلل التعليقات بالذكاء الاصطناعي...');
-    const data = await res.json();
-
-    if (!res.ok || data.error) {
-      if (data.code === 'RATE_LIMIT') {
-        showMsg(data.error, 'limit');
-        upgradeBtn.style.display = 'block';
-      } else {
-        showMsg(data.error || 'حدث خطأ غير متوقع', 'error');
-      }
-      setLoading(false);
-      return;
-    }
-
-    render(data);
-    setLoading(false);
-    loadUsage(); // تحديث العداد
-    
-    // حفظ محلي أيضاً
+    loadUsage();
     saveLocalHistory(data);
   } catch (err) {
     showMsg('تعذر الاتصال بالخادم. تأكد من رابط الـ Worker.', 'error');
@@ -473,130 +408,164 @@ async function analyze() {
   }
 }
 
+anlzBtn.addEventListener('click', analyze);
+urlInp.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') analyze();
+});
+
 // ====== عرض النتائج ======
 function render(data) {
-  const v = data.videoInfo || {};
-  const a = data.analysis || {};
-  const s = a.summary || {};
-  const insights = a.audienceInsights || {};
+  var v = data.videoInfo || {};
+  var a = data.analysis || {};
+  var s = a.summary || {};
+  var insights = a.audienceInsights || {};
 
-  const iconEye = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-  const iconHeart = '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-  const iconMsg = '<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-  const iconSpark = '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
-  const iconUsers = '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
-  const iconTrend = '<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>';
-  const iconHelp = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+  var iconEye = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var iconHeart = '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  var iconMsg = '<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var iconSpark = '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+  var iconUsers = '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+  var iconTrend = '<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>';
+  var iconHelp = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
-  let html = '';
+  var html = '';
 
   if (v.title) {
-    html += `<div class="v-card">
-      ${v.thumb ? `<img class="v-thumb" src="${escHtml(v.thumb)}" alt="">` : '<div class="v-thumb"></div>'}
-      <div class="v-info">
-        <div class="v-title">${escHtml(v.title)}</div>
-        <div class="v-channel">${escHtml(v.channel)}</div>
-        <div class="v-stats">
-          <div class="v-stat">${iconEye}<span>${fmtNum(v.views)} مشاهدة</span></div>
-          <div class="v-stat">${iconHeart}<span>${fmtNum(v.likes)} إعجاب</span></div>
-          <div class="v-stat">${iconMsg}<span>${fmtNum(v.commentCount)} تعليق</span></div>
-        </div>
-      </div>
-    </div>`;
+    html += '<div class="v-card">' +
+      (v.thumb ? '<img class="v-thumb" src="' + escHtml(v.thumb) + '" alt="">' : '<div class="v-thumb"></div>') +
+      '<div class="v-info">' +
+        '<div class="v-title">' + escHtml(v.title) + '</div>' +
+        '<div class="v-channel">' + escHtml(v.channel) + '</div>' +
+        '<div class="v-stats">' +
+          '<div class="v-stat">' + iconEye + '<span>' + fmtNum(v.views) + ' مشاهدة</span></div>' +
+          '<div class="v-stat">' + iconHeart + '<span>' + fmtNum(v.likes) + ' اعجاب</span></div>' +
+          '<div class="v-stat">' + iconMsg + '<span>' + fmtNum(v.commentCount) + ' تعليق</span></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
   }
 
-  html += `<div class="st-row">
-    <div class="st-itm"><div class="st-n">${fmtNum(data.totalComments)}</div><div class="st-l">تعليق محلل</div></div>
-    <div class="st-itm"><div class="st-n">${fmtNum(s.questionsCount)}</div><div class="st-l">أسئلة</div></div>
-    <div class="st-itm"><div class="st-n">${fmtNum(s.requestsCount)}</div><div class="st-l">طلبات</div></div>
-    <div class="st-itm"><div class="st-n">${fmtNum(s.complaintsCount)}</div><div class="st-l">شكاوى</div></div>
-  </div>`;
+  html += '<div class="st-row">' +
+    '<div class="st-itm"><div class="st-n">' + fmtNum(data.totalComments) + '</div><div class="st-l">تعليق محلل</div></div>' +
+    '<div class="st-itm"><div class="st-n">' + fmtNum(s.questionsCount) + '</div><div class="st-l">اسئلة</div></div>' +
+    '<div class="st-itm"><div class="st-n">' + fmtNum(s.requestsCount) + '</div><div class="st-l">طلبات</div></div>' +
+    '<div class="st-itm"><div class="st-n">' + fmtNum(s.complaintsCount) + '</div><div class="st-l">شكاوى</div></div>' +
+  '</div>';
 
-  html += `<div class="sec">
-    <div class="sec-h">${iconUsers}<div class="sec-title">رؤى الجمهور</div></div>
-    <div class="in-row">
-      <div class="in-box"><div class="in-label">مستوى الخبرة</div><div class="in-value">${escHtml(insights.skillLevel || '—')}</div></div>
-      <div class="in-box"><div class="in-label">اللغة المفضلة</div><div class="in-value">${escHtml(insights.languagePreference || '—')}</div></div>
-    </div>
-    <div class="in-label" style="margin-bottom:var(--space-2)">نقاط الألم الرئيسية</div>
-    <ul class="pain-list">${(insights.mainPainPoints || []).map(p => `<li>${escHtml(p)}</li>`).join('')}</ul>
-    ${(insights.toolsMentioned || []).length ? `<div class="chip-row">${insights.toolsMentioned.map(t => `<span class="chip">${escHtml(t)}</span>`).join('')}</div>` : ''}
-  </div>`;
+  html += '<div class="sec">' +
+    '<div class="sec-h">' + iconUsers + '<div class="sec-title">رؤى الجمهور</div></div>' +
+    '<div class="in-row">' +
+      '<div class="in-box"><div class="in-label">مستوى الخبرة</div><div class="in-value">' + escHtml(insights.skillLevel || '\u2014') + '</div></div>' +
+      '<div class="in-box"><div class="in-label">اللغة المفضلة</div><div class="in-value">' + escHtml(insights.languagePreference || '\u2014') + '</div></div>' +
+    '</div>' +
+    '<div class="in-label" style="margin-bottom:var(--space-2)">نقاط الالم الرئيسية</div>' +
+    '<ul class="pain-list">';
+  (insights.mainPainPoints || []).forEach(function(p) {
+    html += '<li>' + escHtml(p) + '</li>';
+  });
+  html += '</ul>';
+  if ((insights.toolsMentioned || []).length) {
+    html += '<div class="chip-row">';
+    insights.toolsMentioned.forEach(function(t) {
+      html += '<span class="chip">' + escHtml(t) + '</span>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
 
   if ((a.topTopics || []).length) {
-    html += `<div class="sec">
-      <div class="sec-h">${iconTrend}<div class="sec-title">المواضيع الرائجة</div></div>
-      <ul class="tp-list">${a.topTopics.map(t => {
-        const sentClass = t.sentiment === 'positive' ? 'tp-s-pos' : t.sentiment === 'negative' ? 'tp-s-neg' : 'tp-s-neu';
-        const sentText = t.sentiment === 'positive' ? 'إيجابي' : t.sentiment === 'negative' ? 'سلبي' : 'محايد';
-        return `<li>
-          <div class="tp-h">
-            <div class="tp-name">${escHtml(t.topic)}</div>
-            <div class="tp-meta">
-              <span class="tp-count">${t.mentions || 0} إشارة</span>
-              <span class="tp-sentiment ${sentClass}">${sentText}</span>
-            </div>
-          </div>
-          ${(t.sampleComments || []).slice(0,2).map(c => `<div class="tp-sample">"${escHtml(c)}"</div>`).join('')}
-        </li>`;
-      }).join('')}</ul>
-    </div>`;
+    html += '<div class="sec">' +
+      '<div class="sec-h">' + iconTrend + '<div class="sec-title">المواضيع الرائجة</div></div>' +
+      '<ul class="tp-list">';
+    a.topTopics.forEach(function(t) {
+      var sentClass = t.sentiment === 'positive' ? 'tp-s-pos' : t.sentiment === 'negative' ? 'tp-s-neg' : 'tp-s-neu';
+      var sentText = t.sentiment === 'positive' ? 'ايجابي' : t.sentiment === 'negative' ? 'سلبي' : 'محايد';
+      html += '<li>' +
+        '<div class="tp-h">' +
+          '<div class="tp-name">' + escHtml(t.topic) + '</div>' +
+          '<div class="tp-meta">' +
+            '<span class="tp-count">' + (t.mentions || 0) + ' اشارة</span>' +
+            '<span class="tp-sentiment ' + sentClass + '">' + sentText + '</span>' +
+          '</div>' +
+        '</div>';
+      (t.sampleComments || []).slice(0, 2).forEach(function(c) {
+        html += '<div class="tp-sample">"' + escHtml(c) + '"</div>';
+      });
+      html += '</li>';
+    });
+    html += '</ul></div>';
   }
 
   if ((a.contentIdeas || []).length) {
-    html += `<div class="sec">
-      <div class="sec-h">${iconSpark}<div class="sec-title">أفكار محتوى مقترحة</div></div>
-      ${a.contentIdeas.map((idea, i) => {
-        const tagClass = idea.priority === 'high' ? 'tag-h' : idea.priority === 'medium' ? 'tag-m' : 'tag-l';
-        const tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'أولوية منخفضة';
-        const fmtLabel = { tutorial: 'شرح', comparison: 'مقارنة', review: 'مراجعة', qna: 'سؤال وجواب', deep_dive: 'تحليل عميق', news: 'أخبار' };
-        const fullText = `${idea.title}\\n\\n${idea.description}\\n\\nالأولوية: ${tagText}\\nالتنسيق: ${fmtLabel[idea.format] || idea.format}\\nالطلب المتوقع: ${idea.estimatedDemand || 0}%`;
-        return `<div class="idea">
-          <div class="idea-h">
-            <div class="idea-title">${escHtml(idea.title)}</div>
-            <button class="copy-btn" onclick="copyText('${escHtml(fullText).replace(/'/g, "\\'")}', this)">نسخ</button>
-          </div>
-          <div class="tag-row">
-            <span class="tag ${tagClass}">${tagText}</span>
-            ${idea.format ? `<span class="tag tag-f">${fmtLabel[idea.format] || idea.format}</span>` : ''}
-          </div>
-          <div class="idea-desc">${escHtml(idea.description)}</div>
-          ${(idea.evidence || []).map(e => `<div class="evidence"><div class="evidence-text">"${escHtml(e)}"</div></div>`).join('')}
-          <div class="demand">
-            <span class="demand-label">الطلب المتوقع</span>
-            <div class="demand-track"><div class="demand-fill" style="width:${Math.min(100, Math.max(0, idea.estimatedDemand || 0))}%"></div></div>
-            <span class="demand-val">${Math.min(100, Math.max(0, idea.estimatedDemand || 0))}%</span>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>`;
+    html += '<div class="sec">' +
+      '<div class="sec-h">' + iconSpark + '<div class="sec-title">افكار محتوى مقترحة</div></div>';
+
+    var fmtLabel = { tutorial: 'شرح', comparison: 'مقارنة', review: 'مراجعة', qna: 'سؤال وجواب', deep_dive: 'تحليل عميق', news: 'اخبار' };
+
+    a.contentIdeas.forEach(function(idea, i) {
+      var tagClass = idea.priority === 'high' ? 'tag-h' : idea.priority === 'medium' ? 'tag-m' : 'tag-l';
+      var tagText = idea.priority === 'high' ? 'اولوية عالية' : idea.priority === 'medium' ? 'اولوية متوسطة' : 'اولوية منخفضة';
+      var fullText = idea.title + '\n\n' + idea.description + '\n\nالاولوية: ' + tagText + '\nالتنسيق: ' + (fmtLabel[idea.format] || idea.format) + '\nالطلب المتوقع: ' + (idea.estimatedDemand || 0) + '%';
+      var safeText = fullText.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+      html += '<div class="idea">' +
+        '<div class="idea-h">' +
+          '<div class="idea-title">' + escHtml(idea.title) + '</div>' +
+          '<button class="copy-btn" data-text="' + safeText + '">نسخ</button>' +
+        '</div>' +
+        '<div class="tag-row">' +
+          '<span class="tag ' + tagClass + '">' + tagText + '</span>' +
+          (idea.format ? '<span class="tag tag-f">' + (fmtLabel[idea.format] || idea.format) + '</span>' : '') +
+        '</div>' +
+        '<div class="idea-desc">' + escHtml(idea.description) + '</div>';
+
+      (idea.evidence || []).forEach(function(e) {
+        html += '<div class="evidence"><div class="evidence-text">"' + escHtml(e) + '"</div></div>';
+      });
+
+      var demandVal = Math.min(100, Math.max(0, idea.estimatedDemand || 0));
+      html += '<div class="demand">' +
+        '<span class="demand-label">الطلب المتوقع</span>' +
+        '<div class="demand-track"><div class="demand-fill" style="width:' + demandVal + '%"></div></div>' +
+        '<span class="demand-val">' + demandVal + '%</span>' +
+      '</div></div>';
+    });
+    html += '</div>';
   }
 
   if ((a.trendingQuestions || []).length) {
-    html += `<div class="sec">
-      <div class="sec-h">${iconHelp}<div class="sec-title">الأسئلة الشائعة</div></div>
-      <ul class="q-list">${a.trendingQuestions.map(q => {
-        const badgeClass = q.answersInVideo ? 'q-yes' : 'q-no';
-        const badgeText = q.answersInVideo ? 'مجاب عليها' : 'غير مجاب عليها';
-        return `<li>
-          <div class="q-text">${escHtml(q.question)}</div>
-          <span class="q-badge ${badgeClass}">${badgeText}</span>
-        </li>`;
-      }).join('')}</ul>
-    </div>`;
+    html += '<div class="sec">' +
+      '<div class="sec-h">' + iconHelp + '<div class="sec-title">الاسئلة الشائعة</div></div>' +
+      '<ul class="q-list">';
+    a.trendingQuestions.forEach(function(q) {
+      var badgeClass = q.answersInVideo ? 'q-yes' : 'q-no';
+      var badgeText = q.answersInVideo ? 'مجاب عليها' : 'غير مجاب عليها';
+      html += '<li>' +
+        '<div class="q-text">' + escHtml(q.question) + '</div>' +
+        '<span class="q-badge ' + badgeClass + '">' + badgeText + '</span>' +
+      '</li>';
+    });
+    html += '</ul></div>';
   }
 
   resBox.innerHTML = html;
+
+  // ربط ازرار النسخ
+  resBox.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      copyText(this.getAttribute('data-text'), this);
+    });
+  });
 }
 
 // ====== المحفوظات ======
 function saveLocalHistory(data) {
-  let hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  var hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   hist.unshift({
     videoId: data.videoInfo ? extractVideoId(data.videoInfo.title) : '',
-    title: data.videoInfo?.title || 'Unknown',
-    channel: data.videoInfo?.channelTitle || '',
-    thumb: data.videoInfo?.thumb,
+    title: data.videoInfo && data.videoInfo.title ? data.videoInfo.title : 'Unknown',
+    channel: data.videoInfo && data.videoInfo.channelTitle ? data.videoInfo.channelTitle : '',
+    thumb: data.videoInfo && data.videoInfo.thumb ? data.videoInfo.thumb : null,
     date: new Date().toISOString(),
     analysis: data.analysis
   });
@@ -605,58 +574,73 @@ function saveLocalHistory(data) {
 }
 
 async function loadHistory() {
-  // حاول من الـ Worker أولاً
+  // حاول من الـ Worker اولا
   try {
-    const res = await fetch(WORKER_URL + '/history');
-    const data = await res.json();
+    var res = await fetch(WORKER_URL + '/history');
+    var data = await res.json();
     if (data.items && data.items.length > 0) {
       renderHistory(data.items, false);
       return;
     }
   } catch (e) {}
-  
+
   // fallback: LocalStorage
-  const local = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  var local = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   renderHistory(local, true);
 }
 
 function renderHistory(items, isLocal) {
   if (!items || items.length === 0) {
-    historyContainer.innerHTML = `
-      <div class="hist-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
-        <div>لا توجد تحليلات محفوظة بعد</div>
-        ${isLocal ? '<div style="font-size:0.75rem;margin-top:var(--space-2)">(المحفوظات المحلية فقط — سجّل لحفظها في السحابة)</div>' : ''}
-      </div>`;
+    historyContainer.innerHTML = '<div class="hist-empty">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>' +
+      '<div>لا توجد تحليلات محفوظة بعد</div>' +
+      (isLocal ? '<div style="font-size:0.75rem;margin-top:var(--space-2)">(المحفوظات المحلية فقط)</div>' : '') +
+    '</div>';
     return;
   }
 
-  let html = '<ul class="hist-list">';
-  items.forEach((item, idx) => {
-    const date = new Date(item.date).toLocaleDateString('ar-SA');
-    html += `<li class="hist-item" onclick="loadHistoryItem(${idx}, ${isLocal})">
-      ${item.thumb ? `<img class="hist-thumb" src="${escHtml(item.thumb)}" alt="">` : '<div class="hist-thumb"></div>'}
-      <div class="hist-info">
-        <div class="hist-title">${escHtml(item.title)}</div>
-        <div class="hist-date">${date}</div>
-      </div>
-      ${isLocal ? `<button class="hist-delete" onclick="event.stopPropagation();deleteLocalItem(${idx})">×</button>` : ''}
-    </li>`;
+  var html = '<ul class="hist-list">';
+  items.forEach(function(item, idx) {
+    var date = new Date(item.date).toLocaleDateString('ar-SA');
+    html += '<li class="hist-item" data-idx="' + idx + '" data-local="' + (isLocal ? '1' : '0') + '">' +
+      (item.thumb ? '<img class="hist-thumb" src="' + escHtml(item.thumb) + '" alt="">' : '<div class="hist-thumb"></div>') +
+      '<div class="hist-info">' +
+        '<div class="hist-title">' + escHtml(item.title) + '</div>' +
+        '<div class="hist-date">' + date + '</div>' +
+      '</div>' +
+      (isLocal ? '<button class="hist-delete" data-idx="' + idx + '">\u00d7</button>' : '') +
+    '</li>';
   });
   html += '</ul>';
   historyContainer.innerHTML = html;
+
+  // ربط الاحداث
+  historyContainer.querySelectorAll('.hist-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      if (e.target.classList.contains('hist-delete')) return;
+      var idx = parseInt(this.getAttribute('data-idx'));
+      var isLocal = this.getAttribute('data-local') === '1';
+      loadHistoryItem(idx, isLocal);
+    });
+  });
+
+  historyContainer.querySelectorAll('.hist-delete').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      deleteLocalItem(parseInt(this.getAttribute('data-idx')));
+    });
+  });
 }
 
 function loadHistoryItem(idx, isLocal) {
-  let items = isLocal 
-    ? JSON.parse(localStorage.getItem('ciai_history') || '[]')
-    : []; // للـ Worker نحتاج جلب مفصل، نبسطها لاحقاً
-  
-  if (isLocal && items[idx]) {
-    const data = {
-      videoInfo: { title: items[idx].title, channelTitle: items[idx].channel, thumb: items[idx].thumb },
-      analysis: items[idx].analysis,
-      totalComments: items[idx].analysis?.summary?.totalComments || 0
+  if (!isLocal) return; // Worker history يحتاج جلب مفصل
+  var items = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  if (items[idx]) {
+    var item = items[idx];
+    var data = {
+      videoInfo: { title: item.title, channelTitle: item.channel, thumb: item.thumb },
+      analysis: item.analysis,
+      totalComments: item.analysis && item.analysis.summary ? item.analysis.summary.totalComments : 0
     };
     switchTab('analyze');
     render(data);
@@ -665,22 +649,13 @@ function loadHistoryItem(idx, isLocal) {
 }
 
 function deleteLocalItem(idx) {
-  let hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  var hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   hist.splice(idx, 1);
   localStorage.setItem('ciai_history', JSON.stringify(hist));
   loadHistory();
 }
 
-// ====== Modal ======
-function showUpgradeModal() {
-  document.getElementById('upgradeModal').classList.add('active');
-}
-function closeUpgradeModal() {
-  document.getElementById('upgradeModal').classList.remove('active');
-}
-
 // ====== Init ======
-urlInp.addEventListener('keypress', e => { if (e.key === 'Enter') analyze(); });
 loadUsage();
 </script>
 </body>
