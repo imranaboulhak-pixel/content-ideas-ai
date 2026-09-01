@@ -140,6 +140,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .modal-h{font-size:1.125rem;font-weight:800;margin-bottom:var(--space-4)}
 .modal-p{color:var(--text-secondary);font-size:0.9375rem;line-height:1.7;margin-bottom:var(--space-5)}
 .modal-close{background:var(--bg-elevated);border:1px solid var(--border);color:var(--text);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-family:var(--font);font-weight:700;cursor:pointer;width:100%}
+.modal-close.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 
 @media(max-width:520px){
   .brand h1{font-size:1.75rem}
@@ -204,6 +205,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 <div class="toast" id="toast"></div>
 
+<!-- Modal الترقية -->
 <div class="modal-overlay" id="upgradeModal">
   <div class="modal">
     <div class="modal-h">الترقية للنسخة المدفوعة</div>
@@ -221,11 +223,29 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   </div>
 </div>
 
+<!-- Modal استنفاذ المحاولات -->
+<div class="modal-overlay" id="limitModal">
+  <div class="modal">
+    <div class="modal-h">\u26a0\ufe0f استنفذت جميع المحاولات المجانية</div>
+    <div class="modal-p">
+      لقد استخدمت <strong>3 من 3</strong> تحليلاتك المجانية اليوم.<br><br>
+      \u23f0 سيتم اعادة تعيين العدد غدا.<br><br>
+      اذا كنت بحاجة الى تحليلات اكثر وميزات اضافية:<br>
+      &bull; 500 تحليل يومي<br>
+      &bull; حفظ غير محدود<br>
+      &bull; تصدير PDF<br>
+      &bull; دعم فني اولوي<br><br>
+      <strong>السعر: 5$ / شهر</strong>
+    </div>
+    <button class="modal-close primary" id="limitClose">فهمت</button>
+  </div>
+</div>
+
 <script>
 // ============================================
 // غير هذا الى رابط Cloudflare Worker حقك
 // ============================================
-const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
+const WORKER_URL = 'https://your-worker.your-subdomain.workers.dev';
 // ============================================
 
 const urlInp = document.getElementById('urlInp');
@@ -246,6 +266,8 @@ const contentAnalyze = document.getElementById('contentAnalyze');
 const contentHistory = document.getElementById('contentHistory');
 const upgradeModal = document.getElementById('upgradeModal');
 const modalClose = document.getElementById('modalClose');
+const limitModal = document.getElementById('limitModal');
+const limitClose = document.getElementById('limitClose');
 
 // ====== استخراج ID ======
 function extractVideoId(input) {
@@ -319,43 +341,57 @@ function switchTab(tab) {
 tabAnalyze.addEventListener('click', function() { switchTab('analyze'); });
 tabHistory.addEventListener('click', function() { switchTab('history'); });
 
-// ====== Modal ======
+// ====== Modals ======
 function showUpgradeModal() {
   upgradeModal.classList.add('active');
 }
 function closeUpgradeModal() {
   upgradeModal.classList.remove('active');
 }
+function showLimitModal() {
+  limitModal.classList.add('active');
+}
+function closeLimitModal() {
+  limitModal.classList.remove('active');
+}
 upgradeBtn.addEventListener('click', showUpgradeModal);
 modalClose.addEventListener('click', closeUpgradeModal);
+limitClose.addEventListener('click', closeLimitModal);
 upgradeModal.addEventListener('click', function(e) {
   if (e.target === upgradeModal) closeUpgradeModal();
 });
+limitModal.addEventListener('click', function(e) {
+  if (e.target === limitModal) closeLimitModal();
+});
+
+// ====== تحديث العداد ======
+function updateUsageUI(used, limit, isSubscribed) {
+  usageBar.style.display = 'flex';
+  used = used || 0;
+  limit = limit || 3;
+
+  usageText.textContent = 'استخدمت ' + used + ' من ' + limit + ' التحليلات المجانية اليومية';
+
+  usageDots.innerHTML = '';
+  for (var i = 0; i < limit; i++) {
+    var dot = document.createElement('div');
+    dot.className = 'usage-dot' + (i < used ? '' : ' active');
+    usageDots.appendChild(dot);
+  }
+
+  if (!isSubscribed && used >= limit) {
+    upgradeBtn.style.display = 'block';
+  } else {
+    upgradeBtn.style.display = 'none';
+  }
+}
 
 // ====== الاستخدام ======
 async function loadUsage() {
   try {
     var res = await fetch(WORKER_URL + '/usage');
     var data = await res.json();
-
-    usageBar.style.display = 'flex';
-    var limit = data.limit || 3;
-    var used = data.used || 0;
-
-    usageText.textContent = 'استخدمت ' + used + ' من ' + limit + ' تحليلات اليوم';
-
-    usageDots.innerHTML = '';
-    for (var i = 0; i < limit; i++) {
-      var dot = document.createElement('div');
-      dot.className = 'usage-dot' + (i < used ? '' : ' active');
-      usageDots.appendChild(dot);
-    }
-
-    if (!data.isSubscribed && used >= limit) {
-      upgradeBtn.style.display = 'block';
-    } else {
-      upgradeBtn.style.display = 'none';
-    }
+    updateUsageUI(data.used, data.limit, data.isSubscribed);
   } catch (e) {
     usageBar.style.display = 'none';
   }
@@ -388,9 +424,15 @@ async function analyze() {
     var data = await res.json();
 
     if (!res.ok || data.error) {
+      // تحديث العداد حتى لو فشل
+      if (data.usage) {
+        updateUsageUI(data.usage.used, data.usage.limit, data.usage.isSubscribed);
+      } else {
+        loadUsage();
+      }
+
       if (data.code === 'RATE_LIMIT') {
-        showMsg(data.error, 'limit');
-        upgradeBtn.style.display = 'block';
+        showLimitModal();
       } else {
         showMsg(data.error || 'حدث خطأ غير متوقع', 'error');
       }
@@ -400,7 +442,12 @@ async function analyze() {
 
     render(data);
     setLoading(false);
-    loadUsage();
+
+    // تحديث العداد من الاستجابة مباشرة
+    if (data.usage) {
+      updateUsageUI(data.usage.used, data.usage.limit, data.usage.isSubscribed);
+    }
+
     saveLocalHistory(data);
   } catch (err) {
     showMsg('تعذر الاتصال بالخادم. تأكد من رابط الـ Worker.', 'error');
@@ -574,7 +621,6 @@ function saveLocalHistory(data) {
 }
 
 async function loadHistory() {
-  // حاول من الـ Worker اولا
   try {
     var res = await fetch(WORKER_URL + '/history');
     var data = await res.json();
@@ -584,7 +630,6 @@ async function loadHistory() {
     }
   } catch (e) {}
 
-  // fallback: LocalStorage
   var local = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   renderHistory(local, true);
 }
@@ -614,7 +659,6 @@ function renderHistory(items, isLocal) {
   html += '</ul>';
   historyContainer.innerHTML = html;
 
-  // ربط الاحداث
   historyContainer.querySelectorAll('.hist-item').forEach(function(item) {
     item.addEventListener('click', function(e) {
       if (e.target.classList.contains('hist-delete')) return;
@@ -633,7 +677,7 @@ function renderHistory(items, isLocal) {
 }
 
 function loadHistoryItem(idx, isLocal) {
-  if (!isLocal) return; // Worker history يحتاج جلب مفصل
+  if (!isLocal) return;
   var items = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   if (items[idx]) {
     var item = items[idx];
