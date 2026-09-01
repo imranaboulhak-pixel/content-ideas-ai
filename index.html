@@ -6,451 +6,362 @@
 <meta name="theme-color" content="#0a0a0a">
 <title>Content Ideas AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --font: 'Tajawal', system-ui, sans-serif;
-  --bg: #0a0a0a;
-  --bg-elevated: #111111;
-  --bg-surface: #1a1a1a;
-  --border: rgba(255,255,255,0.06);
-  --border-strong: rgba(255,255,255,0.12);
-  --text: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #555555;
-  --accent: #ff0000;
-  --accent-dim: rgba(255,0,0,0.08);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
-  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
-  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
-}
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-html { font-size:16px; -webkit-font-smoothing:antialiased; }
-body {
-  font-family:var(--font); background:var(--bg); color:var(--text);
-  min-height:100vh; line-height:1.6; overflow-x:hidden;
-}
-.container { max-width:720px; margin:0 auto; padding:var(--space-8) var(--space-4); }
-
-/* ── Brand ── */
-.brand { margin-bottom:var(--space-10); }
-.brand h1 {
-  font-size:2.25rem; font-weight:900; letter-spacing:-0.03em;
-  line-height:1.1; margin-bottom:var(--space-3);
-}
-.brand h1 span { color:var(--accent); }
-.brand p {
-  font-size:1.0625rem; color:var(--text-secondary);
-  max-width:480px; line-height:1.6;
-}
-
-/* ── Input ── */
-.input-wrap {
-  display:flex; gap:var(--space-3); align-items:stretch;
-  margin-bottom:var(--space-6);
-}
-.url-inp {
-  flex:1; background:var(--bg-surface); border:1px solid var(--border);
-  color:var(--text); padding:var(--space-4) var(--space-5);
-  border-radius:var(--radius-md); font-size:1rem; font-family:var(--font);
-  outline:none; transition:border-color 0.15s ease;
-}
-.url-inp::placeholder { color:var(--text-muted); }
-.url-inp:focus { border-color:var(--accent); }
-.anlz-btn {
-  background:var(--accent); color:#fff; padding:var(--space-4) var(--space-6);
-  border-radius:var(--radius-md); font-size:1rem; font-weight:800;
-  font-family:var(--font); border:none; cursor:pointer; white-space:nowrap;
-  transition:opacity 0.15s ease, transform 0.1s ease;
-}
-.anlz-btn:hover { opacity:0.9; }
-.anlz-btn:active { transform:scale(0.97); }
-.anlz-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
-
-/* ── Messages ── */
-.msg-box {
-  padding:var(--space-3) var(--space-4); border-radius:var(--radius-md);
-  font-size:0.875rem; font-weight:600; display:none; margin-bottom:var(--space-4);
-}
-.msg-box.error { background:rgba(255,0,0,0.08); border:1px solid rgba(255,0,0,0.2); color:#ff8888; }
-.msg-box.success { background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); color:#66cc88; }
-
-/* ── Loading ── */
-.load { display:none; text-align:center; padding:var(--space-12) 0; }
-.load.visible { display:block; }
-.load-spin {
-  width:32px; height:32px; border:2px solid var(--bg-surface);
-  border-top-color:var(--accent); border-radius:50%;
-  margin:0 auto var(--space-4); animation:spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform:rotate(360deg); } }
-.load-t { font-size:1rem; font-weight:700; margin-bottom:var(--space-1); }
-.load-s { font-size:0.8125rem; color:var(--text-muted); }
-
-/* ── Results ── */
-.res { display:none; }
-.res.visible { display:block; animation:fadeIn 0.4s ease; }
-@keyframes fadeIn { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
-
-/* ── Video Card ── */
-.v-card {
-  display:flex; gap:var(--space-5); align-items:flex-start;
-  padding-bottom:var(--space-6); margin-bottom:var(--space-6);
-  border-bottom:1px solid var(--border);
-}
-.v-thumb {
-  width:140px; height:100px; border-radius:var(--radius-md);
-  object-fit:cover; flex-shrink:0; background:var(--bg-surface);
-}
-.v-info { flex:1; min-width:0; }
-.v-title { font-size:1.125rem; font-weight:800; line-height:1.35; margin-bottom:var(--space-1); }
-.v-channel { font-size:0.8125rem; color:var(--text-muted); margin-bottom:var(--space-3); }
-.v-stats { display:flex; gap:var(--space-5); }
-.v-stat { display:flex; align-items:center; gap:var(--space-2); font-size:0.8125rem; color:var(--text-secondary); }
-.v-stat svg { width:14px; height:14px; stroke:currentColor; stroke-width:2; fill:none; }
-
-/* ── Stats Row ── */
-.st-row {
-  display:flex; justify-content:space-between; gap:var(--space-4);
-  padding:var(--space-5) 0; margin-bottom:var(--space-6);
-  border-bottom:1px solid var(--border);
-}
-.st-itm { text-align:center; flex:1; }
-.st-n { font-size:1.75rem; font-weight:900; color:var(--text); line-height:1; margin-bottom:var(--space-1); }
-.st-l { font-size:0.6875rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; }
-
-/* ── Section ── */
-.sec { margin-bottom:var(--space-8); }
-.sec-h {
-  display:flex; align-items:center; gap:var(--space-3);
-  margin-bottom:var(--space-5);
-}
-.sec-h svg { width:18px; height:18px; stroke:var(--accent); stroke-width:2.5; fill:none; }
-.sec-title { font-size:1.125rem; font-weight:800; }
-
-/* ── Audience ── */
-.in-row { display:flex; gap:var(--space-3); margin-bottom:var(--space-4); }
-.in-box { flex:1; padding:var(--space-4); background:var(--bg-elevated); border-radius:var(--radius-md); }
-.in-label { font-size:0.6875rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:var(--space-1); }
-.in-value { font-size:1rem; font-weight:700; }
-.chip-row { display:flex; flex-wrap:wrap; gap:var(--space-2); margin-bottom:var(--space-4); }
-.chip {
-  background:var(--bg-elevated); color:var(--text-secondary);
-  padding:var(--space-1) var(--space-3); border-radius:var(--radius-sm);
-  font-size:0.75rem; font-weight:600; border:1px solid var(--border);
-}
-.pain-list { list-style:none; }
-.pain-list li {
-  padding:var(--space-3) 0; border-bottom:1px solid var(--border);
-  font-size:0.875rem; color:var(--text-secondary); display:flex; gap:var(--space-3); align-items:flex-start;
-}
-.pain-list li::before {
-  content:"—"; color:var(--accent); font-weight:800; flex-shrink:0;
-}
-
-/* ── Ideas ── */
-.idea {
-  padding:var(--space-5) 0; border-bottom:1px solid var(--border);
-}
-.idea:first-child { padding-top:0; }
-.idea-h { display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-3); margin-bottom:var(--space-3); }
-.idea-title { flex:1; font-size:1.0625rem; font-weight:800; line-height:1.4; }
-.copy-btn {
-  background:transparent; border:1px solid var(--border);
-  color:var(--text-muted); padding:var(--space-1) var(--space-3);
-  border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;
-  font-family:var(--font); cursor:pointer; transition:all 0.15s ease; flex-shrink:0;
-}
-.copy-btn:hover { border-color:var(--text-secondary); color:var(--text); }
-.tag-row { display:flex; gap:var(--space-2); margin-bottom:var(--space-3); }
-.tag {
-  font-size:0.6875rem; font-weight:700; padding:0.2rem 0.6rem;
-  border-radius:var(--radius-sm); text-transform:uppercase; letter-spacing:0.03em;
-}
-.tag-h { background:rgba(255,0,0,0.1); color:#ff6666; }
-.tag-m { background:rgba(234,179,8,0.08); color:#fbbf24; }
-.tag-l { background:rgba(34,197,94,0.08); color:#4ade80; }
-.tag-f { background:var(--bg-elevated); color:var(--text-muted); border:1px solid var(--border); }
-.idea-desc { color:var(--text-secondary); font-size:0.875rem; line-height:1.7; margin-bottom:var(--space-4); }
-.evidence {
-  padding:var(--space-3) var(--space-4); background:var(--bg-elevated);
-  border-radius:var(--radius-md); margin-bottom:var(--space-3);
-  border-right:2px solid var(--accent);
-}
-.evidence-text { color:var(--text-muted); font-size:0.8125rem; font-style:italic; line-height:1.6; }
-.demand { display:flex; align-items:center; gap:var(--space-3); margin-top:var(--space-4); }
-.demand-label { font-size:0.6875rem; color:var(--text-muted); font-weight:700; white-space:nowrap; }
-.demand-track { flex:1; height:4px; background:var(--bg-elevated); border-radius:2px; overflow:hidden; }
-.demand-fill { height:100%; background:var(--accent); border-radius:2px; transition:width 1s ease; }
-.demand-val { font-size:0.6875rem; color:var(--text); font-weight:800; min-width:2rem; }
-
-/* ── Questions ── */
-.q-list { list-style:none; }
-.q-list li {
-  padding:var(--space-4) 0; border-bottom:1px solid var(--border);
-  display:flex; justify-content:space-between; align-items:center; gap:var(--space-4);
-}
-.q-text { flex:1; font-size:0.9375rem; font-weight:500; }
-.q-badge {
-  font-size:0.6875rem; font-weight:700; padding:0.25rem 0.625rem;
-  border-radius:var(--radius-sm); white-space:nowrap; flex-shrink:0;
-}
-.q-yes { background:rgba(34,197,94,0.1); color:#4ade80; }
-.q-no { background:rgba(255,0,0,0.08); color:#ff6666; }
-
-/* ── Topics ── */
-.tp-list { list-style:none; }
-.tp-list li {
-  padding:var(--space-4) 0; border-bottom:1px solid var(--border);
-}
-.tp-h { display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-2); }
-.tp-name { font-weight:800; font-size:1rem; }
-.tp-meta { display:flex; align-items:center; gap:var(--space-3); }
-.tp-count { font-size:0.75rem; color:var(--text-muted); }
-.tp-sentiment {
-  font-size:0.625rem; font-weight:700; padding:0.15rem 0.5rem;
-  border-radius:var(--radius-sm); text-transform:uppercase;
-}
-.tp-s-pos { background:rgba(34,197,94,0.1); color:#4ade80; }
-.tp-s-neg { background:rgba(255,0,0,0.08); color:#ff6666; }
-.tp-s-neu { background:var(--bg-elevated); color:var(--text-muted); }
-.tp-sample { color:var(--text-muted); font-size:0.8125rem; margin-top:var(--space-2); padding-right:var(--space-3); border-right:2px solid var(--border); }
-
-/* ── Toast ── */
-.toast {
-  position:fixed; bottom:var(--space-6); left:50%;
-  transform:translateX(-50%) translateY(100px);
-  background:var(--bg-elevated); color:var(--text);
-  padding:var(--space-3) var(--space-5); border-radius:var(--radius-md);
-  font-size:0.875rem; font-weight:700; opacity:0; z-index:1000;
-  border:1px solid var(--border); transition:all 0.3s ease;
-}
-.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-
-/* ── Responsive ── */
-@media (max-width:520px) {
-  .brand h1 { font-size:1.75rem; }
-  .input-wrap { flex-direction:column; }
-  .anlz-btn { width:100%; justify-content:center; }
-  .v-card { flex-direction:column; }
-  .v-thumb { width:100%; height:auto; aspect-ratio:16/9; }
-  .st-row { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
-  .in-row { flex-direction:column; }
-  .q-list li { flex-direction:column; align-items:flex-start; gap:var(--space-2); }
-}
+:root{--font:'Tajawal',system-ui,sans-serif;--bg:#0a0a0a;--bg-elevated:#111;--bg-surface:#1a1a1a;--border:rgba(255,255,255,0.06);--text:#fff;--text-secondary:#a0a0a0;--text-muted:#555;--accent:#ff0000;--radius-sm:6px;--radius-md:10px;--space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+.container{max-width:720px;margin:0 auto;padding:var(--space-8) var(--space-4)}
+.brand{margin-bottom:var(--space-10)}
+.brand h1{font-size:2.25rem;font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:var(--space-3)}
+.brand h1 span{color:var(--accent)}
+.brand p{font-size:1.0625rem;color:var(--text-secondary);max-width:480px;line-height:1.6}
+.input-wrap{display:flex;gap:var(--space-3);align-items:stretch;margin-bottom:var(--space-6)}
+.url-inp{flex:1;background:var(--bg-surface);border:1px solid var(--border);color:var(--text);padding:var(--space-4) var(--space-5);border-radius:var(--radius-md);font-size:1rem;font-family:var(--font);outline:none}
+.url-inp::placeholder{color:var(--text-muted)}
+.url-inp:focus{border-color:var(--accent)}
+.anlz-btn{background:var(--accent);color:#fff;padding:var(--space-4) var(--space-6);border-radius:var(--radius-md);font-size:1rem;font-weight:800;font-family:var(--font);border:none;cursor:pointer;white-space:nowrap}
+.anlz-btn:disabled{opacity:0.4;cursor:not-allowed}
+.msg-box{padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);font-size:0.875rem;font-weight:600;display:none;margin-bottom:var(--space-4)}
+.msg-box.error{background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.2);color:#ff8888}
+.msg-box.success{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);color:#66cc88}
+.load{display:none;text-align:center;padding:var(--space-12) 0}
+.load.visible{display:block}
+.load-spin{width:32px;height:32px;border:2px solid var(--bg-surface);border-top-color:var(--accent);border-radius:50%;margin:0 auto var(--space-4);animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-t{font-size:1rem;font-weight:700;margin-bottom:var(--space-1)}
+.load-s{font-size:0.8125rem;color:var(--text-muted)}
+.res{display:none}
+.res.visible{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.v-card{display:flex;gap:var(--space-5);align-items:flex-start;padding-bottom:var(--space-6);margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
+.v-thumb{width:140px;height:100px;border-radius:var(--radius-md);object-fit:cover;flex-shrink:0;background:var(--bg-surface)}
+.v-info{flex:1;min-width:0}
+.v-title{font-size:1.125rem;font-weight:800;line-height:1.35;margin-bottom:var(--space-1)}
+.v-channel{font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-3)}
+.v-stats{display:flex;gap:var(--space-5)}
+.v-stat{display:flex;align-items:center;gap:var(--space-2);font-size:0.8125rem;color:var(--text-secondary)}
+.v-stat svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.st-row{display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-5) 0;margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
+.st-itm{text-align:center;flex:1}
+.st-n{font-size:1.75rem;font-weight:900;line-height:1;margin-bottom:var(--space-1)}
+.st-l{font-size:0.6875rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
+.sec{margin-bottom:var(--space-8)}
+.sec-h{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
+.sec-h svg{width:18px;height:18px;stroke:var(--accent);stroke-width:2.5;fill:none}
+.sec-title{font-size:1.125rem;font-weight:800}
+.in-row{display:flex;gap:var(--space-3);margin-bottom:var(--space-4)}
+.in-box{flex:1;padding:var(--space-4);background:var(--bg-elevated);border-radius:var(--radius-md)}
+.in-label{font-size:0.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-1)}
+.in-value{font-size:1rem;font-weight:700}
+.chip-row{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4)}
+.chip{background:var(--bg-elevated);color:var(--text-secondary);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:600;border:1px solid var(--border)}
+.pain-list{list-style:none}
+.pain-list li{padding:var(--space-3) 0;border-bottom:1px solid var(--border);font-size:0.875rem;color:var(--text-secondary);display:flex;gap:var(--space-3);align-items:flex-start}
+.pain-list li::before{content:"—";color:var(--accent);font-weight:800;flex-shrink:0}
+.idea{padding:var(--space-5) 0;border-bottom:1px solid var(--border)}
+.idea:first-child{padding-top:0}
+.idea-h{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-3);margin-bottom:var(--space-3)}
+.idea-title{flex:1;font-size:1.0625rem;font-weight:800;line-height:1.4}
+.copy-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:700;font-family:var(--font);cursor:pointer;flex-shrink:0}
+.tag-row{display:flex;gap:var(--space-2);margin-bottom:var(--space-3)}
+.tag{font-size:0.6875rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:var(--radius-sm);text-transform:uppercase;letter-spacing:0.03em}
+.tag-h{background:rgba(255,0,0,0.1);color:#ff6666}
+.tag-m{background:rgba(234,179,8,0.08);color:#fbbf24}
+.tag-l{background:rgba(34,197,94,0.08);color:#4ade80}
+.tag-f{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border)}
+.idea-desc{color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin-bottom:var(--space-4)}
+.evidence{padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:var(--space-3);border-right:2px solid var(--accent)}
+.evidence-text{color:var(--text-muted);font-size:0.8125rem;font-style:italic;line-height:1.6}
+.demand{display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-4)}
+.demand-label{font-size:0.6875rem;color:var(--text-muted);font-weight:700;white-space:nowrap}
+.demand-track{flex:1;height:4px;background:var(--bg-elevated);border-radius:2px;overflow:hidden}
+.demand-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 1s ease}
+.demand-val{font-size:0.6875rem;font-weight:800;min-width:2rem}
+.q-list{list-style:none}
+.q-list li{padding:var(--space-4) 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4)}
+.q-text{flex:1;font-size:0.9375rem;font-weight:500}
+.q-badge{font-size:0.6875rem;font-weight:700;padding:0.25rem 0.625rem;border-radius:var(--radius-sm);white-space:nowrap;flex-shrink:0}
+.q-yes{background:rgba(34,197,94,0.1);color:#4ade80}
+.q-no{background:rgba(255,0,0,0.08);color:#ff6666}
+.tp-list{list-style:none}
+.tp-list li{padding:var(--space-4) 0;border-bottom:1px solid var(--border)}
+.tp-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2)}
+.tp-name{font-weight:800;font-size:1rem}
+.tp-meta{display:flex;align-items:center;gap:var(--space-3)}
+.tp-count{font-size:0.75rem;color:var(--text-muted)}
+.tp-sentiment{font-size:0.625rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:var(--radius-sm);text-transform:uppercase}
+.tp-s-pos{background:rgba(34,197,94,0.1);color:#4ade80}
+.tp-s-neg{background:rgba(255,0,0,0.08);color:#ff6666}
+.tp-s-neu{background:var(--bg-elevated);color:var(--text-muted)}
+.tp-sample{color:var(--text-muted);font-size:0.8125rem;margin-top:var(--space-2);padding-right:var(--space-3);border-right:2px solid var(--border)}
+.toast{position:fixed;bottom:var(--space-6);left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-elevated);color:var(--text);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-size:0.875rem;font-weight:700;opacity:0;z-index:1000;border:1px solid var(--border);transition:all 0.3s ease}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:520px){.brand h1{font-size:1.75rem}.input-wrap{flex-direction:column}.anlz-btn{width:100%}.v-card{flex-direction:column}.v-thumb{width:100%;height:auto;aspect-ratio:16/9}.st-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}.in-row{flex-direction:column}.q-list li{flex-direction:column;align-items:flex-start;gap:var(--space-2)}}
 </style>
 </head>
 <body>
 <div class="container">
   <div class="brand">
     <h1>Content Ideas <span>AI</span></h1>
-    <p>حوّل تعليقات YouTube إلى أفكار فيديوهات جديدة بالذكاء الاصطناعي</p>
+    <p>حوّل تعليقات YouTube إلى أفكار فيديو جديدة باستخدام الذكاء الاصطناعي</p>
   </div>
+
   <div class="input-wrap">
-    <input type="text" id="url" class="url-inp" placeholder="الصق رابط فيديو YouTube..." autocomplete="off">
-    <button class="anlz-btn" id="goBtn" type="button">تحليل</button>
+    <input type="text" class="url-inp" id="urlInp" placeholder="ألصق رابط فيديو YouTube هنا...">
+    <button class="anlz-btn" id="anlzBtn" onclick="analyze()">تحليل</button>
   </div>
-  <div class="msg-box" id="err"></div>
-  <div class="load" id="load">
+
+  <div class="msg-box" id="msgBox"></div>
+
+  <div class="load" id="loadBox">
     <div class="load-spin"></div>
     <div class="load-t">جاري التحليل...</div>
-    <div class="load-s" id="loadTxt">نقرأ تعليقات الجمهور</div>
+    <div class="load-s" id="loadSub">نجلب التعليقات من YouTube</div>
   </div>
-  <div class="res" id="res"></div>
+
+  <div class="res" id="resBox"></div>
 </div>
+
 <div class="toast" id="toast"></div>
+
 <script>
-  function gid(id){ return document.getElementById(id); }
-function showMsg(elId, txt, isOk){
-  var el = gid(elId); el.textContent = txt; el.style.display = 'block';
-  el.className = isOk ? 'msg-box success' : 'msg-box error';
-}
-function hideMsg(elId){ gid(elId).style.display = 'none'; }
-function showToast(txt){
-  var t = gid('toast'); t.textContent = txt; t.className = 'toast show';
-  setTimeout(function(){ t.className = 'toast'; }, 2000);
-}
-function vidId(url){
-  var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
-  if(m) return m[1];
-  if(/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
+// ============================================
+// غيّر هذا الرابط إلى رابط Cloudflare Worker حقك
+// ============================================
+const WORKER_URL = 'https://your-worker.your-subdomain.workers.dev';
+// ============================================
+
+const urlInp = document.getElementById('urlInp');
+const anlzBtn = document.getElementById('anlzBtn');
+const msgBox = document.getElementById('msgBox');
+const loadBox = document.getElementById('loadBox');
+const loadSub = document.getElementById('loadSub');
+const resBox = document.getElementById('resBox');
+const toast = document.getElementById('toast');
+
+// استخراج videoId من رابط يوتيوب
+function extractVideoId(input) {
+  input = input.trim();
+  if (!input) return null;
+  // لو هو ID مباشر (11 حرف)
+  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+  // روابط يوتيوب المختلفة
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+    /[?&]v=([a-zA-Z0-9_-]{11})/
+  ];
+  for (const p of patterns) {
+    const m = input.match(p);
+    if (m) return m[1];
+  }
   return null;
 }
-function fmt(n){
-  var num = typeof n === 'string' ? (parseInt(n)||0) : n;
-  if(num >= 1000000) return (num/1000000).toFixed(1) + 'M';
-  if(num >= 1000) return (num/1000).toFixed(1) + 'K';
+
+function showMsg(text, type) {
+  msgBox.textContent = text;
+  msgBox.className = 'msg-box ' + (type || 'error');
+  msgBox.style.display = 'block';
+}
+function hideMsg() {
+  msgBox.style.display = 'none';
+}
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+function setLoading(on, sub) {
+  anlzBtn.disabled = on;
+  loadBox.classList.toggle('visible', on);
+  if (sub) loadSub.textContent = sub;
+  if (!on) resBox.classList.add('visible');
+}
+function fmtNum(n) {
+  if (!n) return '0';
+  const num = parseInt(n);
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
   return num.toString();
 }
-function esc(t){
-  if(!t) return '';
-  return String(t)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#x27;');
+function escHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
-function stripEmoji(t){
-  // إزالة الإيموجي التي يرجعها Gemini في التعليقات
-  return String(t||'').replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim();
-}
-function trPri(p){ var m={high:'عالي',medium:'متوسط',low:'منخفض'}; return m[p]||p; }
-function trFmt(f){ var m={tutorial:'تعليمي',comparison:'مقارنة',review:'مراجعة',qna:'سؤال وجواب',deep_dive:'تعمق',news:'أخبار'}; return m[f]||f; }
-function trSkill(s){ var m={beginner:'مبتدئ',intermediate:'متوسط',advanced:'متقدم',mixed:'متنوع'}; return m[s]||s; }
-function trLang(l){ var m={Arabic:'عربي',English:'إنجليزي',Mixed:'مختلط'}; return m[l]||l; }
-
-function render(vi, total, a){
-  var s = a.summary || {};
-  var ideas = a.contentIdeas || [];
-  var topics = a.topTopics || [];
-  var questions = a.trendingQuestions || [];
-  var insights = a.audienceInsights || {};
-  var html = '';
-
-  // Video Card
-  if(vi){
-    html += '<div class="v-card">';
-    if(vi.thumb) html += '<img src="' + vi.thumb + '" class="v-thumb" alt="صورة مصغرة" loading="lazy">';
-    html += '<div class="v-info">';
-    html += '<div class="v-title">' + esc(vi.title) + '</div>';
-    html += '<div class="v-channel">' + esc(vi.channel) + '</div>';
-    html += '<div class="v-stats">';
-    html += '<div class="v-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>' + fmt(vi.views) + '</div>';
-    html += '<div class="v-stat"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' + fmt(vi.likes) + '</div>';
-    html += '<div class="v-stat"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' + fmt(vi.commentCount) + '</div>';
-    html += '</div></div></div>';
-  }
-
-  // Stats Row
-  html += '<div class="st-row">';
-  html += '<div class="st-itm"><div class="st-n">' + fmt(total) + '</div><div class="st-l">تعليق محلل</div></div>';
-  html += '<div class="st-itm"><div class="st-n">' + fmt(s.questionsCount||0) + '</div><div class="st-l">أسئلة</div></div>';
-  html += '<div class="st-itm"><div class="st-n">' + fmt(ideas.length) + '</div><div class="st-l">أفكار</div></div>';
-  html += '<div class="st-itm"><div class="st-n">' + fmt(topics.length) + '</div><div class="st-l">مواضيع</div></div>';
-  html += '</div>';
-
-  // Audience Insights
-  if(insights.skillLevel){
-    html += '<div class="sec">';
-    html += '<div class="sec-h"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div class="sec-title">رؤى الجمهور</div></div>';
-    html += '<div class="in-row">';
-    html += '<div class="in-box"><div class="in-label">المستوى</div><div class="in-value">' + trSkill(insights.skillLevel) + '</div></div>';
-    html += '<div class="in-box"><div class="in-label">اللغة</div><div class="in-value">' + trLang(insights.languagePreference) + '</div></div>';
-    html += '</div>';
-    if(insights.toolsMentioned && insights.toolsMentioned.length){
-      html += '<div class="chip-row">' + insights.toolsMentioned.map(function(t){return '<span class="chip">' + esc(t) + '</span>';}).join('') + '</div>';
-    }
-    if(insights.mainPainPoints && insights.mainPainPoints.length){
-      html += '<ul class="pain-list">';
-      insights.mainPainPoints.forEach(function(p){ html += '<li>' + esc(p) + '</li>'; });
-      html += '</ul>';
-    }
-    html += '</div>';
-  }
-
-  // Content Ideas
-  if(ideas.length){
-    html += '<div class="sec">';
-    html += '<div class="sec-h"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><div class="sec-title">اقتراحات الفيديوهات</div></div>';
-    ideas.forEach(function(idea){
-      var copyTxt = esc((idea.title + '\n' + idea.description).replace(/"/g, '&quot;'));
-      var pClass = idea.priority==='high' ? 'tag-h' : idea.priority==='medium' ? 'tag-m' : 'tag-l';
-      html += '<div class="idea">';
-      html += '<div class="idea-h"><div class="idea-title">' + esc(idea.title) + '</div><button class="copy-btn" type="button" data-copy="' + copyTxt + '">نسخ</button></div>';
-      html += '<div class="tag-row"><span class="tag ' + pClass + '">' + trPri(idea.priority) + '</span><span class="tag tag-f">' + trFmt(idea.format) + '</span></div>';
-      html += '<div class="idea-desc">' + esc(idea.description) + '</div>';
-      if(idea.evidence && idea.evidence.length){
-        idea.evidence.forEach(function(ev){
-          var clean = stripEmoji(ev);
-          if(clean) html += '<div class="evidence"><div class="evidence-text">"' + esc(clean) + '"</div></div>';
-        });
-      }
-      html += '<div class="demand"><span class="demand-label">الطلب</span><div class="demand-track"><div class="demand-fill" style="width:' + (idea.estimatedDemand||50) + '%"></div></div><span class="demand-val">' + (idea.estimatedDemand||50) + '%</span></div>';
-      html += '</div>';
-    });
-    html += '</div>';
-  }
-
-  // Questions
-  if(questions.length){
-    html += '<div class="sec">';
-    html += '<div class="sec-h"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div class="sec-title">الأسئلة المتكررة</div></div>';
-    html += '<ul class="q-list">';
-    questions.forEach(function(q){
-      html += '<li><div class="q-text">' + esc(q.question) + '</div><span class="q-badge ' + (q.answersInVideo?'q-yes':'q-no') + '">' + (q.answersInVideo?'مجاب':'غير مجاب') + '</span></li>';
-    });
-    html += '</ul></div>';
-  }
-
-  // Topics
-  if(topics.length){
-    html += '<div class="sec">';
-    html += '<div class="sec-h"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><div class="sec-title">المواضيع الأكثر ذكراً</div></div>';
-    html += '<ul class="tp-list">';
-    topics.forEach(function(t){
-      var sClass = t.sentiment==='positive' ? 'tp-s-pos' : t.sentiment==='negative' ? 'tp-s-neg' : 'tp-s-neu';
-      html += '<li><div class="tp-h"><span class="tp-name">' + esc(t.topic) + '</span><div class="tp-meta"><span class="tp-count">' + (t.mentions||0) + ' مرة</span><span class="tp-sentiment ' + sClass + '">' + (t.sentiment==='positive'?'إيجابي':t.sentiment==='negative'?'سلبي':'محايد') + '</span></div></div>';
-      if(t.sampleComments && t.sampleComments.length){
-        t.sampleComments.forEach(function(sc){ html += '<div class="tp-sample">"' + esc(sc) + '"</div>'; });
-      }
-      html += '</li>';
-    });
-    html += '</ul></div>';
-  }
-
-  gid('res').innerHTML = html;
-  gid('res').style.display = 'block';
-
-  // Copy buttons
-  var btns = gid('res').querySelectorAll('.copy-btn');
-  btns.forEach(function(btn){
-    btn.onclick = function(){
-      var txt = this.getAttribute('data-copy');
-      if(txt){ txt = txt.replace(/&quot;/g, '"'); navigator.clipboard.writeText(txt).catch(function(){}); }
-      var orig = this.textContent; this.textContent = 'تم'; showToast('تم النسخ');
-      setTimeout(function(b,o){return function(){b.textContent=o;};}(this,orig), 1500);
-    };
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const old = btn.textContent;
+    btn.textContent = 'تم النسخ';
+    showToast('تم النسخ');
+    setTimeout(() => btn.textContent = old, 1500);
   });
 }
 
-gid('goBtn').onclick = function(){
-  hideMsg('err');
-  var url = gid('url').value.trim();
-  var vid = vidId(url);
-  if(!vid){ showMsg('err', 'رابط YouTube غير صالح'); return; }
-  gid('goBtn').disabled = true;
-  gid('load').className = 'load visible';
-  gid('res').style.display = 'none';
-  gid('loadTxt').textContent = 'نقرأ تعليقات الجمهور...';
+async function analyze() {
+  hideMsg();
+  resBox.innerHTML = '';
+  resBox.classList.remove('visible');
 
-  fetch('https://youtube-api.imranaboulhak.workers.dev', {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({videoId:vid})
-  })
-  .then(function(r){
-    gid('load').className = 'load'; gid('goBtn').disabled = false;
-    if(!r.ok){
-      return r.json().then(function(d){
-        showMsg('err', (d.error||'خطأ في التحليل') + ' (' + r.status + ')');
-        throw new Error(d.error);
-      }).catch(function(e){ if(!e.message) showMsg('err','خطأ ' + r.status); throw e; });
+  const raw = urlInp.value.trim();
+  const videoId = extractVideoId(raw);
+
+  if (!videoId) {
+    showMsg('الرابط غير صحيح. ألصق رابط فيديو YouTube كامل أو ID الفيديو (11 حرف)', 'error');
+    return;
+  }
+
+  setLoading(true, 'نجلب معلومات الفيديو...');
+
+  try {
+    const res = await fetch(WORKER_URL + '/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoId })
+    });
+
+    setLoading(true, 'نحلل التعليقات بالذكاء الاصطناعي...');
+
+    const data = await res.json();
+
+    if (!res.ok || data.error) {
+      showMsg(data.error || 'حدث خطأ غير متوقع', 'error');
+      setLoading(false);
+      return;
     }
-    return r.json();
-  })
-  .then(function(d){ if(d) render(d.videoInfo, d.totalComments, d.analysis); })
-  .catch(function(e){
-    if(e.message && e.message.includes('HTTP')) return;
-    gid('load').className = 'load'; gid('goBtn').disabled = false;
-    showMsg('err', 'فشل الاتصال: ' + (e.message||'خطأ غير معروف'));
-  });
-};
 
-gid('url').onkeypress = function(e){ if(e.key==='Enter') gid('goBtn').onclick(); };
+    render(data);
+    setLoading(false);
+  } catch (err) {
+    showMsg('تعذر الاتصال بالخادم. تأكد من رابط الـ Worker.', 'error');
+    setLoading(false);
+  }
+}
+
+function render(data) {
+  const v = data.videoInfo || {};
+  const a = data.analysis || {};
+  const s = a.summary || {};
+  const insights = a.audienceInsights || {};
+
+  // أيقونات SVG
+  const iconEye = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const iconHeart = '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  const iconMsg = '<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  const iconSpark = '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+  const iconUsers = '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+  const iconTrend = '<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>';
+  const iconHelp = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+
+  let html = '';
+
+  // بطاقة الفيديو
+  if (v.title) {
+    html += `<div class="v-card">
+      ${v.thumb ? `<img class="v-thumb" src="${escHtml(v.thumb)}" alt="">` : '<div class="v-thumb"></div>'}
+      <div class="v-info">
+        <div class="v-title">${escHtml(v.title)}</div>
+        <div class="v-channel">${escHtml(v.channel)}</div>
+        <div class="v-stats">
+          <div class="v-stat">${iconEye}<span>${fmtNum(v.views)} مشاهدة</span></div>
+          <div class="v-stat">${iconHeart}<span>${fmtNum(v.likes)} إعجاب</span></div>
+          <div class="v-stat">${iconMsg}<span>${fmtNum(v.commentCount)} تعليق</span></div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // إحصائيات سريعة
+  html += `<div class="st-row">
+    <div class="st-itm"><div class="st-n">${fmtNum(data.totalComments)}</div><div class="st-l">تعليق محلل</div></div>
+    <div class="st-itm"><div class="st-n">${fmtNum(s.questionsCount)}</div><div class="st-l">أسئلة</div></div>
+    <div class="st-itm"><div class="st-n">${fmtNum(s.requestsCount)}</div><div class="st-l">طلبات</div></div>
+    <div class="st-itm"><div class="st-n">${fmtNum(s.complaintsCount)}</div><div class="st-l">شكاوى</div></div>
+  </div>`;
+
+  // رؤى الجمهور
+  html += `<div class="sec">
+    <div class="sec-h">${iconUsers}<div class="sec-title">رؤى الجمهور</div></div>
+    <div class="in-row">
+      <div class="in-box"><div class="in-label">مستوى الخبرة</div><div class="in-value">${escHtml(insights.skillLevel || '—')}</div></div>
+      <div class="in-box"><div class="in-label">اللغة المفضلة</div><div class="in-value">${escHtml(insights.languagePreference || '—')}</div></div>
+    </div>
+    <div class="in-label" style="margin-bottom:var(--space-2)">نقاط الألم الرئيسية</div>
+    <ul class="pain-list">${(insights.mainPainPoints || []).map(p => `<li>${escHtml(p)}</li>`).join('')}</ul>
+    ${(insights.toolsMentioned || []).length ? `<div class="chip-row">${insights.toolsMentioned.map(t => `<span class="chip">${escHtml(t)}</span>`).join('')}</div>` : ''}
+  </div>`;
+
+  // المواضيع الرائجة
+  if ((a.topTopics || []).length) {
+    html += `<div class="sec">
+      <div class="sec-h">${iconTrend}<div class="sec-title">المواضيع الرائجة</div></div>
+      <ul class="tp-list">${a.topTopics.map(t => {
+        const sentClass = t.sentiment === 'positive' ? 'tp-s-pos' : t.sentiment === 'negative' ? 'tp-s-neg' : 'tp-s-neu';
+        const sentText = t.sentiment === 'positive' ? 'إيجابي' : t.sentiment === 'negative' ? 'سلبي' : 'محايد';
+        return `<li>
+          <div class="tp-h">
+            <div class="tp-name">${escHtml(t.topic)}</div>
+            <div class="tp-meta">
+              <span class="tp-count">${t.mentions || 0} إشارة</span>
+              <span class="tp-sentiment ${sentClass}">${sentText}</span>
+            </div>
+          </div>
+          ${(t.sampleComments || []).slice(0,2).map(c => `<div class="tp-sample">"${escHtml(c)}"</div>`).join('')}
+        </li>`;
+      }).join('')}</ul>
+    </div>`;
+  }
+
+  // أفكار المحتوى
+  if ((a.contentIdeas || []).length) {
+    html += `<div class="sec">
+      <div class="sec-h">${iconSpark}<div class="sec-title">أفكار محتوى مقترحة</div></div>
+      ${a.contentIdeas.map((idea, i) => {
+        const tagClass = idea.priority === 'high' ? 'tag-h' : idea.priority === 'medium' ? 'tag-m' : 'tag-l';
+        const tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'أولوية منخفضة';
+        const fmtLabel = { tutorial: 'شرح', comparison: 'مقارنة', review: 'مراجعة', qna: 'سؤال وجواب', deep_dive: 'تحليل عميق', news: 'أخبار' };
+        const fullText = `${idea.title}\n\n${idea.description}\n\nالأولوية: ${tagText}\nالتنسيق: ${fmtLabel[idea.format] || idea.format}\nالطلب المتوقع: ${idea.estimatedDemand || 0}%`;
+        return `<div class="idea">
+          <div class="idea-h">
+            <div class="idea-title">${escHtml(idea.title)}</div>
+            <button class="copy-btn" onclick="copyText('${escHtml(fullText).replace(/'/g, "\'")}', this)">نسخ</button>
+          </div>
+          <div class="tag-row">
+            <span class="tag ${tagClass}">${tagText}</span>
+            ${idea.format ? `<span class="tag tag-f">${fmtLabel[idea.format] || idea.format}</span>` : ''}
+          </div>
+          <div class="idea-desc">${escHtml(idea.description)}</div>
+          ${(idea.evidence || []).map(e => `<div class="evidence"><div class="evidence-text">"${escHtml(e)}"</div></div>`).join('')}
+          <div class="demand">
+            <span class="demand-label">الطلب المتوقع</span>
+            <div class="demand-track"><div class="demand-fill" style="width:${Math.min(100, Math.max(0, idea.estimatedDemand || 0))}%"></div></div>
+            <span class="demand-val">${Math.min(100, Math.max(0, idea.estimatedDemand || 0))}%</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
+  // الأسئلة الشائعة
+  if ((a.trendingQuestions || []).length) {
+    html += `<div class="sec">
+      <div class="sec-h">${iconHelp}<div class="sec-title">الأسئلة الشائعة</div></div>
+      <ul class="q-list">${a.trendingQuestions.map(q => {
+        const badgeClass = q.answersInVideo ? 'q-yes' : 'q-no';
+        const badgeText = q.answersInVideo ? 'مجاب عليها' : 'غير مجاب عليها';
+        return `<li>
+          <div class="q-text">${escHtml(q.question)}</div>
+          <span class="q-badge ${badgeClass}">${badgeText}</span>
+        </li>`;
+      }).join('')}</ul>
+    </div>`;
+  }
+
+  resBox.innerHTML = html;
+}
+
+// اضغط Enter يحلل
+urlInp.addEventListener('keypress', e => { if (e.key === 'Enter') analyze(); });
 </script>
 </body>
 </html>
