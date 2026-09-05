@@ -160,7 +160,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 <div class="container">
   <div class="brand">
     <h1>Content Ideas <span>AI</span></h1>
-    <p>حول تعليقات YouTube إلى أفكار فيديو جديدة باستخدام الذكاء الاصطناعي</p>
+    <p>حول تعليقات YouTube الى افكار فيديو جديدة باستخدام الذكاء الاصطناعي</p>
   </div>
 
   <div class="usage-bar" id="usageBar" style="display:none">
@@ -215,8 +215,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
       &bull; 500 تحليل يومي<br>
       &bull; حفظ غير محدود في المحفوظات<br>
       &bull; تصدير التحليلات PDF<br>
-      &bull; دعم فني أولوية<br><br>
-      السعر: <strong>5$ / شهر</strong>
+      &bull; دعم فني اولوي<br><br>
+      السعر: <strong>5$ / شهر</strong><br><br>
+      <em>قريبا: ربط Stripe للدفع المباشر</em>
     </div>
     <button class="modal-close" id="modalClose">فهمت</button>
   </div>
@@ -228,10 +229,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     <div class="modal-h">⚠️ استنفذت جميع المحاولات المجانية</div>
     <div class="modal-p">
       لقد استخدمت <strong>3 من 3</strong> تحليلاتك المجانية اليوم.<br><br>
-      ⏰ سيتم إعادة تعيين العدد تلقائياً غداً.<br><br>
-      إذا كنت بحاجة إلى تحليلات أكثر:<br>
+      ⏰ سيتم اعادة تعيين العدد غدا.<br><br>
+      اذا كنت بحاجة الى تحليلات اكثر وميزات اضافية:<br>
       &bull; 500 تحليل يومي<br>
-      &bull; دعم كامل وميزات إضافية<br><br>
+      &bull; حفظ غير محدود<br>
+      &bull; تصدير PDF<br>
+      &bull; دعم فني اولوي<br><br>
       <strong>السعر: 5$ / شهر</strong>
     </div>
     <button class="modal-close primary" id="limitClose">فهمت</button>
@@ -239,17 +242,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 </div>
 
 <script>
+// ============================================
+// غير هذا الى رابط Cloudflare Worker حقك
+// ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
-
-// ====== إدارة معرف العميل لضمان دقة العداد ======
-function getClientId() {
-  let cid = localStorage.getItem('ciai_client_id');
-  if (!cid) {
-    cid = 'c_' + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
-    localStorage.setItem('ciai_client_id', cid);
-  }
-  return cid;
-}
+// ============================================
 
 const urlInp = document.getElementById('urlInp');
 const anlzBtn = document.getElementById('anlzBtn');
@@ -272,6 +269,7 @@ const modalClose = document.getElementById('modalClose');
 const limitModal = document.getElementById('limitModal');
 const limitClose = document.getElementById('limitClose');
 
+// ====== استخراج ID ======
 function extractVideoId(input) {
   input = input.trim();
   if (!input) return null;
@@ -283,12 +281,15 @@ function extractVideoId(input) {
   return null;
 }
 
+// ====== UI Helpers ======
 function showMsg(text, type) {
   msgBox.textContent = text;
   msgBox.className = 'msg-box ' + (type || 'error');
   msgBox.style.display = 'block';
 }
-function hideMsg() { msgBox.style.display = 'none'; }
+function hideMsg() {
+  msgBox.style.display = 'none';
+}
 function showToast(text) {
   toast.textContent = text;
   toast.classList.add('show');
@@ -320,6 +321,7 @@ function copyText(text, btn) {
   });
 }
 
+// ====== التبويبات ======
 function switchTab(tab) {
   tabAnalyze.classList.remove('active');
   tabHistory.classList.remove('active');
@@ -339,61 +341,63 @@ function switchTab(tab) {
 tabAnalyze.addEventListener('click', function() { switchTab('analyze'); });
 tabHistory.addEventListener('click', function() { switchTab('history'); });
 
-function showUpgradeModal() { upgradeModal.classList.add('active'); }
-function closeUpgradeModal() { upgradeModal.classList.remove('active'); }
-function showLimitModal() { limitModal.classList.add('active'); }
-function closeLimitModal() { limitModal.classList.remove('active'); }
+// ====== Modals ======
+function showUpgradeModal() {
+  upgradeModal.classList.add('active');
+}
+function closeUpgradeModal() {
+  upgradeModal.classList.remove('active');
+}
+function showLimitModal() {
+  limitModal.classList.add('active');
+}
+function closeLimitModal() {
+  limitModal.classList.remove('active');
+}
 upgradeBtn.addEventListener('click', showUpgradeModal);
 modalClose.addEventListener('click', closeUpgradeModal);
 limitClose.addEventListener('click', closeLimitModal);
+upgradeModal.addEventListener('click', function(e) {
+  if (e.target === upgradeModal) closeUpgradeModal();
+});
+limitModal.addEventListener('click', function(e) {
+  if (e.target === limitModal) closeLimitModal();
+});
 
-// ====== تحديث العداد وتصحيح النقاط ======
+// ====== تحديث العداد ======
 function updateUsageUI(used, limit, isSubscribed) {
   usageBar.style.display = 'flex';
-  used = Number(used) || 0;
-  limit = Number(limit) || 3;
-
-  // حفظ محلي لليوم الحالي لتفادي الوميض
-  const today = new Date().toISOString().split('T')[0];
-  localStorage.setItem('ciai_usage_cache', JSON.stringify({ date: today, used: used }));
+  used = used || 0;
+  limit = limit || 3;
 
   usageText.textContent = 'استخدمت ' + used + ' من ' + limit + ' التحليلات المجانية اليومية';
 
   usageDots.innerHTML = '';
   for (var i = 0; i < limit; i++) {
     var dot = document.createElement('div');
-    // النقطة تكون نشطة (حمراء) إذا كانت المحاولة مستهلكة
-    dot.className = 'usage-dot' + (i < used ? ' active' : '');
+    dot.className = 'usage-dot' + (i < used ? '' : ' active');
     usageDots.appendChild(dot);
   }
 
-  upgradeBtn.style.display = (!isSubscribed && used >= limit) ? 'block' : 'none';
-}
-
-async function loadUsage() {
-  // محاولة القراءة من الـ Cache أولاً لتجنب ظهور 0 عند التحديث
-  try {
-    const today = new Date().toISOString().split('T')[0];
-    const cached = JSON.parse(localStorage.getItem('ciai_usage_cache') || '{}');
-    if (cached.date === today && typeof cached.used === 'number') {
-      updateUsageUI(cached.used, 3, false);
-    }
-  } catch(e) {}
-
-  try {
-    var res = await fetch(WORKER_URL + '/usage', {
-      headers: { 'X-Client-Id': getClientId() }
-    });
-    var data = await res.json();
-    if (data.warning === 'KV_NOT_CONFIGURED') {
-      showMsg('تنبيه: يجب ربط RATE_LIMIT_KV في إعدادات Cloudflare ليعمل العداد.', 'limit');
-    }
-    updateUsageUI(data.used, data.limit, data.isSubscribed);
-  } catch (e) {
-    console.warn('تعذر جلب العداد من الخادم');
+  if (!isSubscribed && used >= limit) {
+    upgradeBtn.style.display = 'block';
+  } else {
+    upgradeBtn.style.display = 'none';
   }
 }
 
+// ====== الاستخدام ======
+async function loadUsage() {
+  try {
+    var res = await fetch(WORKER_URL + '/usage');
+    var data = await res.json();
+    updateUsageUI(data.used, data.limit, data.isSubscribed);
+  } catch (e) {
+    usageBar.style.display = 'none';
+  }
+}
+
+// ====== التحليل ======
 async function analyze() {
   hideMsg();
   resBox.innerHTML = '';
@@ -403,7 +407,7 @@ async function analyze() {
   var videoId = extractVideoId(raw);
 
   if (!videoId) {
-    showMsg('الرابط غير صحيح. الصق رابط فيديو YouTube كامل أو ID الفيديو (11 حرف)', 'error');
+    showMsg('الرابط غير صحيح. الصق رابط فيديو YouTube كامل او ID الفيديو (11 حرف)', 'error');
     return;
   }
 
@@ -412,10 +416,7 @@ async function analyze() {
   try {
     var res = await fetch(WORKER_URL + '/analyze', {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'X-Client-Id': getClientId()
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ videoId: videoId })
     });
 
@@ -425,7 +426,10 @@ async function analyze() {
     if (!res.ok || data.error) {
       if (data.usage) {
         updateUsageUI(data.usage.used, data.usage.limit, data.usage.isSubscribed);
+      } else {
+        loadUsage();
       }
+
       if (data.code === 'RATE_LIMIT') {
         showLimitModal();
       } else {
@@ -442,9 +446,9 @@ async function analyze() {
       updateUsageUI(data.usage.used, data.usage.limit, data.usage.isSubscribed);
     }
 
-    saveLocalHistory(data, videoId);
+    saveLocalHistory(data);
   } catch (err) {
-    showMsg('تعذر الاتصال بالخادم. تأكد من إعدادات Worker والـ CORS.', 'error');
+    showMsg('تعذر الاتصال بالخادم. تأكد من رابط الـ Worker.', 'error');
     setLoading(false);
   }
 }
@@ -454,6 +458,7 @@ urlInp.addEventListener('keypress', function(e) {
   if (e.key === 'Enter') analyze();
 });
 
+// ====== عرض النتائج ======
 function render(data) {
   var v = data.videoInfo || {};
   var a = data.analysis || {};
@@ -478,7 +483,7 @@ function render(data) {
         '<div class="v-channel">' + escHtml(v.channel) + '</div>' +
         '<div class="v-stats">' +
           '<div class="v-stat">' + iconEye + '<span>' + fmtNum(v.views) + ' مشاهدة</span></div>' +
-          '<div class="v-stat">' + iconHeart + '<span>' + fmtNum(v.likes) + ' إعجاب</span></div>' +
+          '<div class="v-stat">' + iconHeart + '<span>' + fmtNum(v.likes) + ' اعجاب</span></div>' +
           '<div class="v-stat">' + iconMsg + '<span>' + fmtNum(v.commentCount) + ' تعليق</span></div>' +
         '</div>' +
       '</div>' +
@@ -487,7 +492,7 @@ function render(data) {
 
   html += '<div class="st-row">' +
     '<div class="st-itm"><div class="st-n">' + fmtNum(data.totalComments) + '</div><div class="st-l">تعليق محلل</div></div>' +
-    '<div class="st-itm"><div class="st-n">' + fmtNum(s.questionsCount) + '</div><div class="st-l">أسئلة</div></div>' +
+    '<div class="st-itm"><div class="st-n">' + fmtNum(s.questionsCount) + '</div><div class="st-l">اسئلة</div></div>' +
     '<div class="st-itm"><div class="st-n">' + fmtNum(s.requestsCount) + '</div><div class="st-l">طلبات</div></div>' +
     '<div class="st-itm"><div class="st-n">' + fmtNum(s.complaintsCount) + '</div><div class="st-l">شكاوى</div></div>' +
   '</div>';
@@ -495,10 +500,10 @@ function render(data) {
   html += '<div class="sec">' +
     '<div class="sec-h">' + iconUsers + '<div class="sec-title">رؤى الجمهور</div></div>' +
     '<div class="in-row">' +
-      '<div class="in-box"><div class="in-label">مستوى الخبرة</div><div class="in-value">' + escHtml(insights.skillLevel || '—') + '</div></div>' +
-      '<div class="in-box"><div class="in-label">اللغة المفضلة</div><div class="in-value">' + escHtml(insights.languagePreference || '—') + '</div></div>' +
+      '<div class="in-box"><div class="in-label">مستوى الخبرة</div><div class="in-value">' + escHtml(insights.skillLevel || '\u2014') + '</div></div>' +
+      '<div class="in-box"><div class="in-label">اللغة المفضلة</div><div class="in-value">' + escHtml(insights.languagePreference || '\u2014') + '</div></div>' +
     '</div>' +
-    '<div class="in-label" style="margin-bottom:var(--space-2)">نقاط الألم الرئيسية</div>' +
+    '<div class="in-label" style="margin-bottom:var(--space-2)">نقاط الالم الرئيسية</div>' +
     '<ul class="pain-list">';
   (insights.mainPainPoints || []).forEach(function(p) {
     html += '<li>' + escHtml(p) + '</li>';
@@ -519,12 +524,12 @@ function render(data) {
       '<ul class="tp-list">';
     a.topTopics.forEach(function(t) {
       var sentClass = t.sentiment === 'positive' ? 'tp-s-pos' : t.sentiment === 'negative' ? 'tp-s-neg' : 'tp-s-neu';
-      var sentText = t.sentiment === 'positive' ? 'إيجابي' : t.sentiment === 'negative' ? 'سلبي' : 'محايد';
+      var sentText = t.sentiment === 'positive' ? 'ايجابي' : t.sentiment === 'negative' ? 'سلبي' : 'محايد';
       html += '<li>' +
         '<div class="tp-h">' +
           '<div class="tp-name">' + escHtml(t.topic) + '</div>' +
           '<div class="tp-meta">' +
-            '<span class="tp-count">' + (t.mentions || 0) + ' إشارة</span>' +
+            '<span class="tp-count">' + (t.mentions || 0) + ' اشارة</span>' +
             '<span class="tp-sentiment ' + sentClass + '">' + sentText + '</span>' +
           '</div>' +
         '</div>';
@@ -538,14 +543,14 @@ function render(data) {
 
   if ((a.contentIdeas || []).length) {
     html += '<div class="sec">' +
-      '<div class="sec-h">' + iconSpark + '<div class="sec-title">أفكار محتوى مقترحة</div></div>';
+      '<div class="sec-h">' + iconSpark + '<div class="sec-title">افكار محتوى مقترحة</div></div>';
 
-    var fmtLabel = { tutorial: 'شرح', comparison: 'مقارنة', review: 'مراجعة', qna: 'سؤال وجواب', deep_dive: 'تحليل عميق', news: 'أخبار' };
+    var fmtLabel = { tutorial: 'شرح', comparison: 'مقارنة', review: 'مراجعة', qna: 'سؤال وجواب', deep_dive: 'تحليل عميق', news: 'اخبار' };
 
-    a.contentIdeas.forEach(function(idea) {
+    a.contentIdeas.forEach(function(idea, i) {
       var tagClass = idea.priority === 'high' ? 'tag-h' : idea.priority === 'medium' ? 'tag-m' : 'tag-l';
-      var tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'أولوية منخفضة';
-      var fullText = idea.title + '\n\n' + idea.description + '\n\nالأولوية: ' + tagText + '\nالتنسيق: ' + (fmtLabel[idea.format] || idea.format) + '\nالطلب المتوقع: ' + (idea.estimatedDemand || 0) + '%';
+      var tagText = idea.priority === 'high' ? 'اولوية عالية' : idea.priority === 'medium' ? 'اولوية متوسطة' : 'اولوية منخفضة';
+      var fullText = idea.title + '\n\n' + idea.description + '\n\nالاولوية: ' + tagText + '\nالتنسيق: ' + (fmtLabel[idea.format] || idea.format) + '\nالطلب المتوقع: ' + (idea.estimatedDemand || 0) + '%';
       var safeText = fullText.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
       html += '<div class="idea">' +
@@ -575,7 +580,7 @@ function render(data) {
 
   if ((a.trendingQuestions || []).length) {
     html += '<div class="sec">' +
-      '<div class="sec-h">' + iconHelp + '<div class="sec-title">الأسئلة الشائعة</div></div>' +
+      '<div class="sec-h">' + iconHelp + '<div class="sec-title">الاسئلة الشائعة</div></div>' +
       '<ul class="q-list">';
     a.trendingQuestions.forEach(function(q) {
       var badgeClass = q.answersInVideo ? 'q-yes' : 'q-no';
@@ -598,11 +603,11 @@ function render(data) {
 }
 
 // ====== المحفوظات ======
-function saveLocalHistory(data, videoId) {
+function saveLocalHistory(data) {
   var hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   hist.unshift({
-    videoId: videoId || (data.videoInfo ? data.videoInfo.videoId : ''),
-    title: data.videoInfo && data.videoInfo.title ? data.videoInfo.title : 'فيديو غير محدد',
+    videoId: data.videoInfo ? data.videoInfo.videoId : '',
+    title: data.videoInfo && data.videoInfo.title ? data.videoInfo.title : 'Unknown',
     channel: data.videoInfo && data.videoInfo.channel ? data.videoInfo.channel : '',
     thumb: data.videoInfo && data.videoInfo.thumb ? data.videoInfo.thumb : null,
     date: new Date().toISOString(),
@@ -614,9 +619,7 @@ function saveLocalHistory(data, videoId) {
 
 async function loadHistory() {
   try {
-    var res = await fetch(WORKER_URL + '/history', {
-      headers: { 'X-Client-Id': getClientId() }
-    });
+    var res = await fetch(WORKER_URL + '/history');
     var data = await res.json();
     if (data.items && data.items.length > 0) {
       renderHistory(data.items, false);
@@ -633,6 +636,7 @@ function renderHistory(items, isLocal) {
     historyContainer.innerHTML = '<div class="hist-empty">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>' +
       '<div>لا توجد تحليلات محفوظة بعد</div>' +
+      (isLocal ? '<div style="font-size:0.75rem;margin-top:var(--space-2)">(المحفوظات المحلية فقط)</div>' : '') +
     '</div>';
     return;
   }
@@ -646,7 +650,7 @@ function renderHistory(items, isLocal) {
         '<div class="hist-title">' + escHtml(item.title) + '</div>' +
         '<div class="hist-date">' + date + '</div>' +
       '</div>' +
-      (isLocal ? '<button class="hist-delete" data-idx="' + idx + '">×</button>' : '') +
+      (isLocal ? '<button class="hist-delete" data-idx="' + idx + '">\u00d7</button>' : '') +
     '</li>';
   });
   html += '</ul>';
@@ -656,8 +660,8 @@ function renderHistory(items, isLocal) {
     item.addEventListener('click', function(e) {
       if (e.target.classList.contains('hist-delete')) return;
       var idx = parseInt(this.getAttribute('data-idx'));
-      var isLoc = this.getAttribute('data-local') === '1';
-      loadHistoryItem(idx, isLoc, items);
+      var isLocal = this.getAttribute('data-local') === '1';
+      loadHistoryItem(idx, isLocal);
     });
   });
 
@@ -669,9 +673,11 @@ function renderHistory(items, isLocal) {
   });
 }
 
-function loadHistoryItem(idx, isLocal, items) {
-  var item = items[idx];
-  if (item) {
+function loadHistoryItem(idx, isLocal) {
+  if (!isLocal) return;
+  var items = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  if (items[idx]) {
+    var item = items[idx];
     var data = {
       videoInfo: { title: item.title, channel: item.channel, thumb: item.thumb },
       analysis: item.analysis,
@@ -690,7 +696,7 @@ function deleteLocalItem(idx) {
   loadHistory();
 }
 
-// ====== التشغيل الفوري ======
+// ====== Init ======
 loadUsage();
 </script>
 </body>
