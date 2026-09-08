@@ -2,286 +2,722 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0a0a0a">
-<title>Content Ideas AI - المنصة الاستراتيجية لصناع المحتوى</title>
+<title>Content Ideas AI - المنصة الذكية لصناع المحتوى</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --font:'Tajawal',system-ui,sans-serif;
-  --bg:#0a0a0a;--bg-elevated:#121212;--bg-surface:#1a1a1a;
-  --border:rgba(255,255,255,0.08);--border-focus:#ff0000;
-  --text:#ffffff;--text-secondary:#a3a3a3;--text-muted:#666666;
-  --accent:#ff0000;--accent-glow:rgba(255,0,0,0.18);
-  --success:#22c55e;--warning:#f59e0b;
-  --radius-sm:6px;--radius-md:10px;--radius-lg:14px;
-  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
-  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem
+:root {
+  --font: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bg: #0d0d0d;
+  --bg-card: #151515;
+  --bg-elevated: #1e1e1e;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --text: #f5f5f5;
+  --text-secondary: #999999;
+  --text-muted: #666666;
+  --accent: #e50914;
+  --accent-soft: rgba(229, 9, 20, 0.12);
+  --success: #22c55e;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{font-size:16px;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
-.container{max-width:760px;margin:0 auto;padding:var(--space-8) var(--space-4)}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 15px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+  padding-bottom: 3rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
 
 /* Header */
-.brand{margin-bottom:var(--space-8);text-align:right}
-.brand-badge{display:inline-block;background:var(--accent-glow);color:var(--accent);border:1px solid rgba(255,0,0,0.3);padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:800;margin-bottom:var(--space-2)}
-.brand h1{font-size:2.25rem;font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:var(--space-2)}
-.brand h1 span{color:var(--accent)}
-.brand p{font-size:1rem;color:var(--text-secondary);max-width:540px}
+.brand { margin-bottom: 1.25rem; }
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent-soft);
+  color: #ff5555;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.brand h1 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+.brand h1 span { color: var(--accent); }
+.brand p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
 
-/* Usage Bar */
-.usage-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:var(--space-5);font-size:0.875rem}
-.usage-info{display:flex;align-items:center;gap:var(--space-3)}
-.trial-tag{background:rgba(34,197,94,0.15);color:var(--success);padding:0.15rem 0.5rem;border-radius:var(--radius-sm);font-size:0.75rem;font-weight:800}
-.upgrade-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:800;font-family:var(--font);cursor:pointer}
-.upgrade-btn:hover{background:var(--accent);color:#fff}
+/* Status Bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+.status-info { display: flex; align-items: center; gap: 0.5rem; }
+.status-tag {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--success);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+.status-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-family: var(--font);
+  font-weight: 700;
+  cursor: pointer;
+}
 
-/* Channel Selector (Feature 3) */
-.channel-box{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-5)}
-.channel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-3)}
-.channel-title-wrap{display:flex;align-items:center;gap:var(--space-2);font-weight:800;font-size:0.95rem}
-.channel-title-wrap svg{width:18px;height:18px;stroke:var(--accent);stroke-width:2;fill:none}
-.channel-btn{background:transparent;border:none;color:var(--accent);font-family:var(--font);font-size:0.8125rem;font-weight:700;cursor:pointer;text-decoration:underline}
-.channel-select{width:100%;background:var(--bg-surface);border:1px solid var(--border);color:var(--text);padding:var(--space-3);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;outline:none}
-.channel-select:focus{border-color:var(--accent)}
+/* Channel Quick Select */
+.channel-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1.25rem;
+}
+.channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.channel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 0.875rem;
+}
+.channel-title svg { width: 16px; height: 16px; fill: var(--accent); }
+.channel-action {
+  background: transparent;
+  border: none;
+  color: #ff5555;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.channel-dropdown {
+  width: 100%;
+  margin-top: 0.65rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  outline: none;
+}
 
 /* Tabs */
-.tabs{display:flex;gap:var(--space-2);margin-bottom:var(--space-6);border-bottom:1px solid var(--border)}
-.tab{flex:1;padding:var(--space-3) var(--space-4);background:transparent;border:none;color:var(--text-muted);font-family:var(--font);font-size:0.9375rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tab.active{color:var(--text);border-bottom-color:var(--accent)}
-.tab-content{display:none}
-.tab-content.active{display:block}
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.tab {
+  flex: 1;
+  padding: 0.65rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.tab.active { color: var(--text); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-/* Input Group */
-.input-wrap{display:flex;gap:var(--space-3);margin-bottom:var(--space-3)}
-.url-inp{flex:1;background:var(--bg-surface);border:1px solid var(--border);color:var(--text);padding:var(--space-4) var(--space-5);border-radius:var(--radius-md);font-size:0.95rem;font-family:var(--font);outline:none}
-.url-inp:focus{border-color:var(--accent)}
-.anlz-btn{background:var(--accent);color:#fff;padding:var(--space-4) var(--space-6);border-radius:var(--radius-md);font-size:1rem;font-weight:800;font-family:var(--font);border:none;cursor:pointer;white-space:nowrap}
-.anlz-btn:disabled{opacity:0.5;cursor:not-allowed}
+/* Unified Input Panel (حل مشكلة الترتيب وزر المنافس) */
+.input-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+.input-group { margin-bottom: 0.75rem; }
+.input-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+.input-control {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-control:focus { border-color: var(--accent); }
 
-/* Feature 1: Competitor Accordion */
-.comp-toggle-btn{background:transparent;border:none;color:var(--text-secondary);font-size:0.8125rem;cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-1);margin-bottom:var(--space-4);font-family:var(--font);font-weight:700}
-.comp-toggle-btn:hover{color:var(--text)}
-.comp-wrap{display:none;background:var(--bg-elevated);border:1px dashed var(--border);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-5)}
-.comp-wrap.open{display:block}
-.comp-label{font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-2);display:block}
+/* زر إظهار مقارنة المنافس */
+.comp-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: #ff6666;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 0.85rem;
+}
+.comp-drawer {
+  display: none;
+  background: rgba(0,0,0,0.25);
+  border-right: 3px solid var(--accent);
+  padding: 0.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 0.85rem;
+}
+.comp-drawer.open { display: block; }
 
-/* Feedback Box */
-.msg-box{padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);font-size:0.875rem;font-weight:600;display:none;margin-bottom:var(--space-4)}
-.msg-box.error{background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.25);color:#ff8888}
+/* زر التحليل الشامل الموحد */
+.submit-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 900;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+}
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Message / Alerts */
+.msg-box {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: none;
+  margin-bottom: 1rem;
+}
+.msg-box.error { background: rgba(229,9,20,0.1); border: 1px solid rgba(229,9,20,0.3); color: #ff8888; }
 
 /* Loader */
-.load{display:none;text-align:center;padding:var(--space-10) 0}
-.load.visible{display:block}
-.load-spin{width:36px;height:36px;border:3px solid var(--bg-surface);border-top-color:var(--accent);border-radius:50%;margin:0 auto var(--space-4);animation:spin 0.8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.load-t{font-size:1.05rem;font-weight:800;margin-bottom:var(--space-1)}
-.load-s{font-size:0.85rem;color:var(--text-muted)}
+.loader-box { display: none; text-align: center; padding: 2.5rem 0; }
+.loader-box.visible { display: block; }
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--bg-elevated);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-text { font-size: 0.95rem; font-weight: 800; }
+.loader-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
 
-/* Results Cards */
-.res{display:none}
-.res.visible{display:block;animation:fadeIn 0.35s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Results */
+.res-wrap { display: none; }
+.res-wrap.visible { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-.v-card{display:flex;gap:var(--space-4);align-items:center;padding:var(--space-4);background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:var(--space-6);border:1px solid var(--border)}
-.v-thumb{width:130px;height:85px;border-radius:var(--radius-sm);object-fit:cover;background:var(--bg-surface);flex-shrink:0}
-.v-info{flex:1;min-width:0}
-.v-title{font-size:1.05rem;font-weight:800;line-height:1.4;margin-bottom:var(--space-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.v-channel{font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-2)}
-.v-stats{display:flex;gap:var(--space-4);font-size:0.8125rem;color:var(--text-secondary)}
+/* Video Info Card */
+.video-card {
+  display: flex;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+.video-thumb {
+  width: 105px;
+  height: 65px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+}
+.video-meta { flex: 1; min-width: 0; }
+.video-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.35;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+.video-channel { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+.video-stats {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
 
-.st-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-bottom:var(--space-8)}
-.st-itm{background:var(--bg-elevated);padding:var(--space-4);border-radius:var(--radius-md);text-align:center;border:1px solid var(--border)}
-.st-n{font-size:1.6rem;font-weight:900;margin-bottom:var(--space-1)}
-.st-l{font-size:0.7rem;color:var(--text-muted);font-weight:700}
+/* Stat Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.stat-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.4rem;
+  text-align: center;
+}
+.stat-num { font-size: 1.25rem; font-weight: 900; line-height: 1; margin-bottom: 0.25rem; }
+.stat-label { font-size: 0.68rem; color: var(--text-muted); font-weight: 700; }
 
-.sec{margin-bottom:var(--space-8)}
-.sec-h{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4)}
-.sec-h svg{width:20px;height:20px;stroke:var(--accent);stroke-width:2.5;fill:none}
-.sec-title{font-size:1.15rem;font-weight:800}
+/* Competitor Gaps Section */
+.gaps-card {
+  background: rgba(229, 9, 20, 0.04);
+  border: 1px solid rgba(229, 9, 20, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+.gaps-header {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ff6666;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.gaps-list { list-style: none; margin-bottom: 0.5rem; }
+.gaps-list li {
+  font-size: 0.82rem;
+  color: var(--text);
+  padding: 0.25rem 0;
+  position: relative;
+  padding-right: 1rem;
+  line-height: 1.4;
+}
+.gaps-list li::before { content: "•"; position: absolute; right: 0; color: var(--accent); font-weight: bold; }
+.gaps-opp {
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-right: 3px solid var(--accent);
+}
 
-/* Competitor Section (Feature 1 Render) */
-.comp-card{background:rgba(255,0,0,0.03);border:1px solid rgba(255,0,0,0.2);border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-8)}
-.comp-card .sec-h svg{stroke:#ff4444}
-.gap-list{list-style:none;margin-bottom:var(--space-4)}
-.gap-list li{position:relative;padding-right:var(--space-4);font-size:0.9rem;color:#f0f0f0;margin-bottom:var(--space-2);line-height:1.5}
-.gap-list li::before{content:"★";position:absolute;right:0;color:var(--accent);font-size:0.8rem}
-.comp-opp{background:var(--bg-surface);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm);font-size:0.875rem;color:var(--text-secondary);border-right:3px solid var(--accent)}
+/* Audience Section */
+.audience-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.audience-badges { display: flex; gap: 0.5rem; margin-bottom: 0.65rem; }
+.aud-badge {
+  flex: 1;
+  background: var(--bg-elevated);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+}
+.aud-badge span { display: block; font-size: 0.65rem; color: var(--text-muted); }
+.pain-list { list-style: none; }
+.pain-list li {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 0.4rem;
+}
+.pain-list li::before { content: "—"; color: var(--accent); font-weight: 900; }
 
-/* Audience Insights */
-.in-row{display:flex;gap:var(--space-3);margin-bottom:var(--space-4)}
-.in-box{flex:1;padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border-radius:var(--radius-md);border:1px solid var(--border)}
-.in-label{font-size:0.6875rem;color:var(--text-muted);font-weight:700;margin-bottom:var(--space-1)}
-.in-value{font-size:0.95rem;font-weight:800}
-.pain-list{list-style:none}
-.pain-list li{padding:var(--space-3) 0;border-bottom:1px solid var(--border);font-size:0.875rem;color:var(--text-secondary);display:flex;gap:var(--space-2)}
-.pain-list li::before{content:"—";color:var(--accent);font-weight:800}
+/* Idea Cards (حل مشكلة التفاف العناوين والأزرار بالكامل) */
+.idea-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.idea-header {
+  margin-bottom: 0.65rem;
+}
+.idea-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #ffffff;
+  margin-bottom: 0.45rem;
+  word-break: break-word;
+}
+.idea-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem; }
+.tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+.tag-high { background: rgba(229,9,20,0.15); color: #ff7777; }
+.tag-med { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.tag-low { background: rgba(34,197,94,0.15); color: #4ade80; }
+.tag-fmt { background: var(--bg-elevated); color: var(--text-muted); }
 
-/* Ideas & Outline Button (Feature 2) */
-.idea{padding:var(--space-5);background:var(--bg-elevated);border-radius:var(--radius-md);border:1px solid var(--border);margin-bottom:var(--space-4)}
-.idea-h{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-3);margin-bottom:var(--space-3)}
-.idea-title{font-size:1.1rem;font-weight:800;line-height:1.4}
-.idea-actions{display:flex;gap:var(--space-2);flex-shrink:0}
-.btn-sm{background:transparent;border:1px solid var(--border);color:var(--text-secondary);padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-size:0.75rem;font-weight:700;font-family:var(--font);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
-.btn-sm:hover{background:var(--bg-surface);color:#fff}
-.btn-outline{border-color:var(--accent);color:var(--accent)}
-.btn-outline:hover{background:var(--accent);color:#fff}
-.tag-row{display:flex;gap:var(--space-2);margin-bottom:var(--space-3)}
-.tag{font-size:0.6875rem;font-weight:800;padding:0.2rem 0.5rem;border-radius:var(--radius-sm)}
-.tag-h{background:rgba(255,0,0,0.15);color:#ff7777}
-.tag-m{background:rgba(234,179,8,0.12);color:#fbbf24}
-.tag-l{background:rgba(34,197,94,0.12);color:#4ade80}
-.tag-f{background:var(--bg-surface);color:var(--text-muted)}
-.idea-desc{color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin-bottom:var(--space-3)}
-.evidence{padding:var(--space-2) var(--space-3);background:var(--bg-surface);border-radius:var(--radius-sm);margin-bottom:var(--space-3);border-right:2px solid var(--accent);font-size:0.8125rem;color:var(--text-muted);font-style:italic}
-.demand{display:flex;align-items:center;gap:var(--space-3)}
-.demand-label{font-size:0.6875rem;color:var(--text-muted);font-weight:700}
-.demand-track{flex:1;height:4px;background:var(--bg-surface);border-radius:2px;overflow:hidden}
-.demand-fill{height:100%;background:var(--accent)}
-.demand-val{font-size:0.75rem;font-weight:800}
+.idea-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.idea-quote {
+  background: var(--bg-elevated);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-right: 2px solid var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* شريط أزرار الفكرة الأنيق */
+.idea-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+}
+.demand-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.demand-track {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.demand-fill { height: 100%; background: var(--accent); }
+.idea-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+.action-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-family: var(--font);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.action-btn.btn-outline {
+  background: var(--accent-soft);
+  border-color: rgba(229,9,20,0.3);
+  color: #ff6666;
+}
 
 /* Modals */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:center;justify-content:center;padding:var(--space-4)}
-.modal-overlay.active{display:flex}
-.modal{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);max-width:520px;width:100%;padding:var(--space-6);max-height:90vh;overflow-y:auto}
-.modal-h{font-size:1.25rem;font-weight:900;margin-bottom:var(--space-4)}
-.modal-close-btn{background:var(--bg-elevated);border:1px solid var(--border);color:var(--text);padding:var(--space-3);border-radius:var(--radius-md);font-family:var(--font);font-weight:800;width:100%;cursor:pointer;margin-top:var(--space-4)}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  background: #181818;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 100%;
+  padding: 1.25rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-title { font-size: 1.15rem; font-weight: 900; margin-bottom: 0.85rem; }
+.modal-close {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.65rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font);
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 1rem;
+}
 
-/* Outline Modal Box (Feature 2 View) */
-.outline-block{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3)}
-.outline-label{font-size:0.75rem;font-weight:800;color:var(--accent);margin-bottom:var(--space-1);display:flex;align-items:center;gap:6px}
-.outline-content{font-size:0.9rem;color:var(--text);line-height:1.6}
-.point-box{border-right:2px solid var(--border);padding-right:var(--space-3);margin-bottom:var(--space-3)}
+/* Outline View */
+.outline-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+.outline-head { font-size: 0.78rem; font-weight: 800; color: #ff6666; margin-bottom: 0.25rem; }
+.outline-body { font-size: 0.875rem; line-height: 1.5; color: var(--text); }
+
+/* History & Pagination (حل مشكلة ثقل الذاكرة) */
+.history-list { list-style: none; }
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+}
+.history-thumb {
+  width: 70px;
+  height: 44px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: var(--bg-elevated);
+  flex-shrink: 0;
+}
+.history-info { flex: 1; min-width: 0; }
+.history-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.history-date { font-size: 0.7rem; color: var(--text-muted); }
+.load-more-btn {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  color: var(--text-secondary);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+}
 
 /* Toast */
-.toast{position:fixed;bottom:var(--space-6);left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-elevated);color:var(--text);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-size:0.875rem;font-weight:700;opacity:0;z-index:3000;border:1px solid var(--border);transition:all 0.25s ease}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #252525;
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0;
+  z-index: 3000;
+  border: 1px solid var(--border);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* History */
-.hist-item{display:flex;gap:var(--space-3);padding:var(--space-4) 0;border-bottom:1px solid var(--border);cursor:pointer;align-items:center}
-.hist-thumb{width:80px;height:50px;border-radius:var(--radius-sm);object-fit:cover;background:var(--bg-surface);flex-shrink:0}
-.hist-info{flex:1;min-width:0}
-.hist-title{font-size:0.9rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hist-date{font-size:0.75rem;color:var(--text-muted)}
-
-@media(max-width:520px){
-  .input-wrap{flex-direction:column}
-  .anlz-btn{width:100%}
-  .st-row{grid-template-columns:1fr 1fr}
-  .in-row{flex-direction:column}
-  .v-card{flex-direction:column;align-items:flex-start}
-  .v-thumb{width:100%;height:140px}
+@media(max-width: 480px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .video-card { flex-direction: column; }
+  .video-thumb { width: 100%; height: 120px; }
+  .brand h1 { font-size: 1.5rem; }
 }
 </style>
 </head>
 <body>
 <div class="container">
+  
   <div class="brand">
-    <div class="brand-badge">إصدار استراتيجي 2.0 (متاح مجاناً للتجربة)</div>
+    <div class="brand-badge">⚡ وضع التجربة المفتوح المجاني v2.1</div>
     <h1>Content Ideas <span>AI</span></h1>
-    <p>حوّل تعليقات يوتيوب وفجوات المنافسين إلى أفكار وفيديوهات جاهزة للتصوير.</p>
+    <p>استخرج أفكار وفجوات المحتوى وخطة تصوير كاملة من تعليقات يوتيوب.</p>
   </div>
 
-  <div class="usage-bar" id="usageBar">
-    <div class="usage-info">
-      <span id="usageText">جاري التحقق من الحساب...</span>
-      <span class="trial-tag" id="trialTag">نسخة مفتوحة للتجربة</span>
+  <div class="status-bar">
+    <div class="status-info">
+      <span id="usageLabel">جاري التحقق...</span>
+      <span class="status-tag" id="statusBadge">مفتوح للتجربة</span>
     </div>
-    <button class="upgrade-btn" id="upgradeBtn">تفعيل كود Pro</button>
+    <button class="status-btn" id="activateBtn">تفعيل Pro</button>
   </div>
 
-  <!-- ميزة 3: محدد القناة السريع -->
-  <div class="channel-box" id="channelBox">
+  <!-- ميزة 3: اختيار القناة السريع -->
+  <div class="channel-box">
     <div class="channel-header">
-      <div class="channel-title-wrap">
-        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
-        <span id="currentChannelLabel">ربط قناتك للاختيار السريع</span>
+      <div class="channel-title">
+        <svg viewBox="0 0 24 24"><path d="M21.58 7.19a3 3 0 0 0-2.12-2.12C17.59 4.5 12 4.5 12 4.5s-5.59 0-7.46.57A3 3 0 0 0 2.42 7.19 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .42 4.81 3 3 0 0 0 2.12 2.12c1.87.57 7.46.57 7.46.57s5.59 0 7.46-.57a3 3 0 0 0 2.12-2.12A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        <span id="channelNameDisplay">ربط قناتك للاختيار التلقائي</span>
       </div>
-      <button class="channel-btn" id="changeChannelBtn">اختر قناتك</button>
+      <button class="channel-action" id="searchChannelBtn">تغيير القناة</button>
     </div>
-    <div id="channelVideosWrap" style="display:none">
-      <select class="channel-select" id="channelVideosSelect">
-        <option value="">▼ اختر فيديو من قناتك لتحليله فوراً...</option>
+    <div id="channelVideosHolder" style="display:none">
+      <select class="channel-dropdown" id="channelVideosDropdown">
+        <option value="">▼ اختر فيديو من قناتك لتحليله بنقرة واحدة...</option>
       </select>
     </div>
   </div>
 
   <div class="tabs">
     <button class="tab active" id="tabAnalyze">تحليل جديد</button>
-    <button class="tab" id="tabHistory">المحفوظات</button>
+    <button class="tab" id="tabHistory">المحفوظات السابقة</button>
   </div>
 
+  <!-- حاوية الإدخال الموحدة -->
   <div class="tab-content active" id="contentAnalyze">
-    <div class="input-wrap">
-      <input type="text" class="url-inp" id="urlInp" placeholder="الصق رابط فيديو قناتك أو أي فيديو يوتيوب...">
-      <button class="anlz-btn" id="anlzBtn">تحليل واستخراج الأفكار</button>
-    </div>
+    <div class="input-panel">
+      
+      <div class="input-group">
+        <label class="input-label">رابط الفيديو الأساسي (قناتك أو أي فيديو):</label>
+        <input type="text" class="input-control" id="mainUrl" placeholder="الصق الرابط هنا...">
+      </div>
 
-    <!-- ميزة 1: مقارنة السوق والمنافسين -->
-    <button class="comp-toggle-btn" id="compToggleBtn">
-      <span>➕ قارن بفيديو منافس لكشف فجوات السوق (اختياري)</span>
-    </button>
-    
-    <div class="comp-wrap" id="compWrap">
-      <label class="comp-label">أدخل رابط فيديو المنافس المقارب لنفس الموضوع:</label>
-      <input type="text" class="url-inp" id="compUrlInp" placeholder="رابط فيديو المنافس...">
+      <!-- ميزة 1: خيار مقارنة المنافس -->
+      <button type="button" class="comp-toggle" id="compToggle">
+        <span id="compIcon">➕</span> إضافة فيديو منافس لكشف فجوات السوق (اختياري)
+      </button>
+
+      <div class="comp-drawer" id="compDrawer">
+        <label class="input-label">رابط فيديو المنافس المقارب لنفس الفكرة:</label>
+        <input type="text" class="input-control" id="compUrl" placeholder="رابط فيديو المنافس...">
+      </div>
+
+      <!-- زر التحليل الشامل الموحد أسفل الحقول مباشرة -->
+      <button class="submit-btn" id="analyzeBtn">تحليل واستخراج الأفكار والخطة</button>
     </div>
 
     <div class="msg-box" id="msgBox"></div>
 
-    <div class="load" id="loadBox">
-      <div class="load-spin"></div>
-      <div class="load-t" id="loadTitle">جاري التحليل المعمق...</div>
-      <div class="load-s" id="loadSub">نسحب التعليقات ونبحث عن رغبات الجمهور الخفية</div>
+    <div class="loader-box" id="loaderBox">
+      <div class="spinner"></div>
+      <div class="loader-text" id="loaderTitle">جاري تحليل التعليقات...</div>
+      <div class="loader-sub" id="loaderSub">نقوم بفحص كل تعليق وتحديد أسئلة وفجوات المتابعين</div>
     </div>
 
-    <div class="res" id="resBox"></div>
+    <div class="res-wrap" id="resBox"></div>
   </div>
 
+  <!-- المحفوظات مع نظام الـ Pagination -->
   <div class="tab-content" id="contentHistory">
-    <div id="historyContainer">
-      <div style="text-align:center;padding:3rem 0;color:var(--text-muted)">جاري جلب المحفوظات...</div>
+    <div id="historyListContainer">
+      <div style="text-align:center;padding:2rem 0;color:var(--text-muted)">جاري جلب المحفوظات...</div>
     </div>
+    <button class="load-more-btn" id="loadMoreBtn" style="display:none">عرض المزيد (+10 تحليلات)</button>
   </div>
+
 </div>
 
 <!-- Modal خطة المحتوى (Feature 2) -->
 <div class="modal-overlay" id="outlineModal">
-  <div class="modal">
-    <div class="modal-h">🎬 هيكل وخطة تصوير الفيديو</div>
-    <div id="outlineBody">
-      <div class="load-spin" style="margin:2rem auto"></div>
-      <p style="text-align:center;color:var(--text-muted)">جاري صياغة السنارة والهيكل من تعليقات الجمهور...</p>
-    </div>
-    <button class="modal-close-btn" id="closeOutlineBtn">إغلاق</button>
+  <div class="modal-card">
+    <div class="modal-title">🎬 خطة تصوير الفيديو المقترحة</div>
+    <div id="outlineContent"></div>
+    <button class="modal-close" id="closeOutlineModal">إغلاق</button>
   </div>
 </div>
 
-<!-- Modal البحث عن القناة (Feature 3) -->
-<div class="modal-overlay" id="searchChannelModal">
-  <div class="modal">
-    <div class="modal-h">📺 ابحث عن قناتك على يوتيوب</div>
-    <div class="input-wrap" style="margin-bottom:1rem">
-      <input type="text" class="url-inp" id="channelSearchInp" placeholder="اكتب اسم القناة هنا...">
-      <button class="anlz-btn" id="channelSearchBtn">بحث</button>
+<!-- Modal البحث عن القناة -->
+<div class="modal-overlay" id="channelModal">
+  <div class="modal-card">
+    <div class="modal-title">📺 البحث عن قناتك على يوتيوب</div>
+    <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem">
+      <input type="text" class="input-control" id="searchChannelInput" placeholder="اكتب اسم القناة...">
+      <button class="submit-btn" id="execSearchChannelBtn" style="width:auto;padding:0.75rem 1.25rem">بحث</button>
     </div>
-    <div id="channelSearchResults" style="max-height:240px;overflow-y:auto"></div>
-    <button class="modal-close-btn" id="closeChannelModalBtn">إلغاء</button>
+    <div id="channelResults" style="max-height:220px;overflow-y:auto"></div>
+    <button class="modal-close" id="closeChannelModal">إلغاء</button>
   </div>
 </div>
 
-<!-- Modal الترقية / التفعيل -->
-<div class="modal-overlay" id="activateModal">
-  <div class="modal">
-    <div class="modal-h">💎 تفعيل باقة Pro</div>
-    <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1rem">
-      جميع الميزات مفتوحة الآن للتجربة. يمكنك إدخال كود التفعيل المخصص:
+<!-- Modal التفعيل -->
+<div class="modal-overlay" id="codeModal">
+  <div class="modal-card">
+    <div class="modal-title">💎 تفعيل كود Pro</div>
+    <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem">
+      جميع الميزات مفتوحة مجاناً للتجربة، يمكنك إدخال الرمز التجريبي:
     </p>
-    <input type="text" class="url-inp" id="activateCodeInp" placeholder="أدخل الكود (مثال: BETA2026)" style="width:100%;margin-bottom:1rem">
-    <button class="anlz-btn" id="submitActivateBtn" style="width:100%">تفعيل الآن</button>
-    <button class="modal-close-btn" id="closeActivateBtn">إغلاق</button>
+    <input type="text" class="input-control" id="promoCodeInput" placeholder="أدخل الرمز (مثال: BETA2026)" style="margin-bottom:0.75rem">
+    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب</button>
+    <button class="modal-close" id="closeCodeModal">إغلاق</button>
   </div>
 </div>
 
@@ -289,46 +725,64 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 <script>
 // ============================================
-// ضبط وتكوين الواجهة
+// ضبط العميل
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
 
-// توليد أو استرجاع هوية الجهاز لمنع فقدان البيانات عند تغير IP
 let userToken = localStorage.getItem('ciai_token');
 if (!userToken) {
-  userToken = 'tok_' + Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
+  userToken = 'tok_' + Math.random().toString(36).substring(2, 11) + Date.now().toString(36);
   localStorage.setItem('ciai_token', userToken);
 }
 
-// عناصر DOM الرئيسية
-const urlInp = document.getElementById('urlInp');
-const compUrlInp = document.getElementById('compUrlInp');
-const anlzBtn = document.getElementById('anlzBtn');
-const compToggleBtn = document.getElementById('compToggleBtn');
-const compWrap = document.getElementById('compWrap');
-const msgBox = document.getElementById('msgBox');
-const loadBox = document.getElementById('loadBox');
-const resBox = document.getElementById('resBox');
-const toast = document.getElementById('toast');
-const usageText = document.getElementById('usageText');
-const trialTag = document.getElementById('trialTag');
-const currentChannelLabel = document.getElementById('currentChannelLabel');
-const channelVideosWrap = document.getElementById('channelVideosWrap');
-const channelVideosSelect = document.getElementById('channelVideosSelect');
-
-// تبديل إدخال فيديو المنافس
-compToggleBtn.addEventListener('click', () => {
-  compWrap.classList.toggle('open');
-  if (compWrap.classList.contains('open')) compUrlInp.focus();
-});
-
-function customFetch(url, options = {}) {
-  options.headers = options.headers || {};
-  options.headers['X-User-Token'] = userToken;
-  return fetch(url, options);
+function req(url, opt = {}) {
+  opt.headers = opt.headers || {};
+  opt.headers['X-User-Token'] = userToken;
+  return fetch(url, opt);
 }
 
-function extractVideoId(input) {
+const mainUrl = document.getElementById('mainUrl');
+const compUrl = document.getElementById('compUrl');
+const compToggle = document.getElementById('compToggle');
+const compDrawer = document.getElementById('compDrawer');
+const compIcon = document.getElementById('compIcon');
+const analyzeBtn = document.getElementById('analyzeBtn');
+const msgBox = document.getElementById('msgBox');
+const loaderBox = document.getElementById('loaderBox');
+const resBox = document.getElementById('resBox');
+const toast = document.getElementById('toast');
+const usageLabel = document.getElementById('usageLabel');
+const channelNameDisplay = document.getElementById('channelNameDisplay');
+const channelVideosHolder = document.getElementById('channelVideosHolder');
+const channelVideosDropdown = document.getElementById('channelVideosDropdown');
+
+// تبديل خانة المنافس بسهولة
+compToggle.addEventListener('click', () => {
+  const isOpen = compDrawer.classList.toggle('open');
+  compIcon.textContent = isOpen ? '✖' : '➕';
+  if (isOpen) compUrl.focus();
+});
+
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function showMsg(text) {
+  msgBox.textContent = text;
+  msgBox.className = 'msg-box error';
+  msgBox.style.display = 'block';
+}
+function hideMsg() { msgBox.style.display = 'none'; }
+
+function setLoader(on, sub) {
+  analyzeBtn.disabled = on;
+  loaderBox.classList.toggle('visible', on);
+  if (sub) document.getElementById('loaderSub').textContent = sub;
+}
+
+function extractId(input) {
   input = (input || '').trim();
   if (!input) return null;
   if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
@@ -338,71 +792,48 @@ function extractVideoId(input) {
   return m ? m[1] : null;
 }
 
-function showToast(text) {
-  toast.textContent = text;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
-}
-
-function showMsg(text, type = 'error') {
-  msgBox.textContent = text;
-  msgBox.className = 'msg-box ' + type;
-  msgBox.style.display = 'block';
-}
-function hideMsg() { msgBox.style.display = 'none'; }
-
-function setLoading(on, sub) {
-  anlzBtn.disabled = on;
-  loadBox.classList.toggle('visible', on);
-  if (sub) document.getElementById('loadSub').textContent = sub;
-}
-
-// ============================================
-// فحص الاستخدام وتفعيل الجلسة
-// ============================================
-async function initSession() {
+// فحص الجلسة والاستخدام
+async function loadSession() {
   try {
-    const res = await customFetch(WORKER_URL + '/usage');
+    const res = await req(WORKER_URL + '/usage');
     const data = await res.json();
-    usageText.textContent = `تحليلات اليوم: ${data.used} من ${data.limit}`;
-    trialTag.textContent = data.trialMode ? 'مفتوح مجاناً للتجربة' : 'مشترك Pro';
-
+    usageLabel.textContent = `تحليلات اليوم: ${data.used} من ${data.limit}`;
     if (data.channelId) {
-      currentChannelLabel.textContent = data.channelTitle || 'قناتك المسجلة';
-      loadChannelVideos(data.channelId);
+      channelNameDisplay.textContent = data.channelTitle || 'قناتك المسجلة';
+      loadVideos(data.channelId);
     }
   } catch (e) {
-    usageText.textContent = 'المنصة جاهزة للتحليل';
+    usageLabel.textContent = 'جاهز للتحليل';
   }
 }
 
 // ============================================
-// تحليل الفيديو + مقارنة السوق
+// تنفيذ التحليل
 // ============================================
-async function analyze() {
+async function runAnalysis() {
   hideMsg();
   resBox.innerHTML = '';
   resBox.classList.remove('visible');
 
-  const videoId = extractVideoId(urlInp.value);
+  const videoId = extractId(mainUrl.value);
   if (!videoId) {
-    showMsg('الرجاء إدخال رابط فيديو صحيح من يوتيوب.');
+    showMsg('يرجى إدخال رابط فيديو يوتيوب صحيح في الخانة الأساسية.');
     return;
   }
 
   let compareVideoId = null;
-  if (compWrap.classList.contains('open') && compUrlInp.value.trim()) {
-    compareVideoId = extractVideoId(compUrlInp.value);
+  if (compDrawer.classList.contains('open') && compUrl.value.trim()) {
+    compareVideoId = extractId(compUrl.value);
     if (!compareVideoId) {
-      showMsg('رابط فيديو المنافس غير صحيح، تحقق منه أو أغلق خانة المقارنة.');
+      showMsg('رابط فيديو المنافس غير صالح، تحقق منه أو أغلق خانة المنافس.');
       return;
     }
   }
 
-  setLoading(true, compareVideoId ? 'نحلل فيديوك ونستخرج تعليقات المنافس للمقارنة...' : 'نجلب التعليقات ونحللها بالذكاء الاصطناعي...');
+  setLoader(true, compareVideoId ? 'نحلل فيديوك ونستخرج فجوات فيديو المنافس...' : 'نسحب جميع التعليقات ونحللها بالذكاء الاصطناعي...');
 
   try {
-    const res = await customFetch(WORKER_URL + '/analyze', {
+    const res = await req(WORKER_URL + '/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ videoId, compareVideoId })
@@ -410,26 +841,26 @@ async function analyze() {
 
     const data = await res.json();
     if (!res.ok || data.error) {
-      showMsg(data.error || 'حدث خطأ في جلب بيانات التحليل');
-      setLoading(false);
+      showMsg(data.error || 'حدث خطأ في استخراج البيانات');
+      setLoader(false);
       return;
     }
 
     render(data);
-    setLoading(false);
-    initSession();
-    saveLocalHistory(data);
+    setLoader(false);
+    loadSession();
+    cacheHistory(data);
   } catch (err) {
-    showMsg('تعذر الاتصال بالخادم، تحقق من اتصالك أو إعدادات Worker.');
-    setLoading(false);
+    showMsg('تعذر الاتصال بالخادم، يرجى المحاولة مجدداً.');
+    setLoader(false);
   }
 }
 
-anlzBtn.addEventListener('click', analyze);
-urlInp.addEventListener('keypress', (e) => { if (e.key === 'Enter') analyze(); });
+analyzeBtn.addEventListener('click', runAnalysis);
+mainUrl.addEventListener('keypress', (e) => { if (e.key === 'Enter') runAnalysis(); });
 
 // ============================================
-// رسم النتائج بالواجهة
+// رسم النتائج بنظام Mobile-First متناسق
 // ============================================
 function render(data) {
   const v = data.videoInfo || {};
@@ -440,136 +871,126 @@ function render(data) {
 
   let html = '';
 
-  // كارت الفيديو الأساسي
+  // كارت الفيديو
   if (v.title) {
     html += `
-    <div class="v-card">
-      <img class="v-thumb" src="${v.thumb || ''}" alt="">
-      <div class="v-info">
-        <div class="v-title">${esc(v.title)}</div>
-        <div class="v-channel">${esc(v.channel)}</div>
-        <div class="v-stats">
+    <div class="video-card">
+      <img class="video-thumb" src="${v.thumb || ''}" alt="">
+      <div class="video-meta">
+        <div class="video-title">${esc(v.title)}</div>
+        <div class="video-channel">${esc(v.channel)}</div>
+        <div class="video-stats">
           <span>👀 ${Number(v.views || 0).toLocaleString()}</span>
+          <span>💬 ${Number(v.commentCount || 0).toLocaleString()}</span>
           <span>👍 ${Number(v.likes || 0).toLocaleString()}</span>
-          <span>💬 ${Number(v.commentCount || 0).toLocaleString()} تعليق</span>
         </div>
       </div>
     </div>`;
   }
 
-  // ميزة 1: قسم فجوات المنافسين إذا وُجد
+  // ميزة 1: قسم فجوات المنافس (إن وُجد)
   if (gaps && gaps.gaps) {
     html += `
-    <div class="comp-card">
-      <div class="sec-h">
-        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <div class="sec-title">فجوات السوق (طلبها جمهور المنافس ولم يجدها):</div>
-      </div>
-      <ul class="gap-list">
+    <div class="gaps-card">
+      <div class="gaps-header">⚡ فجوات السوق (طلبها جمهور المنافس ولم يجدها):</div>
+      <ul class="gaps-list">
         ${gaps.gaps.map(g => `<li>${esc(g)}</li>`).join('')}
       </ul>
-      ${gaps.opportunity ? `<div class="comp-opp"><strong>فرصتك للتفوق:</strong> ${esc(gaps.opportunity)}</div>` : ''}
+      ${gaps.opportunity ? `<div class="gaps-opp"><strong>فرصة التفوق:</strong> ${esc(gaps.opportunity)}</div>` : ''}
     </div>`;
   }
 
-  // الإحصاءات السريعة
+  // شبكة الإحصاءات
   html += `
-  <div class="st-row">
-    <div class="st-itm"><div class="st-n">${data.totalComments || 0}</div><div class="st-l">تعليق محلل</div></div>
-    <div class="st-itm"><div class="st-n">${s.questionsCount || 0}</div><div class="st-l">أسئلة غير مجابة</div></div>
-    <div class="st-itm"><div class="st-n">${s.requestsCount || 0}</div><div class="st-l">طلبات محتوى</div></div>
-    <div class="st-itm"><div class="st-n">${s.complaintsCount || 0}</div><div class="st-l">نقاط ألم</div></div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num">${data.totalComments || 0}</div><div class="stat-label">تعليق تم تحليله</div></div>
+    <div class="stat-box"><div class="stat-num">${s.questionsCount || 0}</div><div class="stat-label">أسئلة المتابعين</div></div>
+    <div class="stat-box"><div class="stat-num">${s.requestsCount || 0}</div><div class="stat-label">طلبات شروحات</div></div>
+    <div class="stat-box"><div class="stat-num">${s.complaintsCount || 0}</div><div class="stat-label">نقاط ألم ومشاكل</div></div>
   </div>`;
 
   // رؤى الجمهور
   html += `
-  <div class="sec">
-    <div class="sec-h">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      <div class="sec-title">رؤى وتفضيلات الجمهور</div>
-    </div>
-    <div class="in-row">
-      <div class="in-box"><div class="in-label">مستوى معرفة الجمهور</div><div class="in-value">${esc(ins.skillLevel || 'متنوع')}</div></div>
-      <div class="in-box"><div class="in-label">لغة الشرح المفضلة</div><div class="in-value">${esc(ins.languagePreference || 'عربي')}</div></div>
+  <div class="audience-card">
+    <div class="card-title">👥 طبيعة واهتمام المتابعين</div>
+    <div class="audience-badges">
+      <div class="aud-badge"><span>مستوى الخبرة</span>${esc(ins.skillLevel || 'متنوع')}</div>
+      <div class="aud-badge"><span>اللغة المفضلة</span>${esc(ins.languagePreference || 'عربي')}</div>
     </div>
     <ul class="pain-list">
       ${(ins.mainPainPoints || []).map(p => `<li>${esc(p)}</li>`).join('')}
     </ul>
   </div>`;
 
-  // ميزة 2: الأفكار + زر خطة المحتوى المهيكلة
+  // ميزة 2: الأفكار المقترحة + زر خطة المحتوى المهيكلة
   if (a.contentIdeas && a.contentIdeas.length) {
-    html += `
-    <div class="sec">
-      <div class="sec-h">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <div class="sec-title">أفكار الفيديوهات المقترحة والجاهزة للتصوير</div>
-      </div>`;
+    html += `<div style="margin-bottom:0.75rem;font-weight:900;font-size:1.1rem">💡 أفكار فيديوهات جاهزة للتصوير:</div>`;
 
     a.contentIdeas.forEach((idea, idx) => {
-      const tagClass = idea.priority === 'high' ? 'tag-h' : idea.priority === 'medium' ? 'tag-m' : 'tag-l';
+      const tagClass = idea.priority === 'high' ? 'tag-high' : idea.priority === 'medium' ? 'tag-med' : 'tag-low';
       const tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'عادي';
-      
+
       html += `
-      <div class="idea">
-        <div class="idea-h">
+      <div class="idea-card">
+        <div class="idea-header">
           <div class="idea-title">${esc(idea.title)}</div>
-          <div class="idea-actions">
-            <button class="btn-sm btn-outline get-outline-btn" data-idx="${idx}">✍️ خطة المحتوى</button>
-            <button class="btn-sm copy-btn" data-text="${esc(idea.title + '\n' + idea.description)}">نسخ</button>
+          <div class="idea-tags">
+            <span class="tag ${tagClass}">${tagText}</span>
+            ${idea.format ? `<span class="tag tag-fmt">${esc(idea.format)}</span>` : ''}
           </div>
         </div>
-        <div class="tag-row">
-          <span class="tag ${tagClass}">${tagText}</span>
-          ${idea.format ? `<span class="tag tag-f">${esc(idea.format)}</span>` : ''}
-        </div>
         <div class="idea-desc">${esc(idea.description)}</div>
-        ${(idea.evidence || []).map(e => `<div class="evidence">"${esc(e)}"</div>`).join('')}
-        <div class="demand">
-          <span class="demand-label">الطلب المتوقع</span>
-          <div class="demand-track"><div class="demand-fill" style="width:${idea.estimatedDemand || 50}%"></div></div>
-          <span class="demand-val">${idea.estimatedDemand || 50}%</span>
+        ${(idea.evidence || []).map(e => `<div class="idea-quote">"${esc(e)}"</div>`).join('')}
+        
+        <div class="idea-footer">
+          <div class="demand-bar">
+            <span>الطلب</span>
+            <div class="demand-track"><div class="demand-fill" style="width:${idea.estimatedDemand || 50}%"></div></div>
+            <span>${idea.estimatedDemand || 50}%</span>
+          </div>
+          <div class="idea-actions">
+            <button class="action-btn btn-outline gen-outline-btn" data-idx="${idx}">✍️ خطة المحتوى</button>
+            <button class="action-btn copy-idea-btn" data-text="${esc(idea.title + '\n\n' + idea.description)}">نسخ</button>
+          </div>
         </div>
       </div>`;
     });
-    html += '</div>';
   }
 
   resBox.innerHTML = html;
   resBox.classList.add('visible');
 
   // أزرار النسخ
-  resBox.querySelectorAll('.copy-btn').forEach(btn => {
+  resBox.querySelectorAll('.copy-idea-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      navigator.clipboard.writeText(this.getAttribute('data-text')).then(() => showToast('تم النسخ بنجاح!'));
+      navigator.clipboard.writeText(this.getAttribute('data-text')).then(() => showToast('تم النسخ'));
     });
   });
 
-  // ميزة 2: زر توليد وتجهيز خطة المحتوى (Outline)
-  resBox.querySelectorAll('.get-outline-btn').forEach(btn => {
+  // استدعاء خطة المحتوى
+  resBox.querySelectorAll('.gen-outline-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const idx = parseInt(this.getAttribute('data-idx'));
-      const idea = a.contentIdeas[idx];
-      fetchOutline(idea);
+      fetchOutline(a.contentIdeas[idx]);
     });
   });
 }
 
 // ============================================
-// ميزة 2: استدعاء وعرض خطة المحتوى (Outline)
+// خطة المحتوى المهيكلة (Modal)
 // ============================================
 const outlineModal = document.getElementById('outlineModal');
-const outlineBody = document.getElementById('outlineBody');
-document.getElementById('closeOutlineBtn').addEventListener('click', () => outlineModal.classList.remove('active'));
+const outlineContent = document.getElementById('outlineContent');
+document.getElementById('closeOutlineModal').addEventListener('click', () => outlineModal.classList.remove('active'));
 
 async function fetchOutline(idea) {
   outlineModal.classList.add('active');
-  outlineBody.innerHTML = `
-    <div class="load-spin" style="margin:2rem auto"></div>
-    <p style="text-align:center;color:var(--text-muted)">نحلل تعليقات الجمهور لبناء أقوى سنارة افتتاحية وثلاث نقاط رئيسية...</p>`;
+  outlineContent.innerHTML = `
+    <div class="spinner" style="margin:2rem auto 0.5rem"></div>
+    <div style="text-align:center;font-size:0.85rem;color:var(--text-muted)">جاري بناء السنارة والمحاور من رغبات الجمهور...</div>`;
 
   try {
-    const res = await customFetch(WORKER_URL + '/outline', {
+    const res = await req(WORKER_URL + '/outline', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -583,165 +1004,138 @@ async function fetchOutline(idea) {
     const out = data.outline || {};
 
     let html = `
-      <div class="outline-block">
-        <div class="outline-label">🎣 السنارة الافتتاحية (Hook - أول 5 ثوان):</div>
-        <div class="outline-content">"${esc(out.hook || 'ابدأ بسؤال المشاهد عن أكبر تحد يواجهه في هذا المجال...')}"</div>
+      <div class="outline-item">
+        <div class="outline-head">🎣 السنارة الافتتاحية (أول 5 ثوان):</div>
+        <div class="outline-body">"${esc(out.hook || '')}"</div>
       </div>
 
-      <div class="outline-block">
-        <div class="outline-label">📌 محاور الفيديو الرئيسية (3 نقاط):</div>
+      <div class="outline-item">
+        <div class="outline-head">📌 محاور الفيديو الرئيسية:</div>
         ${(out.points || []).map((p, i) => `
-          <div class="point-box">
+          <div style="margin-bottom:0.5rem;padding-right:0.5rem;border-right:2px solid var(--border)">
             <strong>${i + 1}. ${esc(p.title)}</strong> <span style="font-size:0.75rem;color:var(--text-muted)">(${esc(p.duration)})</span>
-            <div style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px">${esc(p.key)}</div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:2px">${esc(p.key)}</div>
           </div>
         `).join('')}
       </div>
 
-      <div class="outline-block">
-        <div class="outline-label">🎯 الخاتمة والدعوة للتفاعل (CTA):</div>
-        <div class="outline-content">${esc(out.cta || 'اطلب من الجمهور مشاركة تجاربهم في التعليقات')}</div>
+      <div class="outline-item">
+        <div class="outline-head">🎯 الخاتمة والدعوة للتفاعل (CTA):</div>
+        <div class="outline-body">${esc(out.cta || '')}</div>
       </div>
 
-      <button class="anlz-btn" id="copyFullOutlineBtn" style="width:100%;margin-top:10px">نسخ الخطة بالكامل</button>
+      <button class="submit-btn" id="copyFullOutline" style="margin-top:0.75rem">نسخ الخطة بالكامل</button>
     `;
 
-    outlineBody.innerHTML = html;
+    outlineContent.innerHTML = html;
 
-    document.getElementById('copyFullOutlineBtn').addEventListener('click', () => {
-      const fullText = `خطة فيديو: ${idea.title}\n\n[السنارة]:\n${out.hook}\n\n[المحاور]:\n` + 
-        (out.points || []).map(p => `- ${p.title} (${p.duration}): ${p.key}`).join('\n') + 
+    document.getElementById('copyFullOutline').addEventListener('click', () => {
+      const full = `خطة فيديو: ${idea.title}\n\n[السنارة]:\n${out.hook}\n\n[المحاور]:\n` +
+        (out.points || []).map(p => `- ${p.title} (${p.duration}): ${p.key}`).join('\n') +
         `\n\n[الخاتمة]:\n${out.cta}`;
-      navigator.clipboard.writeText(fullText).then(() => showToast('تم نسخ خطة الفيديو بالكامل!'));
+      navigator.clipboard.writeText(full).then(() => showToast('تم نسخ الخطة بالكامل!'));
     });
 
   } catch (e) {
-    outlineBody.innerHTML = '<p style="color:#ff8888;text-align:center">حدث خطأ أثناء صياغة الخطة، حاول مرة أخرى.</p>';
+    outlineContent.innerHTML = '<div style="color:#ff7777;text-align:center">تعذر صياغة الخطة حالياً.</div>';
   }
 }
 
 // ============================================
-// ميزة 3: اختيار القناة وفيديوهاتها
+// اختيار القناة وفيديوهاتها
 // ============================================
-const searchChannelModal = document.getElementById('searchChannelModal');
-const channelSearchInp = document.getElementById('channelSearchInp');
-const channelSearchBtn = document.getElementById('channelSearchBtn');
-const channelSearchResults = document.getElementById('channelSearchResults');
+const channelModal = document.getElementById('channelModal');
+const searchChannelInput = document.getElementById('searchChannelInput');
+const execSearchChannelBtn = document.getElementById('execSearchChannelBtn');
+const channelResults = document.getElementById('channelResults');
 
-document.getElementById('changeChannelBtn').addEventListener('click', () => searchChannelModal.classList.add('active'));
-document.getElementById('closeChannelModalBtn').addEventListener('click', () => searchChannelModal.classList.remove('active'));
+document.getElementById('searchChannelBtn').addEventListener('click', () => channelModal.classList.add('active'));
+document.getElementById('closeChannelModal').addEventListener('click', () => channelModal.classList.remove('active'));
 
-channelSearchBtn.addEventListener('click', async () => {
-  const q = channelSearchInp.value.trim();
+execSearchChannelBtn.addEventListener('click', async () => {
+  const q = searchChannelInput.value.trim();
   if (!q) return;
-  channelSearchResults.innerHTML = '<div style="text-align:center;padding:1rem">جاري البحث عن القناة...</div>';
+  channelResults.innerHTML = '<div style="text-align:center;padding:1rem;font-size:0.85rem">جاري البحث...</div>';
 
   try {
-    const res = await customFetch(`${WORKER_URL}/channel/search?q=${encodeURIComponent(q)}`);
+    const res = await req(`${WORKER_URL}/channel/search?q=${encodeURIComponent(q)}`);
     const data = await res.json();
     const channels = data.channels || [];
+
     if (!channels.length) {
-      channelSearchResults.innerHTML = '<div style="text-align:center;padding:1rem;color:var(--text-muted)">لم يتم العثور على أي قناة.</div>';
+      channelResults.innerHTML = '<div style="text-align:center;padding:1rem;color:var(--text-muted)">لم يتم العثور على قنوات.</div>';
       return;
     }
 
-    channelSearchResults.innerHTML = channels.map(c => `
-      <div class="hist-item select-channel-row" data-id="${c.channelId}" data-title="${esc(c.title)}">
-        <img class="hist-thumb" style="border-radius:50%;width:44px;height:44px" src="${c.thumb}">
-        <div class="hist-info">
-          <div class="hist-title">${esc(c.title)}</div>
-          <div class="hist-date">${esc(c.description.substring(0, 50))}...</div>
+    channelResults.innerHTML = channels.map(c => `
+      <div class="history-item select-channel-row" data-id="${c.channelId}" data-title="${esc(c.title)}">
+        <img class="history-thumb" style="border-radius:50%;width:36px;height:36px" src="${c.thumb}">
+        <div class="history-info">
+          <div class="history-title">${esc(c.title)}</div>
+          <div class="history-date">${esc((c.description || '').substring(0, 45))}...</div>
         </div>
       </div>
     `).join('');
 
-    channelSearchResults.querySelectorAll('.select-channel-row').forEach(row => {
+    channelResults.querySelectorAll('.select-channel-row').forEach(row => {
       row.addEventListener('click', async function() {
-        const channelId = this.getAttribute('data-id');
-        const channelTitle = this.getAttribute('data-title');
-        await saveSelectedChannel(channelId, channelTitle);
-        searchChannelModal.classList.remove('active');
+        const id = this.getAttribute('data-id');
+        const title = this.getAttribute('data-title');
+        channelNameDisplay.textContent = title;
+        await req(WORKER_URL + '/channel/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ channelId: id, channelTitle: title })
+        });
+        channelModal.classList.remove('active');
+        loadVideos(id);
       });
     });
-
   } catch (e) {
-    channelSearchResults.innerHTML = '<div style="color:#ff8888;text-align:center">تعذر إتمام البحث</div>';
+    channelResults.innerHTML = '<div style="color:#ff7777;text-align:center">خطأ في البحث.</div>';
   }
 });
 
-async function saveSelectedChannel(channelId, channelTitle) {
-  currentChannelLabel.textContent = channelTitle;
-  await customFetch(WORKER_URL + '/channel/save', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ channelId, channelTitle })
-  });
-  loadChannelVideos(channelId);
-}
-
-async function loadChannelVideos(channelId) {
-  channelVideosWrap.style.display = 'block';
-  channelVideosSelect.innerHTML = '<option value="">جاري تحميل آخر فيديوهات القناة...</option>';
+async function loadVideos(channelId) {
+  channelVideosHolder.style.display = 'block';
+  channelVideosDropdown.innerHTML = '<option value="">جاري جلب الفيديوهات...</option>';
 
   try {
-    const res = await customFetch(`${WORKER_URL}/channel/videos?channelId=${channelId}`);
+    const res = await req(`${WORKER_URL}/channel/videos?channelId=${channelId}`);
     const data = await res.json();
     const videos = data.videos || [];
-    
+
     if (!videos.length) {
-      channelVideosSelect.innerHTML = '<option value="">لا توجد فيديوهات متاحة</option>';
+      channelVideosDropdown.innerHTML = '<option value="">لا توجد فيديوهات</option>';
       return;
     }
 
-    channelVideosSelect.innerHTML = '<option value="">▼ اختر فيديو لتحليله فوراً بنقرة واحدة...</option>' + 
+    channelVideosDropdown.innerHTML = '<option value="">▼ اختر فيديو لتحليله فوراً...</option>' +
       videos.map(v => `<option value="https://youtube.com/watch?v=${v.videoId}">${esc(v.title)}</option>`).join('');
 
-    channelVideosSelect.onchange = function() {
+    channelVideosDropdown.onchange = function() {
       if (this.value) {
-        urlInp.value = this.value;
-        analyze();
+        mainUrl.value = this.value;
+        runAnalysis();
       }
     };
   } catch (e) {
-    channelVideosSelect.innerHTML = '<option value="">تعذر جلب الفيديوهات</option>';
+    channelVideosDropdown.innerHTML = '<option value="">تعذر جلب الفيديوهات</option>';
   }
 }
 
 // ============================================
-// كود التفعيل والترقية (Modal)
-// ============================================
-const activateModal = document.getElementById('activateModal');
-document.getElementById('upgradeBtn').addEventListener('click', () => activateModal.classList.add('active'));
-document.getElementById('closeActivateBtn').addEventListener('click', () => activateModal.classList.remove('active'));
-
-document.getElementById('submitActivateBtn').addEventListener('click', async () => {
-  const code = document.getElementById('activateCodeInp').value.trim();
-  try {
-    const res = await customFetch(WORKER_URL + '/activate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code })
-    });
-    const data = await res.json();
-    if (data.success) {
-      showToast('تم تفعيل الحساب بنجاح!');
-      activateModal.classList.remove('active');
-      initSession();
-    } else {
-      alert(data.error || 'رمز خاطئ');
-    }
-  } catch (e) {
-    alert('تعذر التفعيل حالياً');
-  }
-});
-
-// ============================================
-// التبويبات والمحفوظات المحلية
+// المحفوظات مع نظام التصفح المتقطع (+10 Lazy Render)
 // ============================================
 const tabAnalyze = document.getElementById('tabAnalyze');
 const tabHistory = document.getElementById('tabHistory');
 const contentAnalyze = document.getElementById('contentAnalyze');
 const contentHistory = document.getElementById('contentHistory');
+const historyListContainer = document.getElementById('historyListContainer');
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+let cachedHistoryItems = [];
+let visibleHistoryCount = 10;
 
 tabAnalyze.addEventListener('click', () => {
   tabAnalyze.classList.add('active'); tabHistory.classList.remove('active');
@@ -751,10 +1145,10 @@ tabAnalyze.addEventListener('click', () => {
 tabHistory.addEventListener('click', () => {
   tabHistory.classList.add('active'); tabAnalyze.classList.remove('active');
   contentHistory.classList.add('active'); contentAnalyze.classList.remove('active');
-  loadHistory();
+  loadHistoryData();
 });
 
-function saveLocalHistory(data) {
+function cacheHistory(data) {
   let hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   hist.unshift({
     videoId: data.videoInfo?.videoId,
@@ -764,42 +1158,51 @@ function saveLocalHistory(data) {
     date: new Date().toISOString(),
     analysis: data.analysis
   });
-  if (hist.length > 25) hist = hist.slice(0, 25);
+  if (hist.length > 30) hist = hist.slice(0, 30);
   localStorage.setItem('ciai_history', JSON.stringify(hist));
 }
 
-async function loadHistory() {
-  const histBox = document.getElementById('historyContainer');
-  let items = [];
-  try {
-    const res = await customFetch(WORKER_URL + '/history');
-    const data = await res.json();
-    if (data.items && data.items.length) items = data.items;
-  } catch(e) {}
+async function loadHistoryData() {
+  historyListContainer.innerHTML = '<div style="text-align:center;padding:2rem 0;color:var(--text-muted)">جاري جلب المحفوظات...</div>';
+  loadMoreBtn.style.display = 'none';
+  cachedHistoryItems = [];
+  visibleHistoryCount = 10;
 
-  if (!items.length) {
-    items = JSON.parse(localStorage.getItem('ciai_history') || '[]');
+  try {
+    const res = await req(WORKER_URL + '/history');
+    const data = await res.json();
+    if (data.items && data.items.length) cachedHistoryItems = data.items;
+  } catch (e) {}
+
+  if (!cachedHistoryItems.length) {
+    cachedHistoryItems = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   }
 
-  if (!items.length) {
-    histBox.innerHTML = '<div style="text-align:center;padding:3rem 0;color:var(--text-muted)">لا توجد تحليلات سابقة بعد.</div>';
+  if (!cachedHistoryItems.length) {
+    historyListContainer.innerHTML = '<div style="text-align:center;padding:2rem 0;color:var(--text-muted)">لا توجد تحليلات محفوظة بعد.</div>';
     return;
   }
 
-  histBox.innerHTML = items.map((item, i) => `
-    <div class="hist-item" data-idx="${i}">
-      <img class="hist-thumb" src="${item.thumb || ''}">
-      <div class="hist-info">
-        <div class="hist-title">${esc(item.title)}</div>
-        <div class="hist-date">${new Date(item.date).toLocaleDateString('ar-EG')} - ${esc(item.channel)}</div>
+  renderHistorySubset();
+}
+
+function renderHistorySubset() {
+  const subset = cachedHistoryItems.slice(0, visibleHistoryCount);
+  
+  historyListContainer.innerHTML = subset.map((item, idx) => `
+    <div class="history-item" data-idx="${idx}">
+      <img class="history-thumb" src="${item.thumb || ''}">
+      <div class="history-info">
+        <div class="history-title">${esc(item.title)}</div>
+        <div class="history-date">${new Date(item.date).toLocaleDateString('ar-EG')} • ${esc(item.channel)}</div>
       </div>
     </div>
   `).join('');
 
-  histBox.querySelectorAll('.hist-item').forEach(el => {
+  historyListContainer.querySelectorAll('.history-item').forEach(el => {
     el.addEventListener('click', function() {
       const idx = parseInt(this.getAttribute('data-idx'));
-      const item = items[idx];
+      const item = cachedHistoryItems[idx];
       tabAnalyze.click();
       render({
         videoInfo: { title: item.title, channel: item.channel, thumb: item.thumb, videoId: item.videoId },
@@ -809,15 +1212,53 @@ async function loadHistory() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  // إذا كانت العناصر المتبقية أكثر من المعروض، نظهر زر +10
+  if (cachedHistoryItems.length > visibleHistoryCount) {
+    loadMoreBtn.style.display = 'block';
+    loadMoreBtn.textContent = `عرض المزيد (+${Math.min(10, cachedHistoryItems.length - visibleHistoryCount)} تحليلات)`;
+  } else {
+    loadMoreBtn.style.display = 'none';
+  }
 }
+
+loadMoreBtn.addEventListener('click', () => {
+  visibleHistoryCount += 10;
+  renderHistorySubset();
+});
+
+// Modal التفعيل
+const codeModal = document.getElementById('codeModal');
+document.getElementById('activateBtn').addEventListener('click', () => codeModal.classList.add('active'));
+document.getElementById('closeCodeModal').addEventListener('click', () => codeModal.classList.remove('active'));
+
+document.getElementById('submitPromoBtn').addEventListener('click', async () => {
+  const code = document.getElementById('promoCodeInput').value.trim();
+  try {
+    const res = await req(WORKER_URL + '/activate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('تم تفعيل الحساب!');
+      codeModal.classList.remove('active');
+      loadSession();
+    } else {
+      alert(data.error || 'رمز غير صالح');
+    }
+  } catch (e) {
+    alert('تعذر التفعيل');
+  }
+});
 
 function esc(str) {
   if (!str) return '';
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// بدء التشغيل
-initSession();
+loadSession();
 </script>
 </body>
 </html>
