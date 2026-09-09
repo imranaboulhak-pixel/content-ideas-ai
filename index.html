@@ -2,626 +2,452 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0a0a0a">
-<title>Content Ideas AI - المنصة الذكية لصناع المحتوى</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0d0d">
+<title>Content Ideas AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --font: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
   --bg: #0d0d0d;
-  --bg-card: #151515;
-  --bg-elevated: #1e1e1e;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.04);
+  --surface: #161616;
+  --surface-2: #1e1e1e;
+  --border: #262626;
   --text: #f5f5f5;
-  --text-secondary: #999999;
-  --text-muted: #666666;
+  --text-2: #a3a3a3;
+  --text-3: #737373;
   --accent: #e50914;
+  --accent-hover: #f6121d;
   --accent-soft: rgba(229, 9, 20, 0.12);
-  --success: #22c55e;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --priority-high: #e50914;
+  --priority-med: #737373;
+  --priority-low: #404040;
+  --radius: 10px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 15px; -webkit-font-smoothing: antialiased; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.5;
-  padding-bottom: 3rem;
+  font-variant-numeric: tabular-nums;
 }
+
+:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: 2px; }
 
 .container {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.25rem 1rem;
-}
-
-/* Header */
-.brand { margin-bottom: 1.25rem; }
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--accent-soft);
-  color: #ff5555;
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-.brand h1 {
-  font-size: 1.75rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.35rem;
-}
-.brand h1 span { color: var(--accent); }
-.brand p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
-
-/* Status Bar */
-.status-bar {
+  padding: 20px 16px 48px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.65rem 0.9rem;
-  background: var(--bg-card);
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Brand */
+.brand { display: flex; flex-direction: column; gap: 6px; }
+.brand h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
+.brand h1 span { color: var(--accent); }
+.brand p { font-size: 0.875rem; color: var(--text-2); }
+
+/* Status bar */
+.status-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  margin-bottom: 1rem;
+  border-radius: var(--radius);
   font-size: 0.8rem;
 }
-.status-info { display: flex; align-items: center; gap: 0.5rem; }
+.status-info { display: flex; align-items: center; gap: 8px; color: var(--text-2); }
 .status-tag {
-  background: rgba(34, 197, 94, 0.12);
-  color: var(--success);
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  padding: 2px 8px;
+  border-radius: 6px;
   font-weight: 700;
   font-size: 0.72rem;
+  white-space: nowrap;
 }
 .status-btn {
-  background: transparent;
+  background: var(--surface-2);
   border: 1px solid var(--border);
-  color: var(--text-secondary);
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
   font-family: var(--font);
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-/* Channel Quick Select */
+/* Channel box */
 .channel-box {
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.75rem 0.9rem;
-  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 10px;
 }
-.channel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.channel-title {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 800;
-  font-size: 0.875rem;
-}
-.channel-title svg { width: 16px; height: 16px; fill: var(--accent); }
+.channel-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.channel-title { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.875rem; }
+.channel-title svg { width: 16px; height: 16px; fill: var(--accent); flex-shrink: 0; }
 .channel-action {
-  background: transparent;
-  border: none;
-  color: #ff5555;
-  font-family: var(--font);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
+  background: transparent; border: none;
+  color: var(--accent-hover);
+  font-family: var(--font); font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap;
 }
 .channel-dropdown {
   width: 100%;
-  margin-top: 0.65rem;
-  background: var(--bg-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.55rem 0.75rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font);
-  font-size: 0.85rem;
-  outline: none;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-family: var(--font); font-size: 0.85rem;
 }
 
 /* Tabs */
-.tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
-}
+.tabs { display: flex; border-bottom: 1px solid var(--border); }
 .tab {
-  flex: 1;
-  padding: 0.65rem;
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-family: var(--font);
-  font-size: 0.9rem;
-  font-weight: 800;
+  flex: 1; padding: 12px;
+  background: transparent; border: none;
+  color: var(--text-3);
+  font-family: var(--font); font-size: 0.9rem; font-weight: 700;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
 }
 .tab.active { color: var(--text); border-bottom-color: var(--accent); }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
+#contentAnalyze, #contentHistory { display: none; flex-direction: column; gap: 16px; }
+#contentAnalyze.active, #contentHistory.active { display: flex; }
 
-/* Unified Input Panel (حل مشكلة الترتيب وزر المنافس) */
+/* Input panel */
 .input-panel {
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1rem;
-  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
 }
-.input-group { margin-bottom: 0.75rem; }
-.input-label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  margin-bottom: 0.4rem;
-}
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: 0.8rem; font-weight: 700; color: var(--text-2); }
 .input-control {
   width: 100%;
-  background: var(--bg-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.75rem 0.9rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  font-family: var(--font);
-  outline: none;
-  transition: border-color 0.2s;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 0.9rem; font-family: var(--font);
 }
-.input-control:focus { border-color: var(--accent); }
+.input-control:focus { border-color: var(--accent); outline: none; }
 
-/* زر إظهار مقارنة المنافس */
 .comp-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: transparent;
-  border: none;
-  color: #ff6666;
-  font-family: var(--font);
-  font-size: 0.8rem;
-  font-weight: 700;
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: none;
+  color: var(--accent-hover);
+  font-family: var(--font); font-size: 0.8rem; font-weight: 700;
   cursor: pointer;
-  margin-bottom: 0.85rem;
 }
+.comp-toggle svg { width: 14px; height: 14px; stroke: currentColor; }
 .comp-drawer {
   display: none;
-  background: rgba(0,0,0,0.25);
-  border-right: 3px solid var(--accent);
-  padding: 0.75rem;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  margin-bottom: 0.85rem;
+  border-inline-start: 3px solid var(--accent);
+  padding: 10px 12px;
 }
 .comp-drawer.open { display: block; }
 
-/* زر التحليل الشامل الموحد */
 .submit-btn {
   width: 100%;
   background: var(--accent);
   color: #fff;
-  padding: 0.85rem;
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  font-weight: 900;
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 0.95rem; font-weight: 800;
   font-family: var(--font);
-  border: none;
-  cursor: pointer;
+  border: none; cursor: pointer;
 }
 .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* Message / Alerts */
+/* Messages */
 .msg-box {
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  font-size: 0.82rem;
-  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 0.82rem; font-weight: 700;
   display: none;
-  margin-bottom: 1rem;
+  background: var(--accent-soft);
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  color: var(--accent-hover);
 }
-.msg-box.error { background: rgba(229,9,20,0.1); border: 1px solid rgba(229,9,20,0.3); color: #ff8888; }
+.msg-box.visible { display: block; }
 
 /* Loader */
-.loader-box { display: none; text-align: center; padding: 2.5rem 0; }
+.loader-box { display: none; text-align: center; padding: 40px 0; }
 .loader-box.visible { display: block; }
 .spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--bg-elevated);
+  width: 32px; height: 32px;
+  border: 3px solid var(--surface-2);
   border-top-color: var(--accent);
   border-radius: 50%;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 12px;
   animation: spin 0.8s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-.loader-text { font-size: 0.95rem; font-weight: 800; }
-.loader-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+.loader-text { font-size: 0.95rem; font-weight: 700; }
+.loader-sub { font-size: 0.8rem; color: var(--text-3); margin-top: 4px; }
 
 /* Results */
-.res-wrap { display: none; }
-.res-wrap.visible { display: block; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.res-wrap { display: none; opacity: 0; flex-direction: column; gap: 16px; }
+.res-wrap.visible { display: flex; opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .res-wrap { transition: opacity 200ms ease; }
+}
 
-/* Video Info Card */
+/* Video card */
 .video-card {
-  display: flex;
-  gap: 0.75rem;
-  background: var(--bg-card);
+  display: flex; gap: 12px;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.75rem;
-  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  padding: 12px;
 }
 .video-thumb {
-  width: 105px;
-  height: 65px;
-  border-radius: var(--radius-sm);
+  width: 128px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
-  background: var(--bg-elevated);
+  background: var(--surface-2);
 }
-.video-meta { flex: 1; min-width: 0; }
+.video-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .video-title {
-  font-size: 0.9rem;
-  font-weight: 800;
-  line-height: 1.35;
-  white-space: normal;
+  font-size: 0.9rem; font-weight: 700; line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 0.25rem;
 }
-.video-channel { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem; }
-.video-stats {
-  display: flex;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
+.video-channel { font-size: 0.75rem; color: var(--text-3); }
+.video-stats { font-size: 0.75rem; color: var(--text-2); }
 
-/* Stat Grid */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
+/* Stat grid */
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .stat-box {
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.65rem 0.4rem;
+  border-radius: var(--radius);
+  padding: 12px 4px;
   text-align: center;
 }
-.stat-num { font-size: 1.25rem; font-weight: 900; line-height: 1; margin-bottom: 0.25rem; }
-.stat-label { font-size: 0.68rem; color: var(--text-muted); font-weight: 700; }
+.stat-num { font-size: 1.25rem; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
 
-/* Competitor Gaps Section */
-.gaps-card {
-  background: rgba(229, 9, 20, 0.04);
-  border: 1px solid rgba(229, 9, 20, 0.2);
-  border-radius: var(--radius-md);
-  padding: 0.9rem;
-  margin-bottom: 1.25rem;
+/* Section cards */
+.gaps-card, .audience-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
 }
-.gaps-header {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #ff6666;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.gaps-card { border-inline-start: 3px solid var(--accent); }
+.card-title { font-size: 0.95rem; font-weight: 800; }
+.gaps-list, .pain-list { list-style: none; display: flex; flex-direction: column; }
+.gaps-list li, .pain-list li {
+  font-size: 0.82rem; color: var(--text-2);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
 }
-.gaps-list { list-style: none; margin-bottom: 0.5rem; }
-.gaps-list li {
-  font-size: 0.82rem;
-  color: var(--text);
-  padding: 0.25rem 0;
-  position: relative;
-  padding-right: 1rem;
-  line-height: 1.4;
-}
-.gaps-list li::before { content: "•"; position: absolute; right: 0; color: var(--accent); font-weight: bold; }
+.gaps-list li:last-child, .pain-list li:last-child { border-bottom: none; }
 .gaps-opp {
-  background: var(--bg-card);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem 0.75rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  border-right: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.8rem; color: var(--text-2);
+  border-inline-start: 3px solid var(--accent);
 }
+.audience-badges { display: flex; gap: 8px; }
+.aud-badge { flex: 1; background: var(--surface-2); padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; }
+.aud-badge span { display: block; font-size: 0.72rem; color: var(--text-3); margin-bottom: 2px; }
 
-/* Audience Section */
-.audience-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.9rem;
-  margin-bottom: 1.25rem;
-}
-.card-title {
-  font-size: 0.95rem;
-  font-weight: 800;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.audience-badges { display: flex; gap: 0.5rem; margin-bottom: 0.65rem; }
-.aud-badge {
-  flex: 1;
-  background: var(--bg-elevated);
-  padding: 0.4rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-}
-.aud-badge span { display: block; font-size: 0.65rem; color: var(--text-muted); }
-.pain-list { list-style: none; }
-.pain-list li {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  padding: 0.35rem 0;
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  gap: 0.4rem;
-}
-.pain-list li::before { content: "—"; color: var(--accent); font-weight: 900; }
-
-/* Idea Cards (حل مشكلة التفاف العناوين والأزرار بالكامل) */
+/* Idea cards */
+.ideas-heading { font-weight: 800; font-size: 1.05rem; }
 .idea-card {
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
 }
-.idea-header {
-  margin-bottom: 0.65rem;
-}
-.idea-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  line-height: 1.4;
-  color: #ffffff;
-  margin-bottom: 0.45rem;
-  word-break: break-word;
-}
-.idea-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem; }
-.tag {
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
-}
-.tag-high { background: rgba(229,9,20,0.15); color: #ff7777; }
-.tag-med { background: rgba(245,158,11,0.15); color: #fbbf24; }
-.tag-low { background: rgba(34,197,94,0.15); color: #4ade80; }
-.tag-fmt { background: var(--bg-elevated); color: var(--text-muted); }
-
-.idea-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
-}
+.idea-title { font-size: 1rem; font-weight: 800; line-height: 1.4; word-break: break-word; }
+.idea-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+.tag-high { background: var(--accent-soft); color: var(--accent-hover); }
+.tag-med { background: var(--surface-2); color: var(--priority-med); }
+.tag-low { background: var(--surface-2); color: var(--priority-low); }
+.tag-fmt { background: var(--surface-2); color: var(--text-3); }
+.idea-desc { font-size: 0.85rem; color: var(--text-2); line-height: 1.6; }
 .idea-quote {
-  background: var(--bg-elevated);
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-style: italic;
-  border-right: 2px solid var(--accent);
-  margin-bottom: 0.75rem;
+  background: var(--surface-2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem; color: var(--text-3); font-style: italic;
+  border-inline-start: 2px solid var(--accent);
 }
-
-/* شريط أزرار الفكرة الأنيق */
 .idea-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 0.75rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
 }
-.demand-bar {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-.demand-track {
-  flex: 1;
-  height: 4px;
-  background: var(--bg-elevated);
-  border-radius: 2px;
-  overflow: hidden;
-}
+.demand-bar { flex: 1; display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--text-3); }
+.demand-track { flex: 1; height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
 .demand-fill { height: 100%; background: var(--accent); }
-.idea-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+.idea-actions { display: flex; gap: 6px; flex-shrink: 0; }
 .action-btn {
-  background: var(--bg-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.35rem 0.65rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-family: var(--font);
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem; font-family: var(--font); font-weight: 700;
+  cursor: pointer; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 5px;
 }
-.action-btn.btn-outline {
+.action-btn svg { width: 13px; height: 13px; stroke: currentColor; }
+.action-btn.primary {
   background: var(--accent-soft);
-  border-color: rgba(229,9,20,0.3);
-  color: #ff6666;
+  border-color: rgba(229, 9, 20, 0.3);
+  color: var(--accent-hover);
 }
 
 /* Modals */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(4px);
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  display: none; align-items: center; justify-content: center;
+  padding: 16px;
 }
 .modal-overlay.active { display: flex; }
 .modal-card {
-  background: #181818;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  max-width: 500px;
-  width: 100%;
-  padding: 1.25rem;
+  border-radius: var(--radius);
+  max-width: 500px; width: 100%;
+  padding: 20px;
   max-height: 85vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: 14px;
 }
-.modal-title { font-size: 1.15rem; font-weight: 900; margin-bottom: 0.85rem; }
+.modal-title { font-size: 1.1rem; font-weight: 800; }
 .modal-close {
   width: 100%;
-  background: var(--bg-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.65rem;
-  border-radius: var(--radius-md);
-  font-family: var(--font);
-  font-weight: 800;
+  padding: 12px;
+  border-radius: var(--radius);
+  font-family: var(--font); font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem;
 }
 
-/* Outline View */
+/* Outline */
 .outline-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem;
-  margin-bottom: 0.65rem;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 12px;
 }
-.outline-head { font-size: 0.78rem; font-weight: 800; color: #ff6666; margin-bottom: 0.25rem; }
-.outline-body { font-size: 0.875rem; line-height: 1.5; color: var(--text); }
+.outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent-hover); margin-bottom: 6px; }
+.outline-body { font-size: 0.875rem; line-height: 1.5; }
+.outline-point { margin-bottom: 8px; padding-inline-start: 10px; border-inline-start: 2px solid var(--border); }
+.outline-point:last-child { margin-bottom: 0; }
+.outline-dur { font-size: 0.72rem; color: var(--text-3); }
 
-/* History & Pagination (حل مشكلة ثقل الذاكرة) */
-.history-list { list-style: none; }
+/* History */
+.history-list { list-style: none; display: flex; flex-direction: column; }
 .history-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--border-subtle);
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
 }
 .history-thumb {
-  width: 70px;
-  height: 44px;
-  border-radius: 4px;
+  width: 72px; aspect-ratio: 16 / 9;
+  border-radius: 6px;
   object-fit: cover;
-  background: var(--bg-elevated);
+  background: var(--surface-2);
   flex-shrink: 0;
 }
 .history-info { flex: 1; min-width: 0; }
-.history-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.history-date { font-size: 0.7rem; color: var(--text-muted); }
+.history-title { font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.history-date { font-size: 0.72rem; color: var(--text-3); }
 .load-more-btn {
   width: 100%;
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px dashed var(--border);
-  color: var(--text-secondary);
-  padding: 0.75rem;
-  border-radius: var(--radius-md);
-  font-family: var(--font);
-  font-size: 0.85rem;
-  font-weight: 700;
+  color: var(--text-2);
+  padding: 12px;
+  border-radius: var(--radius);
+  font-family: var(--font); font-size: 0.85rem; font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem;
 }
+.empty-note { text-align: center; padding: 32px 0; color: var(--text-3); font-size: 0.85rem; }
 
 /* Toast */
 .toast {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
+  position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: #252525;
-  color: #fff;
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--radius-md);
-  font-size: 0.82rem;
-  font-weight: 700;
-  opacity: 0;
-  z-index: 3000;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-size: 0.82rem; font-weight: 700;
+  opacity: 0; z-index: 3000;
   border: 1px solid var(--border);
-  transition: all 0.25s ease;
   white-space: nowrap;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (prefers-reduced-motion: no-preference) {
+  .toast { transition: all 0.25s ease; }
+}
 
-@media(max-width: 480px) {
+@media (max-width: 480px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
-  .video-thumb { width: 100%; height: 120px; }
-  .brand h1 { font-size: 1.5rem; }
+  .video-thumb { width: 100%; }
+  .brand h1 { font-size: 1.35rem; }
 }
 </style>
 </head>
 <body>
 <div class="container">
-  
+
   <div class="brand">
-    <div class="brand-badge">⚡ وضع التجربة المفتوح المجاني v2.1</div>
     <h1>Content Ideas <span>AI</span></h1>
-    <p>استخرج أفكار وفجوات المحتوى وخطة تصوير كاملة من تعليقات يوتيوب.</p>
+    <p>حلّل تعليقات أي فيديو، واعرف ماذا يطلب جمهورك قبل أن يصوّره غيرك.</p>
   </div>
 
   <div class="status-bar">
     <div class="status-info">
       <span id="usageLabel">جاري التحقق...</span>
-      <span class="status-tag" id="statusBadge">مفتوح للتجربة</span>
+      <span class="status-tag" id="statusBadge">نسخة تجريبية</span>
     </div>
-    <button class="status-btn" id="activateBtn">تفعيل Pro</button>
+    <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
   </div>
 
-  <!-- ميزة 3: اختيار القناة السريع -->
   <div class="channel-box">
     <div class="channel-header">
       <div class="channel-title">
@@ -632,76 +458,74 @@ body {
     </div>
     <div id="channelVideosHolder" style="display:none">
       <select class="channel-dropdown" id="channelVideosDropdown">
-        <option value="">▼ اختر فيديو من قناتك لتحليله بنقرة واحدة...</option>
+        <option value="">اختر فيديو من قناتك لتحليله بنقرة واحدة...</option>
       </select>
     </div>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" id="tabAnalyze">تحليل جديد</button>
-    <button class="tab" id="tabHistory">المحفوظات السابقة</button>
+  <div class="tabs" role="tablist">
+    <button class="tab active" id="tabAnalyze" role="tab">تحليل جديد</button>
+    <button class="tab" id="tabHistory" role="tab">المحفوظات</button>
   </div>
 
-  <!-- حاوية الإدخال الموحدة -->
   <div class="tab-content active" id="contentAnalyze">
     <div class="input-panel">
-      
       <div class="input-group">
-        <label class="input-label">رابط الفيديو الأساسي (قناتك أو أي فيديو):</label>
-        <input type="text" class="input-control" id="mainUrl" placeholder="الصق الرابط هنا...">
+        <label class="input-label" for="mainUrl">رابط الفيديو الأساسي:</label>
+        <input type="text" class="input-control" id="mainUrl" placeholder="الصق رابط يوتيوب هنا..." inputmode="url">
       </div>
 
-      <!-- ميزة 1: خيار مقارنة المنافس -->
       <button type="button" class="comp-toggle" id="compToggle">
-        <span id="compIcon">➕</span> إضافة فيديو منافس لكشف فجوات السوق (اختياري)
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        <span id="compToggleLabel">مقارنة بفيديو منافس (اختياري)</span>
       </button>
 
       <div class="comp-drawer" id="compDrawer">
-        <label class="input-label">رابط فيديو المنافس المقارب لنفس الفكرة:</label>
-        <input type="text" class="input-control" id="compUrl" placeholder="رابط فيديو المنافس...">
+        <div class="input-group">
+          <label class="input-label" for="compUrl">رابط فيديو المنافس:</label>
+          <input type="text" class="input-control" id="compUrl" placeholder="رابط فيديو بنفس الفكرة..." inputmode="url">
+        </div>
       </div>
 
-      <!-- زر التحليل الشامل الموحد أسفل الحقول مباشرة -->
-      <button class="submit-btn" id="analyzeBtn">تحليل واستخراج الأفكار والخطة</button>
+      <button class="submit-btn" id="analyzeBtn">تحليل واستخراج الأفكار</button>
     </div>
 
     <div class="msg-box" id="msgBox"></div>
 
     <div class="loader-box" id="loaderBox">
       <div class="spinner"></div>
-      <div class="loader-text" id="loaderTitle">جاري تحليل التعليقات...</div>
-      <div class="loader-sub" id="loaderSub">نقوم بفحص كل تعليق وتحديد أسئلة وفجوات المتابعين</div>
+      <div class="loader-text">جاري التحليل...</div>
+      <div class="loader-sub" id="loaderSub">نسحب التعليقات ونحللها</div>
     </div>
 
     <div class="res-wrap" id="resBox"></div>
   </div>
 
-  <!-- المحفوظات مع نظام الـ Pagination -->
   <div class="tab-content" id="contentHistory">
     <div id="historyListContainer">
-      <div style="text-align:center;padding:2rem 0;color:var(--text-muted)">جاري جلب المحفوظات...</div>
+      <div class="empty-note">جاري جلب المحفوظات...</div>
     </div>
-    <button class="load-more-btn" id="loadMoreBtn" style="display:none">عرض المزيد (+10 تحليلات)</button>
+    <button class="load-more-btn" id="loadMoreBtn" style="display:none">عرض المزيد</button>
   </div>
 
 </div>
 
-<!-- Modal خطة المحتوى (Feature 2) -->
-<div class="modal-overlay" id="outlineModal">
+<!-- Modal خطة الفيديو -->
+<div class="modal-overlay" id="outlineModal" role="dialog" aria-modal="true" aria-labelledby="outlineTitle">
   <div class="modal-card">
-    <div class="modal-title">🎬 خطة تصوير الفيديو المقترحة</div>
+    <div class="modal-title" id="outlineTitle">خطة الفيديو</div>
     <div id="outlineContent"></div>
     <button class="modal-close" id="closeOutlineModal">إغلاق</button>
   </div>
 </div>
 
 <!-- Modal البحث عن القناة -->
-<div class="modal-overlay" id="channelModal">
+<div class="modal-overlay" id="channelModal" role="dialog" aria-modal="true" aria-labelledby="channelModalTitle">
   <div class="modal-card">
-    <div class="modal-title">📺 البحث عن قناتك على يوتيوب</div>
-    <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem">
+    <div class="modal-title" id="channelModalTitle">قناتك على يوتيوب</div>
+    <div style="display:flex;gap:8px">
       <input type="text" class="input-control" id="searchChannelInput" placeholder="اكتب اسم القناة...">
-      <button class="submit-btn" id="execSearchChannelBtn" style="width:auto;padding:0.75rem 1.25rem">بحث</button>
+      <button class="submit-btn" id="execSearchChannelBtn" style="width:auto;padding:12px 18px">بحث</button>
     </div>
     <div id="channelResults" style="max-height:220px;overflow-y:auto"></div>
     <button class="modal-close" id="closeChannelModal">إلغاء</button>
@@ -709,14 +533,12 @@ body {
 </div>
 
 <!-- Modal التفعيل -->
-<div class="modal-overlay" id="codeModal">
+<div class="modal-overlay" id="codeModal" role="dialog" aria-modal="true" aria-labelledby="codeModalTitle">
   <div class="modal-card">
-    <div class="modal-title">💎 تفعيل كود Pro</div>
-    <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem">
-      جميع الميزات مفتوحة مجاناً للتجربة، يمكنك إدخال الرمز التجريبي:
-    </p>
-    <input type="text" class="input-control" id="promoCodeInput" placeholder="أدخل الرمز (مثال: BETA2026)" style="margin-bottom:0.75rem">
-    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب</button>
+    <div class="modal-title" id="codeModalTitle">تفعيل الاشتراك</div>
+    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه:</p>
+    <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: BETA2026" autocomplete="off">
+    <button class="submit-btn" id="submitPromoBtn">تفعيل</button>
     <button class="modal-close" id="closeCodeModal">إغلاق</button>
   </div>
 </div>
@@ -724,8 +546,8 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================
-// ضبط العميل
+  // ============================================
+// الإعداد والهوية
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
 
@@ -741,45 +563,64 @@ function req(url, opt = {}) {
   return fetch(url, opt);
 }
 
-const mainUrl = document.getElementById('mainUrl');
-const compUrl = document.getElementById('compUrl');
-const compToggle = document.getElementById('compToggle');
-const compDrawer = document.getElementById('compDrawer');
-const compIcon = document.getElementById('compIcon');
-const analyzeBtn = document.getElementById('analyzeBtn');
-const msgBox = document.getElementById('msgBox');
-const loaderBox = document.getElementById('loaderBox');
-const resBox = document.getElementById('resBox');
-const toast = document.getElementById('toast');
-const usageLabel = document.getElementById('usageLabel');
-const channelNameDisplay = document.getElementById('channelNameDisplay');
-const channelVideosHolder = document.getElementById('channelVideosHolder');
-const channelVideosDropdown = document.getElementById('channelVideosDropdown');
+const $ = (id) => document.getElementById(id);
+const mainUrl = $('mainUrl'), compUrl = $('compUrl');
+const compToggle = $('compToggle'), compDrawer = $('compDrawer'), compToggleLabel = $('compToggleLabel');
+const analyzeBtn = $('analyzeBtn'), msgBox = $('msgBox'), loaderBox = $('loaderBox');
+const resBox = $('resBox'), toast = $('toast'), usageLabel = $('usageLabel');
+const channelNameDisplay = $('channelNameDisplay');
+const channelVideosHolder = $('channelVideosHolder'), channelVideosDropdown = $('channelVideosDropdown');
 
-// تبديل خانة المنافس بسهولة
+// أيقونات SVG معادة الاستخدام (أسلوب Lucide، خط 1.5px)
+const ICO = {
+  copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+  plan: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>'
+};
+
+// ============================================
+// المودالات: فتح/إغلاق/Escape/تركيز أول عنصر
+// ============================================
+function openModal(el) {
+  el.classList.add('active');
+  const first = el.querySelector('input, button:not(.modal-close)');
+  if (first) setTimeout(() => first.focus(), 50);
+}
+function closeModal(el) { el.classList.remove('active'); }
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal(overlay);
+  });
+});
+
+// ============================================
+// أدوات الواجهة
+// ============================================
 compToggle.addEventListener('click', () => {
   const isOpen = compDrawer.classList.toggle('open');
-  compIcon.textContent = isOpen ? '✖' : '➕';
+  compToggle.innerHTML = (isOpen ? ICO.x : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>') + '<span>مقارنة بفيديو منافس (اختياري)</span>';
   if (isOpen) compUrl.focus();
 });
 
+let toastTimer = null;
 function showToast(text) {
   toast.textContent = text;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 function showMsg(text) {
   msgBox.textContent = text;
-  msgBox.className = 'msg-box error';
-  msgBox.style.display = 'block';
+  msgBox.classList.add('visible');
 }
-function hideMsg() { msgBox.style.display = 'none'; }
+function hideMsg() { msgBox.classList.remove('visible'); }
 
 function setLoader(on, sub) {
   analyzeBtn.disabled = on;
   loaderBox.classList.toggle('visible', on);
-  if (sub) document.getElementById('loaderSub').textContent = sub;
+  if (sub) $('loaderSub').textContent = sub;
 }
 
 function extractId(input) {
@@ -792,12 +633,26 @@ function extractId(input) {
   return m ? m[1] : null;
 }
 
-// فحص الجلسة والاستخدام
+function formatNum(n) {
+  n = Number(n) || 0;
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ============================================
+// الجلسة والاستخدام
+// ============================================
 async function loadSession() {
   try {
     const res = await req(WORKER_URL + '/usage');
     const data = await res.json();
-    usageLabel.textContent = `تحليلات اليوم: ${data.used} من ${data.limit}`;
+    usageLabel.textContent = 'تحليلات اليوم: ' + data.used + ' من ' + data.limit;
     if (data.channelId) {
       channelNameDisplay.textContent = data.channelTitle || 'قناتك المسجلة';
       loadVideos(data.channelId);
@@ -808,7 +663,7 @@ async function loadSession() {
 }
 
 // ============================================
-// تنفيذ التحليل
+// التحليل
 // ============================================
 async function runAnalysis() {
   hideMsg();
@@ -817,7 +672,7 @@ async function runAnalysis() {
 
   const videoId = extractId(mainUrl.value);
   if (!videoId) {
-    showMsg('يرجى إدخال رابط فيديو يوتيوب صحيح في الخانة الأساسية.');
+    showMsg('أدخل رابط فيديو يوتيوب صحيح في الخانة الأساسية.');
     return;
   }
 
@@ -825,12 +680,12 @@ async function runAnalysis() {
   if (compDrawer.classList.contains('open') && compUrl.value.trim()) {
     compareVideoId = extractId(compUrl.value);
     if (!compareVideoId) {
-      showMsg('رابط فيديو المنافس غير صالح، تحقق منه أو أغلق خانة المنافس.');
+      showMsg('رابط فيديو المنافس غير صالح. تحقق منه أو ألغِ المقارنة.');
       return;
     }
   }
 
-  setLoader(true, compareVideoId ? 'نحلل فيديوك ونستخرج فجوات فيديو المنافس...' : 'نسحب جميع التعليقات ونحللها بالذكاء الاصطناعي...');
+  setLoader(true, compareVideoId ? 'نحلل فيديوك ونستخرج فجوات المنافس...' : 'نسحب التعليقات ونحللها...');
 
   try {
     const res = await req(WORKER_URL + '/analyze', {
@@ -841,7 +696,7 @@ async function runAnalysis() {
 
     const data = await res.json();
     if (!res.ok || data.error) {
-      showMsg(data.error || 'حدث خطأ في استخراج البيانات');
+      showMsg(data.error || 'حدث خطأ في استخراج البيانات.');
       setLoader(false);
       return;
     }
@@ -851,16 +706,15 @@ async function runAnalysis() {
     loadSession();
     cacheHistory(data);
   } catch (err) {
-    showMsg('تعذر الاتصال بالخادم، يرجى المحاولة مجدداً.');
+    showMsg('تعذر الاتصال. تحقق من الإنترنت وأعد المحاولة.');
     setLoader(false);
   }
 }
 
 analyzeBtn.addEventListener('click', runAnalysis);
 mainUrl.addEventListener('keypress', (e) => { if (e.key === 'Enter') runAnalysis(); });
-
-// ============================================
-// رسم النتائج بنظام Mobile-First متناسق
+  // ============================================
+// عرض النتائج
 // ============================================
 function render(data) {
   const v = data.videoInfo || {};
@@ -871,253 +725,184 @@ function render(data) {
 
   let html = '';
 
-  // كارت الفيديو
   if (v.title) {
-    html += `
-    <div class="video-card">
-      <img class="video-thumb" src="${v.thumb || ''}" alt="">
-      <div class="video-meta">
-        <div class="video-title">${esc(v.title)}</div>
-        <div class="video-channel">${esc(v.channel)}</div>
-        <div class="video-stats">
-          <span>👀 ${Number(v.views || 0).toLocaleString()}</span>
-          <span>💬 ${Number(v.commentCount || 0).toLocaleString()}</span>
-          <span>👍 ${Number(v.likes || 0).toLocaleString()}</span>
-        </div>
-      </div>
-    </div>`;
+    html += '<div class="video-card">' +
+      '<img class="video-thumb" src="' + esc(v.thumb || '') + '" alt="">' +
+      '<div class="video-meta">' +
+        '<div class="video-title">' + esc(v.title) + '</div>' +
+        '<div class="video-channel">' + esc(v.channel) + '</div>' +
+        '<div class="video-stats">' + formatNum(v.views) + ' مشاهدة · ' +
+          formatNum(v.commentCount) + ' تعليق · ' + formatNum(v.likes) + ' إعجاب</div>' +
+      '</div></div>';
   }
 
-  // ميزة 1: قسم فجوات المنافس (إن وُجد)
   if (gaps && gaps.gaps) {
-    html += `
-    <div class="gaps-card">
-      <div class="gaps-header">⚡ فجوات السوق (طلبها جمهور المنافس ولم يجدها):</div>
-      <ul class="gaps-list">
-        ${gaps.gaps.map(g => `<li>${esc(g)}</li>`).join('')}
-      </ul>
-      ${gaps.opportunity ? `<div class="gaps-opp"><strong>فرصة التفوق:</strong> ${esc(gaps.opportunity)}</div>` : ''}
-    </div>`;
+    html += '<div class="gaps-card">' +
+      '<div class="card-title">فجوات لم يغطها المنافس</div>' +
+      '<ul class="gaps-list">' + gaps.gaps.map(g => '<li>' + esc(g) + '</li>').join('') + '</ul>' +
+      (gaps.opportunity ? '<div class="gaps-opp"><strong>فرصة التفوق:</strong> ' + esc(gaps.opportunity) + '</div>' : '') +
+      '</div>';
   }
 
-  // شبكة الإحصاءات
-  html += `
-  <div class="stat-grid">
-    <div class="stat-box"><div class="stat-num">${data.totalComments || 0}</div><div class="stat-label">تعليق تم تحليله</div></div>
-    <div class="stat-box"><div class="stat-num">${s.questionsCount || 0}</div><div class="stat-label">أسئلة المتابعين</div></div>
-    <div class="stat-box"><div class="stat-num">${s.requestsCount || 0}</div><div class="stat-label">طلبات شروحات</div></div>
-    <div class="stat-box"><div class="stat-num">${s.complaintsCount || 0}</div><div class="stat-label">نقاط ألم ومشاكل</div></div>
-  </div>`;
+  html += '<div class="stat-grid">' +
+    '<div class="stat-box"><div class="stat-num">' + (data.totalComments || 0) + '</div><div class="stat-label">تعليق محلل</div></div>' +
+    '<div class="stat-box"><div class="stat-num">' + (s.questionsCount || 0) + '</div><div class="stat-label">أسئلة الجمهور</div></div>' +
+    '<div class="stat-box"><div class="stat-num">' + (s.requestsCount || 0) + '</div><div class="stat-label">طلبات شروحات</div></div>' +
+    '<div class="stat-box"><div class="stat-num">' + (s.complaintsCount || 0) + '</div><div class="stat-label">نقاط ألم</div></div>' +
+    '</div>';
 
-  // رؤى الجمهور
-  html += `
-  <div class="audience-card">
-    <div class="card-title">👥 طبيعة واهتمام المتابعين</div>
-    <div class="audience-badges">
-      <div class="aud-badge"><span>مستوى الخبرة</span>${esc(ins.skillLevel || 'متنوع')}</div>
-      <div class="aud-badge"><span>اللغة المفضلة</span>${esc(ins.languagePreference || 'عربي')}</div>
-    </div>
-    <ul class="pain-list">
-      ${(ins.mainPainPoints || []).map(p => `<li>${esc(p)}</li>`).join('')}
-    </ul>
-  </div>`;
+  html += '<div class="audience-card">' +
+    '<div class="card-title">جمهورك</div>' +
+    '<div class="audience-badges">' +
+      '<div class="aud-badge"><span>مستوى الخبرة</span>' + esc(ins.skillLevel || 'متنوع') + '</div>' +
+      '<div class="aud-badge"><span>اللغة المفضلة</span>' + esc(ins.languagePreference || 'عربي') + '</div>' +
+    '</div>' +
+    '<ul class="pain-list">' + (ins.mainPainPoints || []).map(p => '<li>' + esc(p) + '</li>').join('') + '</ul>' +
+    '</div>';
 
-  // ميزة 2: الأفكار المقترحة + زر خطة المحتوى المهيكلة
   if (a.contentIdeas && a.contentIdeas.length) {
-    html += `<div style="margin-bottom:0.75rem;font-weight:900;font-size:1.1rem">💡 أفكار فيديوهات جاهزة للتصوير:</div>`;
-
+    html += '<div class="ideas-heading">أفكار مقترحة</div>';
     a.contentIdeas.forEach((idea, idx) => {
       const tagClass = idea.priority === 'high' ? 'tag-high' : idea.priority === 'medium' ? 'tag-med' : 'tag-low';
-      const tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'عادي';
-
-      html += `
-      <div class="idea-card">
-        <div class="idea-header">
-          <div class="idea-title">${esc(idea.title)}</div>
-          <div class="idea-tags">
-            <span class="tag ${tagClass}">${tagText}</span>
-            ${idea.format ? `<span class="tag tag-fmt">${esc(idea.format)}</span>` : ''}
-          </div>
-        </div>
-        <div class="idea-desc">${esc(idea.description)}</div>
-        ${(idea.evidence || []).map(e => `<div class="idea-quote">"${esc(e)}"</div>`).join('')}
-        
-        <div class="idea-footer">
-          <div class="demand-bar">
-            <span>الطلب</span>
-            <div class="demand-track"><div class="demand-fill" style="width:${idea.estimatedDemand || 50}%"></div></div>
-            <span>${idea.estimatedDemand || 50}%</span>
-          </div>
-          <div class="idea-actions">
-            <button class="action-btn btn-outline gen-outline-btn" data-idx="${idx}">✍️ خطة المحتوى</button>
-            <button class="action-btn copy-idea-btn" data-text="${esc(idea.title + '\n\n' + idea.description)}">نسخ</button>
-          </div>
-        </div>
-      </div>`;
+      const tagText = idea.priority === 'high' ? 'أولوية عالية' : idea.priority === 'medium' ? 'أولوية متوسطة' : 'عادية';
+      html += '<div class="idea-card">' +
+        '<div class="idea-title">' + esc(idea.title) + '</div>' +
+        '<div class="idea-tags"><span class="tag ' + tagClass + '">' + tagText + '</span>' +
+          (idea.format ? '<span class="tag tag-fmt">' + esc(idea.format) + '</span>' : '') + '</div>' +
+        '<div class="idea-desc">' + esc(idea.description) + '</div>' +
+        (idea.evidence || []).map(q => '<div class="idea-quote">&quot;' + esc(q) + '&quot;</div>').join('') +
+        '<div class="idea-footer">' +
+          '<div class="demand-bar"><span>الطلب</span>' +
+            '<div class="demand-track"><div class="demand-fill" style="width:' + (idea.estimatedDemand || 50) + '%"></div></div>' +
+            '<span>' + (idea.estimatedDemand || 50) + '%</span></div>' +
+          '<div class="idea-actions">' +
+            '<button class="action-btn primary gen-outline-btn" data-idx="' + idx + '">' + ICO.plan + 'الخطة</button>' +
+            '<button class="action-btn copy-idea-btn" data-text="' + esc(idea.title + '\n\n' + idea.description) + '">' + ICO.copy + 'نسخ</button>' +
+          '</div></div></div>';
     });
   }
 
   resBox.innerHTML = html;
   resBox.classList.add('visible');
 
-  // أزرار النسخ
   resBox.querySelectorAll('.copy-idea-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       navigator.clipboard.writeText(this.getAttribute('data-text')).then(() => showToast('تم النسخ'));
     });
   });
-
-  // استدعاء خطة المحتوى
   resBox.querySelectorAll('.gen-outline-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      const idx = parseInt(this.getAttribute('data-idx'));
-      fetchOutline(a.contentIdeas[idx]);
+      fetchOutline(a.contentIdeas[parseInt(this.getAttribute('data-idx'))]);
     });
   });
 }
 
 // ============================================
-// خطة المحتوى المهيكلة (Modal)
+// خطة الفيديو
 // ============================================
-const outlineModal = document.getElementById('outlineModal');
-const outlineContent = document.getElementById('outlineContent');
-document.getElementById('closeOutlineModal').addEventListener('click', () => outlineModal.classList.remove('active'));
+const outlineModal = $('outlineModal'), outlineContent = $('outlineContent');
+$('closeOutlineModal').addEventListener('click', () => closeModal(outlineModal));
 
 async function fetchOutline(idea) {
-  outlineModal.classList.add('active');
-  outlineContent.innerHTML = `
-    <div class="spinner" style="margin:2rem auto 0.5rem"></div>
-    <div style="text-align:center;font-size:0.85rem;color:var(--text-muted)">جاري بناء السنارة والمحاور من رغبات الجمهور...</div>`;
+  openModal(outlineModal);
+  outlineContent.innerHTML = '<div class="spinner" style="margin:24px auto 8px"></div>' +
+    '<div class="empty-note">جاري تجهيز الخطة...</div>';
 
   try {
     const res = await req(WORKER_URL + '/outline', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: idea.title,
-        description: idea.description,
-        evidence: idea.evidence
-      })
+      body: JSON.stringify({ title: idea.title, description: idea.description, evidence: idea.evidence })
     });
-
     const data = await res.json();
     const out = data.outline || {};
 
-    let html = `
-      <div class="outline-item">
-        <div class="outline-head">🎣 السنارة الافتتاحية (أول 5 ثوان):</div>
-        <div class="outline-body">"${esc(out.hook || '')}"</div>
-      </div>
+    outlineContent.innerHTML =
+      '<div class="outline-item"><div class="outline-head">المقدمة (أول 5 ثوان)</div>' +
+        '<div class="outline-body">&quot;' + esc(out.hook || '') + '&quot;</div></div>' +
+      '<div class="outline-item"><div class="outline-head">المحاور</div>' +
+        (out.points || []).map((p, i) =>
+          '<div class="outline-point"><strong>' + (i + 1) + '. ' + esc(p.title) + '</strong> ' +
+          '<span class="outline-dur">(' + esc(p.duration) + ')</span>' +
+          '<div style="font-size:0.82rem;color:var(--text-2);margin-top:2px">' + esc(p.key) + '</div></div>'
+        ).join('') + '</div>' +
+      '<div class="outline-item"><div class="outline-head">الخاتمة والدعوة للتفاعل</div>' +
+        '<div class="outline-body">' + esc(out.cta || '') + '</div></div>' +
+      '<button class="submit-btn" id="copyFullOutline">نسخ الخطة كاملة</button>';
 
-      <div class="outline-item">
-        <div class="outline-head">📌 محاور الفيديو الرئيسية:</div>
-        ${(out.points || []).map((p, i) => `
-          <div style="margin-bottom:0.5rem;padding-right:0.5rem;border-right:2px solid var(--border)">
-            <strong>${i + 1}. ${esc(p.title)}</strong> <span style="font-size:0.75rem;color:var(--text-muted)">(${esc(p.duration)})</span>
-            <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:2px">${esc(p.key)}</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="outline-item">
-        <div class="outline-head">🎯 الخاتمة والدعوة للتفاعل (CTA):</div>
-        <div class="outline-body">${esc(out.cta || '')}</div>
-      </div>
-
-      <button class="submit-btn" id="copyFullOutline" style="margin-top:0.75rem">نسخ الخطة بالكامل</button>
-    `;
-
-    outlineContent.innerHTML = html;
-
-    document.getElementById('copyFullOutline').addEventListener('click', () => {
-      const full = `خطة فيديو: ${idea.title}\n\n[السنارة]:\n${out.hook}\n\n[المحاور]:\n` +
-        (out.points || []).map(p => `- ${p.title} (${p.duration}): ${p.key}`).join('\n') +
-        `\n\n[الخاتمة]:\n${out.cta}`;
-      navigator.clipboard.writeText(full).then(() => showToast('تم نسخ الخطة بالكامل!'));
+    $('copyFullOutline').addEventListener('click', () => {
+      const full = 'خطة فيديو: ' + idea.title + '\n\n[المقدمة]\n' + out.hook + '\n\n[المحاور]\n' +
+        (out.points || []).map(p => '- ' + p.title + ' (' + p.duration + '): ' + p.key).join('\n') +
+        '\n\n[الخاتمة]\n' + out.cta;
+      navigator.clipboard.writeText(full).then(() => showToast('تم نسخ الخطة'));
     });
-
   } catch (e) {
-    outlineContent.innerHTML = '<div style="color:#ff7777;text-align:center">تعذر صياغة الخطة حالياً.</div>';
+    outlineContent.innerHTML = '<div class="empty-note">تعذر تجهيز الخطة حالياً.</div>';
   }
 }
 
 // ============================================
-// اختيار القناة وفيديوهاتها
+// اختيار القناة
 // ============================================
-const channelModal = document.getElementById('channelModal');
-const searchChannelInput = document.getElementById('searchChannelInput');
-const execSearchChannelBtn = document.getElementById('execSearchChannelBtn');
-const channelResults = document.getElementById('channelResults');
+const channelModal = $('channelModal');
+$('searchChannelBtn').addEventListener('click', () => { openModal(channelModal); });
+$('closeChannelModal').addEventListener('click', () => closeModal(channelModal));
+$('execSearchChannelBtn').addEventListener('click', searchChannels);
+$('searchChannelInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchChannels(); });
 
-document.getElementById('searchChannelBtn').addEventListener('click', () => channelModal.classList.add('active'));
-document.getElementById('closeChannelModal').addEventListener('click', () => channelModal.classList.remove('active'));
-
-execSearchChannelBtn.addEventListener('click', async () => {
-  const q = searchChannelInput.value.trim();
+async function searchChannels() {
+  const q = $('searchChannelInput').value.trim();
   if (!q) return;
-  channelResults.innerHTML = '<div style="text-align:center;padding:1rem;font-size:0.85rem">جاري البحث...</div>';
-
+  $('channelResults').innerHTML = '<div class="empty-note">جاري البحث...</div>';
   try {
-    const res = await req(`${WORKER_URL}/channel/search?q=${encodeURIComponent(q)}`);
+    const res = await req(WORKER_URL + '/channel/search?q=' + encodeURIComponent(q));
     const data = await res.json();
     const channels = data.channels || [];
-
     if (!channels.length) {
-      channelResults.innerHTML = '<div style="text-align:center;padding:1rem;color:var(--text-muted)">لم يتم العثور على قنوات.</div>';
+      $('channelResults').innerHTML = '<div class="empty-note">لم يتم العثور على قنوات.</div>';
       return;
     }
+    $('channelResults').innerHTML = channels.map(c =>
+      '<div class="history-item select-channel-row" role="button" tabindex="0" data-id="' + c.channelId + '" data-title="' + esc(c.title) + '">' +
+        '<div style="width:36px;height:36px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)">' + ICO.play + '</div>' +
+        '<div class="history-info"><div class="history-title">' + esc(c.title) + '</div>' +
+        '<div class="history-date">' + esc((c.description || '').substring(0, 45)) + '</div></div></div>'
+    ).join('');
 
-    channelResults.innerHTML = channels.map(c => `
-      <div class="history-item select-channel-row" data-id="${c.channelId}" data-title="${esc(c.title)}">
-        <img class="history-thumb" style="border-radius:50%;width:36px;height:36px" src="${c.thumb}">
-        <div class="history-info">
-          <div class="history-title">${esc(c.title)}</div>
-          <div class="history-date">${esc((c.description || '').substring(0, 45))}...</div>
-        </div>
-      </div>
-    `).join('');
-
-    channelResults.querySelectorAll('.select-channel-row').forEach(row => {
-      row.addEventListener('click', async function() {
-        const id = this.getAttribute('data-id');
-        const title = this.getAttribute('data-title');
+    document.querySelectorAll('.select-channel-row').forEach(row => {
+      const choose = async () => {
+        const id = row.getAttribute('data-id'), title = row.getAttribute('data-title');
         channelNameDisplay.textContent = title;
         await req(WORKER_URL + '/channel/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ channelId: id, channelTitle: title })
         });
-        channelModal.classList.remove('active');
+        closeModal(channelModal);
         loadVideos(id);
-      });
+      };
+      row.addEventListener('click', choose);
+      row.addEventListener('keypress', (e) => { if (e.key === 'Enter') choose(); });
     });
   } catch (e) {
-    channelResults.innerHTML = '<div style="color:#ff7777;text-align:center">خطأ في البحث.</div>';
+    $('channelResults').innerHTML = '<div class="empty-note">خطأ في البحث.</div>';
   }
-});
+}
 
 async function loadVideos(channelId) {
   channelVideosHolder.style.display = 'block';
   channelVideosDropdown.innerHTML = '<option value="">جاري جلب الفيديوهات...</option>';
-
   try {
-    const res = await req(`${WORKER_URL}/channel/videos?channelId=${channelId}`);
+    const res = await req(WORKER_URL + '/channel/videos?channelId=' + channelId);
     const data = await res.json();
     const videos = data.videos || [];
-
     if (!videos.length) {
       channelVideosDropdown.innerHTML = '<option value="">لا توجد فيديوهات</option>';
       return;
     }
-
-    channelVideosDropdown.innerHTML = '<option value="">▼ اختر فيديو لتحليله فوراً...</option>' +
-      videos.map(v => `<option value="https://youtube.com/watch?v=${v.videoId}">${esc(v.title)}</option>`).join('');
-
+    channelVideosDropdown.innerHTML = '<option value="">اختر فيديو لتحليله فوراً...</option>' +
+      videos.map(v => '<option value="https://youtube.com/watch?v=' + v.videoId + '">' + esc(v.title) + '</option>').join('');
     channelVideosDropdown.onchange = function() {
-      if (this.value) {
-        mainUrl.value = this.value;
-        runAnalysis();
-      }
+      if (this.value) { mainUrl.value = this.value; runAnalysis(); }
     };
   } catch (e) {
     channelVideosDropdown.innerHTML = '<option value="">تعذر جلب الفيديوهات</option>';
@@ -1125,14 +910,11 @@ async function loadVideos(channelId) {
 }
 
 // ============================================
-// المحفوظات مع نظام التصفح المتقطع (+10 Lazy Render)
+// المحفوظات مع pagination
 // ============================================
-const tabAnalyze = document.getElementById('tabAnalyze');
-const tabHistory = document.getElementById('tabHistory');
-const contentAnalyze = document.getElementById('contentAnalyze');
-const contentHistory = document.getElementById('contentHistory');
-const historyListContainer = document.getElementById('historyListContainer');
-const loadMoreBtn = document.getElementById('loadMoreBtn');
+const tabAnalyze = $('tabAnalyze'), tabHistory = $('tabHistory');
+const contentAnalyze = $('contentAnalyze'), contentHistory = $('contentHistory');
+const historyListContainer = $('historyListContainer'), loadMoreBtn = $('loadMoreBtn');
 
 let cachedHistoryItems = [];
 let visibleHistoryCount = 10;
@@ -1141,7 +923,6 @@ tabAnalyze.addEventListener('click', () => {
   tabAnalyze.classList.add('active'); tabHistory.classList.remove('active');
   contentAnalyze.classList.add('active'); contentHistory.classList.remove('active');
 });
-
 tabHistory.addEventListener('click', () => {
   tabHistory.classList.add('active'); tabAnalyze.classList.remove('active');
   contentHistory.classList.add('active'); contentAnalyze.classList.remove('active');
@@ -1151,10 +932,10 @@ tabHistory.addEventListener('click', () => {
 function cacheHistory(data) {
   let hist = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   hist.unshift({
-    videoId: data.videoInfo?.videoId,
-    title: data.videoInfo?.title || 'Unknown',
-    channel: data.videoInfo?.channel || '',
-    thumb: data.videoInfo?.thumb,
+    videoId: data.videoInfo && data.videoInfo.videoId,
+    title: (data.videoInfo && data.videoInfo.title) || 'غير معروف',
+    channel: (data.videoInfo && data.videoInfo.channel) || '',
+    thumb: data.videoInfo && data.videoInfo.thumb,
     date: new Date().toISOString(),
     analysis: data.analysis
   });
@@ -1163,7 +944,7 @@ function cacheHistory(data) {
 }
 
 async function loadHistoryData() {
-  historyListContainer.innerHTML = '<div style="text-align:center;padding:2rem 0;color:var(--text-muted)">جاري جلب المحفوظات...</div>';
+  historyListContainer.innerHTML = '<div class="empty-note">جاري جلب المحفوظات...</div>';
   loadMoreBtn.style.display = 'none';
   cachedHistoryItems = [];
   visibleHistoryCount = 10;
@@ -1177,46 +958,40 @@ async function loadHistoryData() {
   if (!cachedHistoryItems.length) {
     cachedHistoryItems = JSON.parse(localStorage.getItem('ciai_history') || '[]');
   }
-
   if (!cachedHistoryItems.length) {
-    historyListContainer.innerHTML = '<div style="text-align:center;padding:2rem 0;color:var(--text-muted)">لا توجد تحليلات محفوظة بعد.</div>';
+    historyListContainer.innerHTML = '<div class="empty-note">لا توجد تحليلات محفوظة بعد.</div>';
     return;
   }
-
   renderHistorySubset();
 }
 
 function renderHistorySubset() {
   const subset = cachedHistoryItems.slice(0, visibleHistoryCount);
-  
-  historyListContainer.innerHTML = subset.map((item, idx) => `
-    <div class="history-item" data-idx="${idx}">
-      <img class="history-thumb" src="${item.thumb || ''}">
-      <div class="history-info">
-        <div class="history-title">${esc(item.title)}</div>
-        <div class="history-date">${new Date(item.date).toLocaleDateString('ar-EG')} • ${esc(item.channel)}</div>
-      </div>
-    </div>
-  `).join('');
+  historyListContainer.innerHTML = subset.map((item, idx) =>
+    '<div class="history-item" role="button" tabindex="0" data-idx="' + idx + '">' +
+      '<img class="history-thumb" src="' + esc(item.thumb || '') + '" alt="">' +
+      '<div class="history-info"><div class="history-title">' + esc(item.title) + '</div>' +
+      '<div class="history-date">' + new Date(item.date).toLocaleDateString('ar-MA') + ' · ' + esc(item.channel) + '</div></div></div>'
+  ).join('');
 
   historyListContainer.querySelectorAll('.history-item').forEach(el => {
-    el.addEventListener('click', function() {
-      const idx = parseInt(this.getAttribute('data-idx'));
-      const item = cachedHistoryItems[idx];
+    const open = () => {
+      const item = cachedHistoryItems[parseInt(el.getAttribute('data-idx'))];
       tabAnalyze.click();
       render({
         videoInfo: { title: item.title, channel: item.channel, thumb: item.thumb, videoId: item.videoId },
         analysis: item.analysis,
-        totalComments: item.analysis?.summary?.totalComments || 0
+        totalComments: (item.analysis && item.analysis.summary && item.analysis.summary.totalComments) || 0
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    };
+    el.addEventListener('click', open);
+    el.addEventListener('keypress', (e) => { if (e.key === 'Enter') open(); });
   });
 
-  // إذا كانت العناصر المتبقية أكثر من المعروض، نظهر زر +10
   if (cachedHistoryItems.length > visibleHistoryCount) {
     loadMoreBtn.style.display = 'block';
-    loadMoreBtn.textContent = `عرض المزيد (+${Math.min(10, cachedHistoryItems.length - visibleHistoryCount)} تحليلات)`;
+    loadMoreBtn.textContent = 'عرض المزيد (+' + Math.min(10, cachedHistoryItems.length - visibleHistoryCount) + ')';
   } else {
     loadMoreBtn.style.display = 'none';
   }
@@ -1227,13 +1002,15 @@ loadMoreBtn.addEventListener('click', () => {
   renderHistorySubset();
 });
 
-// Modal التفعيل
-const codeModal = document.getElementById('codeModal');
-document.getElementById('activateBtn').addEventListener('click', () => codeModal.classList.add('active'));
-document.getElementById('closeCodeModal').addEventListener('click', () => codeModal.classList.remove('active'));
+// ============================================
+// التفعيل
+// ============================================
+const codeModal = $('codeModal');
+$('activateBtn').addEventListener('click', () => openModal(codeModal));
+$('closeCodeModal').addEventListener('click', () => closeModal(codeModal));
 
-document.getElementById('submitPromoBtn').addEventListener('click', async () => {
-  const code = document.getElementById('promoCodeInput').value.trim();
+$('submitPromoBtn').addEventListener('click', async () => {
+  const code = $('promoCodeInput').value.trim();
   try {
     const res = await req(WORKER_URL + '/activate', {
       method: 'POST',
@@ -1242,21 +1019,16 @@ document.getElementById('submitPromoBtn').addEventListener('click', async () => 
     });
     const data = await res.json();
     if (data.success) {
-      showToast('تم تفعيل الحساب!');
-      codeModal.classList.remove('active');
+      showToast('تم التفعيل');
+      closeModal(codeModal);
       loadSession();
     } else {
-      alert(data.error || 'رمز غير صالح');
+      showMsg(data.error || 'رمز غير صالح.');
     }
   } catch (e) {
-    alert('تعذر التفعيل');
+    showMsg('تعذر التفعيل. أعد المحاولة.');
   }
 });
-
-function esc(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 loadSession();
 </script>
