@@ -65,7 +65,7 @@ body {
   font-size: 0.8rem;
   flex-wrap: wrap;
 }
-.status-info { display: flex; align-items: center; gap: 8px; color: var(--text-2); }
+.status-info { display: flex; align-items: center; gap: 8px; color: var(--text-2); flex-wrap: wrap; }
 .status-tag {
   background: var(--accent-soft);
   color: var(--accent-hover);
@@ -338,7 +338,7 @@ body {
 /* Modals */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 2000;
   display: none; align-items: center; justify-content: center;
   padding: 16px;
@@ -349,13 +349,13 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   max-width: 500px; width: 100%;
-  padding: 20px;
-  max-height: 85vh;
+  padding: 24px 20px;
+  max-height: 90vh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 16px;
 }
-.modal-title { font-size: 1.1rem; font-weight: 800; }
+.modal-title { font-size: 1.15rem; font-weight: 800; }
 .modal-close {
   width: 100%;
   background: var(--surface-2);
@@ -367,12 +367,38 @@ body {
   cursor: pointer;
 }
 
-/* Outline */
-.outline-item {
-  background: var(--surface-2);
-  border-radius: 8px;
-  padding: 12px;
+/* Onboarding Welcome Modal Specific */
+.onboard-card {
+  text-align: center;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.15);
 }
+.onboard-features {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface-2);
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+.onboard-features div { display: flex; align-items: center; gap: 8px; }
+.onboard-features svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+.skip-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-family: var(--font);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px;
+}
+
+/* Outline */
+.outline-item { background: var(--surface-2); border-radius: 8px; padding: 12px; }
 .outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent-hover); margin-bottom: 6px; }
 .outline-body { font-size: 0.875rem; line-height: 1.5; }
 .outline-point { margin-bottom: 8px; padding-inline-start: 10px; border-inline-start: 2px solid var(--border); }
@@ -447,8 +473,12 @@ body {
     <div class="status-info">
       <span id="usageLabel">جاري التحقق...</span>
       <span class="status-tag" id="statusBadge">نسخة تجريبية</span>
+      <span id="userEmailBadge" style="display:none;color:var(--text-2);font-size:0.75rem;font-weight:700"></span>
     </div>
-    <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
+      <button class="status-btn" id="logoutBtn" style="display:none;border-color:var(--border);color:var(--text-3)">خروج</button>
+    </div>
   </div>
 
   <div id="g_id_signin" style="min-height:44px"></div>
@@ -515,6 +545,36 @@ body {
 
 </div>
 
+<!-- نافذة الترحيب لأول مرة (Onboarding Modal) -->
+<div class="modal-overlay" id="welcomeModal" role="dialog" aria-modal="true">
+  <div class="modal-card onboard-card">
+    <div class="modal-title">مرحباً بك في Content Ideas <span>AI</span> 🚀</div>
+    <p style="font-size:0.875rem;color:var(--text-2)">
+      منصتك الذكية لاكتشاف ما يريده جمهورك بدقة، وسرقة أفكار الفيديوهات من فجوات منافسيك قبل أن يصوروها.
+    </p>
+    
+    <div class="onboard-features">
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>تحليل حقيقي لآلاف التعليقات والأسئلة الشائعة.</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>كشف فجوات المنافسين ومعرفة ما لم يجيبوا عليه.</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>حفظ سجل تحليلاتك وقناتك بشكل دائم.</span>
+      </div>
+    </div>
+
+    <p style="font-size:0.82rem;font-weight:700;color:var(--text)">سجّل دخولك لحفظ تحليلاتك واشتراكك دائماً:</p>
+    <div id="g_id_signin_welcome" style="display:flex;justify-content:center;min-height:44px"></div>
+
+    <button class="skip-btn" id="skipWelcomeBtn">المتابعة كزائر تجريبي (قد تفقد بياناتك عند تغيير الجهاز)</button>
+  </div>
+</div>
+
 <!-- Modal خطة الفيديو -->
 <div class="modal-overlay" id="outlineModal" role="dialog" aria-modal="true" aria-labelledby="outlineTitle">
   <div class="modal-card">
@@ -556,6 +616,7 @@ body {
 // الإعداد والهوية
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
+const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
 
 let userToken = localStorage.getItem('ciai_token');
 if (!userToken) {
@@ -595,8 +656,29 @@ function openModal(el) {
 function closeModal(el) { el.classList.remove('active'); }
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal(overlay);
+    if (e.key === 'Escape' && overlay.id !== 'welcomeModal') closeModal(overlay);
   });
+});
+
+// ============================================
+// فحص الظهور لأول مرة (Onboarding)
+// ============================================
+const welcomeModal = $('welcomeModal');
+const skipWelcomeBtn = $('skipWelcomeBtn');
+
+function checkOnboarding() {
+  const visited = localStorage.getItem('ciai_first_visit_done');
+  const isGoogle = userToken && userToken.startsWith('gtok_');
+  // إذا لم يسبق له الزيارة ولم يسجل بجوجل تظهر النافذة الترحيبية
+  if (!visited && !isGoogle) {
+    openModal(welcomeModal);
+  }
+}
+
+skipWelcomeBtn.addEventListener('click', () => {
+  localStorage.setItem('ciai_first_visit_done', '1');
+  closeModal(welcomeModal);
+  initGoogleButton();
 });
 
 // ============================================
@@ -651,13 +733,40 @@ function esc(str) {
 }
 
 // ============================================
-// الجلسة والاستخدام
+// الجلسة والاستخدام (استعادة الهوية الدائمة)
 // ============================================
 async function loadSession() {
   try {
     const res = await req(WORKER_URL + '/usage');
     const data = await res.json();
     usageLabel.textContent = 'تحليلات اليوم: ' + data.used + ' من ' + data.limit;
+    
+    const gBtn = $('g_id_signin');
+    const emailBadge = $('userEmailBadge');
+    const logoutBtn = $('logoutBtn');
+    const activateBtn = $('activateBtn');
+    const statusBadge = $('statusBadge');
+
+    if (data.isLoggedIn) {
+      if (gBtn) gBtn.style.display = 'none';
+      if (emailBadge) {
+        emailBadge.textContent = data.email ? '👤 ' + data.email : '👤 متصل بغوغل';
+        emailBadge.style.display = 'inline';
+      }
+      if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    } else {
+      if (gBtn && (!welcomeModal.classList.contains('active'))) gBtn.style.display = 'flex';
+      if (emailBadge) emailBadge.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+    }
+
+    if (data.isSubscribed && !data.trialMode) {
+      statusBadge.textContent = 'مشترك PRO';
+      statusBadge.style.color = '#22c55e';
+      statusBadge.style.background = 'rgba(34, 197, 94, 0.15)';
+      if (activateBtn) activateBtn.style.display = 'none';
+    }
+
     if (data.channelId) {
       channelNameDisplay.textContent = data.channelTitle || 'قناتك المسجلة';
       loadVideos(data.channelId);
@@ -920,7 +1029,7 @@ async function loadVideos(channelId) {
 }
 
 // ============================================
-// المحفوظات مع pagination
+// المحفوظات
 // ============================================
 const tabAnalyze = $('tabAnalyze'), tabHistory = $('tabHistory');
 const contentAnalyze = $('contentAnalyze'), contentHistory = $('contentHistory');
@@ -1029,7 +1138,7 @@ $('submitPromoBtn').addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.success) {
-      showToast('تم التفعيل');
+      showToast('تم التفعيل بنجاح');
       closeModal(codeModal);
       loadSession();
     } else {
@@ -1041,15 +1150,16 @@ $('submitPromoBtn').addEventListener('click', async () => {
 });
 
 // ============================================
-// الدخول بحساب غوغل
+// الدخول بحساب غوغل والتعرف الدائم
 // ============================================
-const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
-
 window.handleGoogleSignIn = async (response) => {
   try {
     const res = await fetch(WORKER_URL + '/auth/google', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-User-Token': userToken
+      },
       body: JSON.stringify({ credential: response.credential })
     });
     const data = await res.json();
@@ -1057,11 +1167,18 @@ window.handleGoogleSignIn = async (response) => {
       showMsg(data.error || 'فشل تسجيل الدخول.');
       return;
     }
+    
+    // حفظ التوكن الثابت الدائم
     localStorage.setItem('ciai_token', data.token);
+    localStorage.setItem('ciai_first_visit_done', '1');
     userToken = data.token;
-    const gBtn = document.getElementById('g_id_signin');
+    
+    closeModal(welcomeModal);
+
+    const gBtn = $('g_id_signin');
     if (gBtn) gBtn.style.display = 'none';
-    showToast(data.returning ? 'عدت إلى حسابك' : 'تم تسجيل الدخول');
+    
+    showToast(data.returning ? 'مرحباً بعودتك!' : 'تم ربط الحساب بنجاح');
     loadSession();
   } catch (e) {
     showMsg('تعذر الاتصال. أعد المحاولة.');
@@ -1070,13 +1187,17 @@ window.handleGoogleSignIn = async (response) => {
 
 function initGoogleButton() {
   if (!window.google || !google.accounts) { setTimeout(initGoogleButton, 300); return; }
+  
   google.accounts.id.initialize({
     client_id: GOOGLE_CLIENT_ID,
-    callback: window.handleGoogleSignIn
+    callback: window.handleGoogleSignIn,
+    auto_select: true
   });
-  const gBtn = document.getElementById('g_id_signin');
-  if (gBtn && gBtn.style.display !== 'none') {
-    google.accounts.id.renderButton(gBtn, {
+
+  // زر داخل نافذة الترحيب (إن كانت مفتوحة)
+  const gWelcome = $('g_id_signin_welcome');
+  if (gWelcome) {
+    google.accounts.id.renderButton(gWelcome, {
       theme: 'filled_black',
       size: 'large',
       shape: 'rectangular',
@@ -1084,9 +1205,40 @@ function initGoogleButton() {
       locale: 'ar'
     });
   }
-}
-initGoogleButton();
 
+  // الزر الرئيسي في الصفحة
+  const gBtn = $('g_id_signin');
+  if (userToken && userToken.startsWith('gtok_')) {
+    if (gBtn) gBtn.style.display = 'none';
+  } else if (gBtn) {
+    gBtn.style.display = 'flex';
+    google.accounts.id.renderButton(gBtn, {
+      theme: 'filled_black',
+      size: 'large',
+      shape: 'rectangular',
+      text: 'signin_with',
+      locale: 'ar'
+    });
+    google.accounts.id.prompt();
+  }
+}
+
+// زر تسجيل الخروج
+const logoutBtn = $('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('ciai_token');
+    userToken = 'tok_' + Math.random().toString(36).substring(2, 11) + Date.now().toString(36);
+    localStorage.setItem('ciai_token', userToken);
+    showToast('تم تسجيل الخروج');
+    loadSession();
+    initGoogleButton();
+  });
+}
+
+// الإطلاق
+checkOnboarding();
+initGoogleButton();
 loadSession();
 </script>
 </body>
