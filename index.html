@@ -63,6 +63,7 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   font-size: 0.8rem;
+  flex-wrap: wrap;
 }
 .status-info { display: flex; align-items: center; gap: 8px; color: var(--text-2); }
 .status-tag {
@@ -86,6 +87,8 @@ body {
   cursor: pointer;
   white-space: nowrap;
 }
+
+#g_id_signin { display: flex; justify-content: center; }
 
 /* Channel box */
 .channel-box {
@@ -448,6 +451,8 @@ body {
     <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
   </div>
 
+  <div id="g_id_signin" style="min-height:44px"></div>
+
   <div class="channel-box">
     <div class="channel-header">
       <div class="channel-title">
@@ -545,8 +550,9 @@ body {
 
 <div class="toast" id="toast"></div>
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
-  // ============================================
+// ============================================
 // الإعداد والهوية
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
@@ -571,7 +577,6 @@ const resBox = $('resBox'), toast = $('toast'), usageLabel = $('usageLabel');
 const channelNameDisplay = $('channelNameDisplay');
 const channelVideosHolder = $('channelVideosHolder'), channelVideosDropdown = $('channelVideosDropdown');
 
-// أيقونات SVG معادة الاستخدام (أسلوب Lucide، خط 1.5px)
 const ICO = {
   copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
   plan: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg>',
@@ -580,7 +585,7 @@ const ICO = {
 };
 
 // ============================================
-// المودالات: فتح/إغلاق/Escape/تركيز أول عنصر
+// المودالات
 // ============================================
 function openModal(el) {
   el.classList.add('active');
@@ -713,7 +718,8 @@ async function runAnalysis() {
 
 analyzeBtn.addEventListener('click', runAnalysis);
 mainUrl.addEventListener('keypress', (e) => { if (e.key === 'Enter') runAnalysis(); });
-  // ============================================
+
+// ============================================
 // عرض النتائج
 // ============================================
 function render(data) {
@@ -815,6 +821,10 @@ async function fetchOutline(idea) {
       body: JSON.stringify({ title: idea.title, description: idea.description, evidence: idea.evidence })
     });
     const data = await res.json();
+    if (!res.ok || data.error) {
+      outlineContent.innerHTML = '<div class="empty-note">' + esc(data.error || 'تعذر تجهيز الخطة حالياً.') + '</div>';
+      return;
+    }
     const out = data.outline || {};
 
     outlineContent.innerHTML =
@@ -1029,6 +1039,53 @@ $('submitPromoBtn').addEventListener('click', async () => {
     showMsg('تعذر التفعيل. أعد المحاولة.');
   }
 });
+
+// ============================================
+// الدخول بحساب غوغل
+// ============================================
+const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
+
+window.handleGoogleSignIn = async (response) => {
+  try {
+    const res = await fetch(WORKER_URL + '/auth/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: response.credential })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.token) {
+      showMsg(data.error || 'فشل تسجيل الدخول.');
+      return;
+    }
+    localStorage.setItem('ciai_token', data.token);
+    userToken = data.token;
+    const gBtn = document.getElementById('g_id_signin');
+    if (gBtn) gBtn.style.display = 'none';
+    showToast(data.returning ? 'عدت إلى حسابك' : 'تم تسجيل الدخول');
+    loadSession();
+  } catch (e) {
+    showMsg('تعذر الاتصال. أعد المحاولة.');
+  }
+};
+
+function initGoogleButton() {
+  if (!window.google || !google.accounts) { setTimeout(initGoogleButton, 300); return; }
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: window.handleGoogleSignIn
+  });
+  const gBtn = document.getElementById('g_id_signin');
+  if (gBtn && gBtn.style.display !== 'none') {
+    google.accounts.id.renderButton(gBtn, {
+      theme: 'filled_black',
+      size: 'large',
+      shape: 'rectangular',
+      text: 'signin_with',
+      locale: 'ar'
+    });
+  }
+}
+initGoogleButton();
 
 loadSession();
 </script>
