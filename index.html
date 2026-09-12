@@ -153,7 +153,7 @@ body {
   border-radius: var(--radius);
   font-size: 0.9rem; font-family: var(--font);
 }
-.input-control:focus { border-color: var(--accent); outline: none; }
+.input-control:focus { border-color: var(--accent); } /* لا outline:none — حلقة :focus-visible العامة تحمي مستخدمي لوحة المفاتيح */
 
 .comp-toggle {
   align-self: flex-start;
@@ -397,6 +397,46 @@ body {
   padding: 4px;
 }
 
+/* Welcome modal — premium redesign */
+.welcome-card { text-align: center; position: relative; overflow: hidden; padding-top: 28px; }
+.welcome-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.welcome-logo {
+  width: 56px; height: 56px; margin: 0 auto 14px;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(229, 9, 20, 0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-hover);
+}
+.welcome-logo svg { width: 26px; height: 26px; }
+.welcome-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; }
+.welcome-title span { color: var(--accent); }
+.welcome-sub { font-size: 0.85rem; color: var(--text-2); margin-top: 6px; }
+.welcome-feats { display: flex; flex-direction: column; gap: 8px; text-align: right; margin: 6px 0 4px; }
+.w-feat {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 11px 12px; border-radius: 10px;
+}
+.w-feat svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent-hover); margin-top: 2px; }
+.w-feat strong { display: block; font-size: 0.85rem; }
+.w-feat span { display: block; font-size: 0.75rem; color: var(--text-3); margin-top: 1px; }
+.welcome-gbtn { display: flex; justify-content: center; min-height: 44px; }
+.welcome-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.6; }
+.welcome-note strong { color: var(--text-2); }
+
+/* Pro lock */
+.pro-lock-hint {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; font-weight: 700; color: var(--accent-hover);
+}
+.pro-lock-hint svg { width: 12px; height: 12px; stroke: currentColor; }
+
 /* Outline */
 .outline-item { background: var(--surface-2); border-radius: 8px; padding: 12px; }
 .outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent-hover); margin-bottom: 6px; }
@@ -459,10 +499,30 @@ body {
   .video-thumb { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
 }
+
+/* ===== Skill: Motion & Zoom — kill switch لمن طلب تقليل الحركة ===== */
+/* 0.01ms وليس none حتى تستمر أحداث animationend/transitionend */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Skill: Color Gamut — تعزيز P3 فوق قاعدة sRGB (hex يبقى الأساس) ===== */
+@media (color-gamut: p3) {
+  :root {
+    --accent: oklch(0.55 0.24 28);
+    --accent-hover: oklch(0.59 0.245 27);
+  }
+}
 </style>
+<base target="_blank">
 </head>
 <body>
-<div class="container">
+<div class="container" id="app">
 
   <div class="brand">
     <h1>Content Ideas <span>AI</span></h1>
@@ -545,33 +605,35 @@ body {
 
 </div>
 
-<!-- نافذة الترحيب لأول مرة (Onboarding Modal) -->
+<!-- نافذة الترحيب (Onboarding Modal) -->
 <div class="modal-overlay" id="welcomeModal" role="dialog" aria-modal="true">
-  <div class="modal-card onboard-card">
-    <div class="modal-title">مرحباً بك في Content Ideas <span>AI</span> 🚀</div>
-    <p style="font-size:0.875rem;color:var(--text-2)">
-      منصتك الذكية لاكتشاف ما يريده جمهورك بدقة، وسرقة أفكار الفيديوهات من فجوات منافسيك قبل أن يصوروها.
-    </p>
-    
-    <div class="onboard-features">
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-        <span>تحليل حقيقي لآلاف التعليقات والأسئلة الشائعة.</span>
+  <div class="modal-card welcome-card">
+    <div class="welcome-head">
+      <div class="welcome-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 12.5h5"/></svg>
       </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-        <span>كشف فجوات المنافسين ومعرفة ما لم يجيبوا عليه.</span>
+      <div class="welcome-title">Content Ideas <span>AI</span></div>
+      <p class="welcome-sub">اعرف ماذا يطلب جمهورك قبل أن يصوّره غيرك</p>
+    </div>
+
+    <div class="welcome-feats">
+      <div class="w-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div><strong>تحليل تعليقات جمهورك</strong><span>استخراج الأسئلة المتكررة ونقاط الألم من آلاف التعليقات</span></div>
       </div>
-      <div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-        <span>حفظ سجل تحليلاتك وقناتك بشكل دائم.</span>
+      <div class="w-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg>
+        <div><strong>فجوات المنافسين</strong><span>اكتشف ما طلبه جمهورهم ولم يجدوا إجابة عليه</span></div>
+      </div>
+      <div class="w-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg>
+        <div><strong>خطة فيديو جاهزة</strong><span>مقدمة جذابة + محاور + خاتمة لكل فكرة مقترحة</span></div>
       </div>
     </div>
 
-    <p style="font-size:0.82rem;font-weight:700;color:var(--text)">سجّل دخولك لحفظ تحليلاتك واشتراكك دائماً:</p>
-    <div id="g_id_signin_welcome" style="display:flex;justify-content:center;min-height:44px"></div>
+    <div id="g_id_signin_welcome" class="welcome-gbtn"></div>
 
-    <button class="skip-btn" id="skipWelcomeBtn">المتابعة كزائر تجريبي (قد تفقد بياناتك عند تغيير الجهاز)</button>
+    <p class="welcome-note">سجّل الدخول بحساب Google للبدء — تحصل على <strong>3 تحليلات مجانية يومياً</strong>، وبياناتك واشتراكك محفوظان دائماً.</p>
   </div>
 </div>
 
@@ -648,38 +710,61 @@ const ICO = {
 // ============================================
 // المودالات
 // ============================================
+let lastFocusedEl = null;
+
 function openModal(el) {
+  lastFocusedEl = document.activeElement;
+  // Skill: Focus trap — inert يعزل الخلفية عن ترتيب Tab وقارئات الشاشة
+  const app = $('app');
+  if (app) app.inert = true;
   el.classList.add('active');
   const first = el.querySelector('input, button:not(.modal-close)');
   if (first) setTimeout(() => first.focus(), 50);
 }
-function closeModal(el) { el.classList.remove('active'); }
+
+function closeModal(el) {
+  el.classList.remove('active');
+  const app = $('app');
+  if (app) app.inert = false;
+  // Skill: إعادة التركيز لعنصر الفتح — أو للحاوية إن لم يعد موجوداً
+  if (lastFocusedEl && document.contains(lastFocusedEl)) {
+    lastFocusedEl.focus();
+  } else if (app) {
+    app.focus?.();
+  }
+  lastFocusedEl = null;
+}
+
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.id !== 'welcomeModal') closeModal(overlay);
   });
 });
 
+// Skill: دوران Tab داخل المودال (APG Dialog) — الحلقة تلتف عند طرفيها
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const active = document.querySelector('.modal-overlay.active');
+  if (!active) return;
+  const focusables = active.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusables.length) return;
+  const first = focusables[0], last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
 // ============================================
 // فحص الظهور لأول مرة (Onboarding)
 // ============================================
 const welcomeModal = $('welcomeModal');
-const skipWelcomeBtn = $('skipWelcomeBtn');
 
 function checkOnboarding() {
-  const visited = localStorage.getItem('ciai_first_visit_done');
   const isGoogle = userToken && userToken.startsWith('gtok_');
-  // إذا لم يسبق له الزيارة ولم يسجل بجوجل تظهر النافذة الترحيبية
-  if (!visited && !isGoogle) {
+  // الدخول بحساب Google إلزامي — لا يوجد وضع زائر
+  if (!isGoogle) {
     openModal(welcomeModal);
   }
 }
-
-skipWelcomeBtn.addEventListener('click', () => {
-  localStorage.setItem('ciai_first_visit_done', '1');
-  closeModal(welcomeModal);
-  initGoogleButton();
-});
 
 // ============================================
 // أدوات الواجهة
@@ -735,11 +820,22 @@ function esc(str) {
 // ============================================
 // الجلسة والاستخدام (استعادة الهوية الدائمة)
 // ============================================
+let isPro = false;
+
 async function loadSession() {
   try {
     const res = await req(WORKER_URL + '/usage');
     const data = await res.json();
     usageLabel.textContent = 'تحليلات اليوم: ' + data.used + ' من ' + data.limit;
+    isPro = !!(data.isSubscribed && !data.trialMode);
+
+    // مقارنة المنافسين ميزة Pro فقط
+    if (!isPro) {
+      compToggle.style.display = 'none';
+      compDrawer.classList.remove('open');
+    } else {
+      compToggle.style.display = 'inline-flex';
+    }
     
     const gBtn = $('g_id_signin');
     const emailBadge = $('userEmailBadge');
@@ -767,12 +863,27 @@ async function loadSession() {
       if (activateBtn) activateBtn.style.display = 'none';
     }
 
-    if (data.channelId) {
+    if (data.channelId && isPro) {
       channelNameDisplay.textContent = data.channelTitle || 'قناتك المسجلة';
       loadVideos(data.channelId);
     }
   } catch (e) {
     usageLabel.textContent = 'جاهز للتحليل';
+  }
+
+  // صندوق القناة ميزة Pro — للمستخدم المجاني يظهر كدعوة للترقية
+  if (isPro) {
+    channelNameDisplay.textContent = (channelNameDisplay.textContent.indexOf('ميزة Pro') !== -1)
+      ? 'ربط قناتك للاختيار التلقائي'
+      : channelNameDisplay.textContent;
+    $('searchChannelBtn').onclick = () => { openModal(channelModal); };
+  } else {
+    channelNameDisplay.textContent = 'اختيار الفيديو من قناتك — ميزة Pro';
+    channelVideosHolder.style.display = 'none';
+    $('searchChannelBtn').onclick = () => {
+      showToast('ربط قناتك ميزة حصرية للمشتركين Pro');
+      openModal(codeModal);
+    };
   }
 }
 
@@ -792,6 +903,11 @@ async function runAnalysis() {
 
   let compareVideoId = null;
   if (compDrawer.classList.contains('open') && compUrl.value.trim()) {
+    if (!isPro) {
+      showMsg('مقارنة المنافسين ميزة حصرية للمشتركين Pro.');
+      openModal(codeModal);
+      return;
+    }
     compareVideoId = extractId(compUrl.value);
     if (!compareVideoId) {
       showMsg('رابط فيديو المنافس غير صالح. تحقق منه أو ألغِ المقارنة.');
@@ -891,7 +1007,9 @@ function render(data) {
             '<div class="demand-track"><div class="demand-fill" style="width:' + (idea.estimatedDemand || 50) + '%"></div></div>' +
             '<span>' + (idea.estimatedDemand || 50) + '%</span></div>' +
           '<div class="idea-actions">' +
-            '<button class="action-btn primary gen-outline-btn" data-idx="' + idx + '">' + ICO.plan + 'الخطة</button>' +
+            (isPro
+              ? '<button class="action-btn primary gen-outline-btn" data-idx="' + idx + '">' + ICO.plan + 'الخطة</button>'
+              : '<button class="action-btn primary pro-outline-btn">' + ICO.plan + 'الخطة — Pro</button>') +
             '<button class="action-btn copy-idea-btn" data-text="' + esc(idea.title + '\n\n' + idea.description) + '">' + ICO.copy + 'نسخ</button>' +
           '</div></div></div>';
     });
@@ -919,6 +1037,11 @@ const outlineModal = $('outlineModal'), outlineContent = $('outlineContent');
 $('closeOutlineModal').addEventListener('click', () => closeModal(outlineModal));
 
 async function fetchOutline(idea) {
+  if (!isPro) {
+    showToast('خطة الفيديو حصرية للمشتركين Pro');
+    openModal(codeModal);
+    return;
+  }
   openModal(outlineModal);
   outlineContent.innerHTML = '<div class="spinner" style="margin:24px auto 8px"></div>' +
     '<div class="empty-note">جاري تجهيز الخطة...</div>';
@@ -1128,6 +1251,8 @@ const codeModal = $('codeModal');
 $('activateBtn').addEventListener('click', () => openModal(codeModal));
 $('closeCodeModal').addEventListener('click', () => closeModal(codeModal));
 
+$('promoCodeInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') $('submitPromoBtn').click(); });
+
 $('submitPromoBtn').addEventListener('click', async () => {
   const code = $('promoCodeInput').value.trim();
   try {
@@ -1240,6 +1365,14 @@ if (logoutBtn) {
 checkOnboarding();
 initGoogleButton();
 loadSession();
+
+// Skill: بعد رندر زر Google في نافذة الترحيب، وجّه التركيز إليه (لا لخلفية معزولة)
+if (welcomeModal.classList.contains('active')) {
+  setTimeout(() => {
+    const gbtn = $('g_id_signin_welcome').querySelector('div[role="button"], iframe');
+    if (gbtn) gbtn.focus?.();
+  }, 600);
+}
 </script>
 </body>
 </html>
