@@ -430,6 +430,21 @@ body {
 .welcome-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.6; }
 .welcome-note strong { color: var(--text-2); }
 
+/* زر الإبلاغ العائم */
+#reportFab {
+  position: fixed;
+  bottom: 20px; inset-inline-end: 16px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 1500;
+}
+#reportFab:hover { color: var(--accent-hover); border-color: rgba(229, 9, 20, 0.4); }
+#reportFab svg { width: 20px; height: 20px; }
+
 /* Pro lock */
 .pro-lock-hint {
   display: inline-flex; align-items: center; gap: 5px;
@@ -667,6 +682,22 @@ body {
     <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: BETA2026" autocomplete="off">
     <button class="submit-btn" id="submitPromoBtn">تفعيل</button>
     <button class="modal-close" id="closeCodeModal">إغلاق</button>
+  </div>
+</div>
+
+<!-- زر الإبلاغ عن مشكلة -->
+<button id="reportFab" aria-label="الإبلاغ عن مشكلة">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v3M12 15.5v.01"/></svg>
+</button>
+
+<!-- Modal الإبلاغ عن مشكلة -->
+<div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
+  <div class="modal-card">
+    <div class="modal-title" id="reportModalTitle">الإبلاغ عن مشكلة</div>
+    <p style="font-size:0.82rem;color:var(--text-2)">وصف المشكلة التي واجهتك — سيصل بلاغك مباشرة لصاحب الأداة مع حسابك تلقائياً.</p>
+    <textarea class="input-control" id="reportText" rows="4" placeholder="مثال: عند الضغط على تحليل تظهر رسالة خطأ..." style="resize:vertical"></textarea>
+    <button class="submit-btn" id="submitReportBtn">إرسال البلاغ</button>
+    <button class="modal-close" id="closeReportModal">إغلاق</button>
   </div>
 </div>
 
@@ -1360,6 +1391,39 @@ if (logoutBtn) {
     initGoogleButton();
   });
 }
+
+// ============================================
+// الإبلاغ عن مشكلة
+// ============================================
+const reportModal = $('reportModal');
+$('reportFab').addEventListener('click', () => {
+  $('reportText').value = '';
+  openModal(reportModal);
+});
+$('closeReportModal').addEventListener('click', () => closeModal(reportModal));
+
+$('submitReportBtn').addEventListener('click', async () => {
+  const msg = $('reportText').value.trim();
+  if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
+  $('submitReportBtn').disabled = true;
+  try {
+    const res = await req(WORKER_URL + '/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, page: location.pathname })
+    });
+    const data = await res.json();
+    if (data.success) {
+      closeModal(reportModal);
+      showToast('تم استلام بلاغك — شكراً لك');
+    } else {
+      showToast(data.error || 'تعذر الإرسال، أعد المحاولة');
+    }
+  } catch (e) {
+    showToast('تعذر الاتصال، أعد المحاولة');
+  }
+  $('submitReportBtn').disabled = false;
+});
 
 // الإطلاق
 checkOnboarding();
