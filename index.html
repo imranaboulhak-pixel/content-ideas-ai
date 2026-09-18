@@ -3,13 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#ffffff">
 <title>Content Ideas AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --font: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --surface-2: #f1f3f5;
+  --border: #e5e7eb;
+  --text: #111827;
+  --text-2: #4b5563;
+  --text-3: #9ca3af;
+  --accent: #e50914;
+  --accent-hover: #c90812;
+  --accent-soft: rgba(229, 9, 20, 0.08);
+  --priority-high: #e50914;
+  --priority-med: #6b7280;
+  --priority-low: #9ca3af;
+  --radius: 10px;
+  --focus-ring: #e50914;
+}
+
+[data-theme="dark"] {
   --bg: #0d0d0d;
   --surface: #161616;
   --surface-2: #1e1e1e;
@@ -23,7 +41,6 @@
   --priority-high: #e50914;
   --priority-med: #737373;
   --priority-low: #404040;
-  --radius: 10px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,9 +52,13 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   font-variant-numeric: tabular-nums;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
-:focus-visible { outline: 2px solid var(--accent-hover); outline-offset: 2px; }
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
 
 .container {
   width: 100%;
@@ -49,11 +70,32 @@ body {
   gap: 24px;
 }
 
-/* Brand */
+/* Brand Header */
+.brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
 .brand { display: flex; flex-direction: column; gap: 6px; }
 .brand h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
 .brand h1 span { color: var(--accent); }
 .brand p { font-size: 0.875rem; color: var(--text-2); }
+
+.settings-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.settings-btn svg { width: 20px; height: 20px; stroke: currentColor; }
 
 /* Status bar */
 .status-bar {
@@ -68,7 +110,7 @@ body {
 .status-info { display: flex; align-items: center; gap: 8px; color: var(--text-2); flex-wrap: wrap; }
 .status-tag {
   background: var(--accent-soft);
-  color: var(--accent-hover);
+  color: var(--accent);
   padding: 2px 8px;
   border-radius: 6px;
   font-weight: 700;
@@ -103,7 +145,7 @@ body {
 .channel-title svg { width: 16px; height: 16px; fill: var(--accent); flex-shrink: 0; }
 .channel-action {
   background: transparent; border: none;
-  color: var(--accent-hover);
+  color: var(--accent);
   font-family: var(--font); font-size: 0.8rem; font-weight: 700;
   cursor: pointer; white-space: nowrap;
 }
@@ -159,7 +201,7 @@ body {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 6px;
   background: transparent; border: none;
-  color: var(--accent-hover);
+  color: var(--accent);
   font-family: var(--font); font-size: 0.8rem; font-weight: 700;
   cursor: pointer;
 }
@@ -191,7 +233,7 @@ body {
   display: none;
   background: var(--accent-soft);
   border: 1px solid rgba(229, 9, 20, 0.3);
-  color: var(--accent-hover);
+  color: var(--accent);
 }
 .msg-box.visible { display: block; }
 
@@ -297,7 +339,7 @@ body {
 .idea-title { font-size: 1rem; font-weight: 800; line-height: 1.4; word-break: break-word; }
 .idea-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
-.tag-high { background: var(--accent-soft); color: var(--accent-hover); }
+.tag-high { background: var(--accent-soft); color: var(--accent); }
 .tag-med { background: var(--surface-2); color: var(--priority-med); }
 .tag-low { background: var(--surface-2); color: var(--priority-low); }
 .tag-fmt { background: var(--surface-2); color: var(--text-3); }
@@ -332,13 +374,13 @@ body {
 .action-btn.primary {
   background: var(--accent-soft);
   border-color: rgba(229, 9, 20, 0.3);
-  color: var(--accent-hover);
+  color: var(--accent);
 }
 
 /* Modals */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 2000;
   display: none; align-items: center; justify-content: center;
   padding: 16px;
@@ -367,13 +409,112 @@ body {
   cursor: pointer;
 }
 
-/* Outline */
-.outline-item { background: var(--surface-2); border-radius: 8px; padding: 12px; }
-.outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent-hover); margin-bottom: 6px; }
-.outline-body { font-size: 0.875rem; line-height: 1.5; }
-.outline-point { margin-bottom: 8px; padding-inline-start: 10px; border-inline-start: 2px solid var(--border); }
-.outline-point:last-child { margin-bottom: 0; }
-.outline-dur { font-size: 0.72rem; color: var(--text-3); }
+/* Settings Drawer */
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2500;
+  display: none;
+  justify-content: flex-start;
+}
+.drawer-overlay.active { display: flex; }
+.drawer-content {
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  background: var(--surface);
+  border-inline-end: 1px solid var(--border);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+}
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+.drawer-title { font-size: 1.1rem; font-weight: 800; }
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.drawer-close-btn svg { width: 20px; height: 20px; }
+
+.user-profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.user-profile-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.user-profile-icon svg { width: 18px; height: 18px; stroke: currentColor; }
+.user-profile-info { flex: 1; min-width: 0; }
+.user-profile-label { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
+.user-profile-email { font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.setting-label { font-size: 0.875rem; font-weight: 700; }
+.switch-control {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch-control input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background-color: var(--border);
+  transition: .3s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute; content: "";
+  height: 18px; width: 18px;
+  inset-inline-start: 3px; bottom: 3px;
+  background-color: var(--surface);
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(20px); }
+[dir="rtl"] input:checked + .slider:before { transform: translateX(-20px); }
+
+.support-box {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.support-title { font-size: 0.875rem; font-weight: 800; }
+.support-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.4; }
 
 /* History */
 .history-list { list-style: none; display: flex; flex-direction: column; }
@@ -405,17 +546,26 @@ body {
 }
 .empty-note { text-align: center; padding: 32px 0; color: var(--text-3); font-size: 0.85rem; }
 
+/* Outline */
+.outline-item { background: var(--surface-2); border-radius: 8px; padding: 12px; }
+.outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+.outline-body { font-size: 0.875rem; line-height: 1.5; }
+.outline-point { margin-bottom: 8px; padding-inline-start: 10px; border-inline-start: 2px solid var(--border); }
+.outline-point:last-child { margin-bottom: 0; }
+.outline-dur { font-size: 0.72rem; color: var(--text-3); }
+
 /* Toast */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: var(--surface-2);
+  background: var(--surface);
   color: var(--text);
   padding: 10px 20px;
   border-radius: var(--radius);
   font-size: 0.82rem; font-weight: 700;
   opacity: 0; z-index: 3000;
   border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -423,35 +573,36 @@ body {
   .toast { transition: all 0.25s ease; }
 }
 
-/* Floating Report Button */
-#reportFab {
-  position: fixed;
-  bottom: 20px; inset-inline-end: 16px;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 1500;
-}
-#reportFab:hover { color: var(--accent-hover); border-color: rgba(229, 9, 20, 0.4); }
-#reportFab svg { width: 20px; height: 20px; }
-
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
   .video-thumb { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
 <body>
 <div class="container" id="app">
 
-  <div class="brand">
-    <h1>Content Ideas <span>AI</span></h1>
-    <p>حلّل تعليقات أي فيديو، واعرف ماذا يطلب جمهورك قبل أن يصوّره غيرك.</p>
+  <div class="brand-row">
+    <div class="brand">
+      <h1>Content Ideas <span>AI</span></h1>
+      <p>حلّل تعليقات أي فيديو، واعرف ماذا يطلب جمهورك قبل أن يصوّره غيرك.</p>
+    </div>
+    <button class="settings-btn" id="openSettingsBtn" aria-label="الإعدادات" title="الإعدادات">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 5v14M12 5v14M18 5v14"/>
+      </svg>
+    </button>
   </div>
 
   <div class="status-bar">
@@ -460,10 +611,7 @@ body {
       <span class="status-tag" id="statusBadge">نسخة تجريبية</span>
       <span id="userEmailBadge" style="display:none;color:var(--text-2);font-size:0.75rem;font-weight:700"></span>
     </div>
-    <div style="display:flex;gap:6px;align-items:center">
-      <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
-      <button class="status-btn" id="logoutBtn" style="display:none;border-color:var(--border);color:var(--text-3)">خروج</button>
-    </div>
+    <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
   </div>
 
   <div id="g_id_signin" style="min-height:44px"></div>
@@ -530,20 +678,42 @@ body {
 
 </div>
 
-<!-- نافذة الترحيب لأول مرة بالهيكل الأصلي المعتمد -->
-<div class="modal-overlay" id="welcomeModal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-  <div class="modal-card">
-    <div class="modal-title" id="welcomeTitle">مرحباً بك في Content Ideas <span>AI</span></div>
-    <p style="font-size:0.85rem;color:var(--text-2);line-height:1.6">
-      منصة ذكية لتحليل تعليقات أي فيديو على يوتيوب، واكتشاف فجوات المنافسين وما يطلبه جمهورك بدقة قبل تصوير الفيديو.
-    </p>
-    <div style="background:var(--surface-2);border-radius:var(--radius);padding:12px;font-size:0.82rem;color:var(--text-2);display:flex;flex-direction:column;gap:8px">
-      <div>- استخراج الأسئلة المتكررة ونقاط الألم من آلاف التعليقات.</div>
-      <div>- كشف فجوات المنافسين وتحديد ما طلبه جمهورهم ولم يجدوه.</div>
-      <div>- توليد خطة محتوى فورية لكل فكرة مقترحة.</div>
+<!-- القائمة الجانبية (Settings Drawer) -->
+<div class="drawer-overlay" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <div class="drawer-title" id="drawerTitle">الإعدادات</div>
+      <button class="drawer-close-btn" id="closeDrawerBtn" aria-label="إغلاق الإعدادات">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
     </div>
-    <p style="font-size:0.8rem;color:var(--text-3);text-align:center">سجل الدخول بحساب Google للبدء وحفظ تحليلاتك:</p>
-    <div id="g_id_signin_welcome" style="display:flex;justify-content:center;min-height:44px"></div>
+
+    <div class="user-profile-box">
+      <div class="user-profile-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="user-profile-info">
+        <div class="user-profile-label">حسابك المسجل</div>
+        <div class="user-profile-email" id="drawerUserEmail">غير مسجل الدخول</div>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <span class="setting-label">الوضع الداكن</span>
+      <label class="switch-control">
+        <input type="checkbox" id="themeToggleCheckbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button class="status-btn" id="drawerLogoutBtn" style="width:100%;padding:10px;text-align:center">تسجيل الخروج</button>
+
+    <div class="support-box">
+      <div class="support-title">طلب المساعدة</div>
+      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم (redakune2333@gmail.com):</p>
+      <textarea class="input-control" id="drawerSupportText" rows="3" placeholder="اكتب مشكلتك هنا..." style="resize:vertical"></textarea>
+      <button class="submit-btn" id="drawerSubmitSupportBtn" style="padding:10px">إرسال للمشرف</button>
+    </div>
   </div>
 </div>
 
@@ -581,19 +751,20 @@ body {
   </div>
 </div>
 
-<!-- زر الإبلاغ عن مشكلة -->
-<button id="reportFab" aria-label="الإبلاغ عن مشكلة">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v3M12 15.5v.01"/></svg>
-</button>
-
-<!-- Modal الإبلاغ عن مشكلة -->
-<div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
+<!-- نافذة الترحيب والدخول الإلزامي -->
+<div class="modal-overlay" id="welcomeModal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
   <div class="modal-card">
-    <div class="modal-title" id="reportModalTitle">الإبلاغ عن مشكلة</div>
-    <p style="font-size:0.82rem;color:var(--text-2)">صف المشكلة التي واجهتك وسيصل تقريرك مباشرة للدعم الفني مع حسابك تلقائياً:</p>
-    <textarea class="input-control" id="reportText" rows="4" placeholder="اكتب تفاصيل المشكلة هنا..." style="resize:vertical"></textarea>
-    <button class="submit-btn" id="submitReportBtn">إرسال البلاغ</button>
-    <button class="modal-close" id="closeReportModal">إغلاق</button>
+    <div class="modal-title" id="welcomeTitle">مرحباً بك في Content Ideas <span>AI</span></div>
+    <p style="font-size:0.85rem;color:var(--text-2);line-height:1.6">
+      منصة ذكية لتحليل تعليقات يوتيوب واكتشاف ما يطلبه جمهورك بدقة، واستخراج فجوات المنافسين لتصويرها قبلهم.
+    </p>
+    <div style="background:var(--surface-2);border-radius:var(--radius);padding:12px;font-size:0.82rem;color:var(--text-2);display:flex;flex-direction:column;gap:8px">
+      <div>- استخراج الأسئلة المتكررة ونقاط الألم من آلاف التعليقات.</div>
+      <div>- كشف فجوات المنافسين وتحديد ما طلبه جمهورهم ولم يجدوه.</div>
+      <div>- توليد خطة محتوى فورية لكل فكرة مقترحة.</div>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-3);text-align:center">سجل الدخول بحساب Google للبدء وحفظ تحليلاتك:</p>
+    <div id="g_id_signin_welcome" style="display:flex;justify-content:center;min-height:44px"></div>
   </div>
 </div>
 
@@ -602,10 +773,26 @@ body {
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
 // ============================================
-// الإعداد والهوية
+// الإعداد والهوية والسمة (Theme)
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
 const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
+
+// إدارة الثيم (فاتح افتراضياً)
+let currentTheme = localStorage.getItem('ciai_theme') || 'light';
+function applyTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d');
+    $('themeToggleCheckbox').checked = true;
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+    $('themeToggleCheckbox').checked = false;
+  }
+  localStorage.setItem('ciai_theme', theme);
+  currentTheme = theme;
+}
 
 let userToken = localStorage.getItem('ciai_token') || '';
 
@@ -631,26 +818,63 @@ const ICO = {
 };
 
 // ============================================
-// المودالات
+// إدارة النوافذ والمودالات والقائمة الجانبية
 // ============================================
+let lastFocusedEl = null;
+
 function openModal(el) {
+  lastFocusedEl = document.activeElement;
+  const app = $('app');
+  if (app) app.inert = true;
   el.classList.add('active');
-  const first = el.querySelector('input, button:not(.modal-close)');
+  const first = el.querySelector('input, button:not(.modal-close), textarea');
   if (first) setTimeout(() => first.focus(), 50);
 }
-function closeModal(el) { el.classList.remove('active'); }
 
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
+function closeModal(el) {
+  el.classList.remove('active');
+  const app = $('app');
+  if (app) app.inert = false;
+  if (lastFocusedEl && document.contains(lastFocusedEl)) {
+    lastFocusedEl.focus();
+  }
+  lastFocusedEl = null;
+}
+
+// القائمة الجانبية (Drawer)
+const settingsDrawer = $('settingsDrawer');
+$('openSettingsBtn').addEventListener('click', () => openModal(settingsDrawer));
+$('closeDrawerBtn').addEventListener('click', () => closeModal(settingsDrawer));
+
+$('themeToggleCheckbox').addEventListener('change', (e) => {
+  applyTheme(e.target.checked ? 'dark' : 'light');
+});
+
+document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(overlay => {
   overlay.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.id !== 'welcomeModal') closeModal(overlay);
   });
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay && overlay.id !== 'welcomeModal') closeModal(overlay);
+  });
+});
+
+// دوران Tab داخل الحوار النشط
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const active = document.querySelector('.modal-overlay.active, .drawer-overlay.active');
+  if (!active) return;
+  const focusables = active.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusables.length) return;
+  const first = focusables[0], last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
 // ============================================
 // فحص الظهور لأول مرة
 // ============================================
 const welcomeModal = $('welcomeModal');
-
 function checkOnboarding() {
   const isGoogle = userToken && userToken.startsWith('gtok_');
   if (!isGoogle) {
@@ -730,27 +954,28 @@ async function loadSession() {
     
     const gBtn = $('g_id_signin');
     const emailBadge = $('userEmailBadge');
-    const logoutBtn = $('logoutBtn');
     const activateBtn = $('activateBtn');
     const statusBadge = $('statusBadge');
+    const drawerEmail = $('drawerUserEmail');
 
     if (data.isLoggedIn) {
       if (gBtn) gBtn.style.display = 'none';
+      const displayMail = data.email ? data.email : 'متصل بـ Google';
       if (emailBadge) {
-        emailBadge.textContent = data.email ? data.email : 'متصل بـ Google';
+        emailBadge.textContent = displayMail;
         emailBadge.style.display = 'inline';
       }
-      if (logoutBtn) logoutBtn.style.display = 'inline-block';
+      if (drawerEmail) drawerEmail.textContent = displayMail;
     } else {
       if (gBtn && (!welcomeModal.classList.contains('active'))) gBtn.style.display = 'flex';
       if (emailBadge) emailBadge.style.display = 'none';
-      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (drawerEmail) drawerEmail.textContent = 'غير مسجل الدخول';
     }
 
     if (data.isSubscribed && !data.trialMode) {
       statusBadge.textContent = 'مشترك PRO';
-      statusBadge.style.color = '#22c55e';
-      statusBadge.style.background = 'rgba(34, 197, 94, 0.15)';
+      statusBadge.style.color = '#16a34a';
+      statusBadge.style.background = 'rgba(22, 163, 74, 0.1)';
       if (activateBtn) activateBtn.style.display = 'none';
     }
 
@@ -995,7 +1220,7 @@ async function searchChannels() {
     const data = await res.json();
     
     if (!res.ok || data.error) {
-      $('channelResults').innerHTML = '<div class="empty-note" style="color:var(--accent-hover);font-weight:700">' + esc(data.error || 'حدث خطأ أثناء البحث.') + '</div>';
+      $('channelResults').innerHTML = '<div class="empty-note" style="color:var(--accent);font-weight:700">' + esc(data.error || 'حدث خطأ أثناء البحث.') + '</div>';
       return;
     }
 
@@ -1027,7 +1252,7 @@ async function searchChannels() {
       row.addEventListener('keypress', (e) => { if (e.key === 'Enter') choose(); });
     });
   } catch (e) {
-    $('channelResults').innerHTML = '<div class="empty-note" style="color:var(--accent-hover)">خطأ في الاتصال بالخادم. أعد المحاولة.</div>';
+    $('channelResults').innerHTML = '<div class="empty-note" style="color:var(--accent)">خطأ في الاتصال بالخادم. أعد المحاولة.</div>';
   }
 }
 
@@ -1235,7 +1460,7 @@ function initGoogleButton() {
   } else if (gBtn) {
     gBtn.style.display = 'flex';
     google.accounts.id.renderButton(gBtn, {
-      theme: 'filled_black',
+      theme: currentTheme === 'dark' ? 'filled_black' : 'outline',
       size: 'large',
       shape: 'rectangular',
       text: 'signin_with',
@@ -1245,33 +1470,23 @@ function initGoogleButton() {
   }
 }
 
-// زر تسجيل الخروج
-const logoutBtn = $('logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('ciai_token');
-    userToken = '';
-    showToast('تم تسجيل الخروج');
-    loadSession();
-    checkOnboarding();
-    initGoogleButton();
-  });
-}
-
-// ============================================
-// الإبلاغ عن مشكلة
-// ============================================
-const reportModal = $('reportModal');
-$('reportFab').addEventListener('click', () => {
-  $('reportText').value = '';
-  openModal(reportModal);
+// تسجيل الخروج من القائمة الجانبية
+$('drawerLogoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('ciai_token');
+  userToken = '';
+  closeModal(settingsDrawer);
+  showToast('تم تسجيل الخروج');
+  loadSession();
+  checkOnboarding();
+  initGoogleButton();
 });
-$('closeReportModal').addEventListener('click', () => closeModal(reportModal));
 
-$('submitReportBtn').addEventListener('click', async () => {
-  const msg = $('reportText').value.trim();
+// إرسال طلب المساعدة من القائمة الجانبية
+$('drawerSubmitSupportBtn').addEventListener('click', async () => {
+  const msg = $('drawerSupportText').value.trim();
   if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
-  $('submitReportBtn').disabled = true;
+  $('drawerSubmitSupportBtn').disabled = true;
+
   try {
     const res = await req(WORKER_URL + '/report', {
       method: 'POST',
@@ -1280,18 +1495,24 @@ $('submitReportBtn').addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.success) {
-      closeModal(reportModal);
-      showToast('تم استلام بلاغك بنجاح');
+      $('drawerSupportText').value = '';
+      closeModal(settingsDrawer);
+      showToast('تم تسجيل طلب المساعدة بنجاح');
     } else {
-      showToast(data.error || 'تعذر الإرسال، أعد المحاولة');
+      showToast(data.error || 'تعذر الإرسال عبر الخادم');
+      // فتح تطبيق البريد كخيار مباشر بديل
+      window.open(`mailto:${data.targetEmail || 'redakune2333@gmail.com'}?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`);
     }
   } catch (e) {
-    showToast('تعذر الاتصال، أعد المحاولة');
+    // فتح البريد فوراً كبديل عند انقطاع الاتصال
+    window.open(`mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`);
+    showToast('تم فتح تطبيق البريد لإرسال رسالتك');
   }
-  $('submitReportBtn').disabled = false;
+  $('drawerSubmitSupportBtn').disabled = false;
 });
 
-// الإطلاق
+// تطبيق الثيم المحفوظ والإطلاق
+applyTheme(currentTheme);
 checkOnboarding();
 initGoogleButton();
 loadSession();
