@@ -710,7 +710,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     <div class="support-box">
       <div class="support-title">طلب المساعدة</div>
-      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم (redakune2333@gmail.com):</p>
+      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم :</p>
       <textarea class="input-control" id="drawerSupportText" rows="3" placeholder="اكتب مشكلتك هنا..." style="resize:vertical"></textarea>
       <button class="submit-btn" id="drawerSubmitSupportBtn" style="padding:10px">إرسال للمشرف</button>
     </div>
@@ -1486,7 +1486,7 @@ $('drawerSubmitSupportBtn').addEventListener('click', async () => {
   const msg = $('drawerSupportText').value.trim();
   if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
   $('drawerSubmitSupportBtn').disabled = true;
-  showToast('جاري إرسال الرسالة إلى بريدك...');
+  showToast('جاري إرسال الرسالة إلى المشرف...');
 
   try {
     const res = await req(WORKER_URL + '/report', {
@@ -1499,7 +1499,7 @@ $('drawerSubmitSupportBtn').addEventListener('click', async () => {
     if (res.ok && data.success) {
       $('drawerSupportText').value = '';
       closeModal(settingsDrawer);
-      showToast('وصلت الرسالة إلى بريدك بنجاح');
+      showToast( 'وصلت الرسالة إلى المشرف بنجاح ');
     } else {
       // إظهار سبب الفشل الحقيقي للمستخدم
       showToast(data.error || 'تعذر إرسال البريد تلقائياً');
