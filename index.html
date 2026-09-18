@@ -1481,11 +1481,12 @@ $('drawerLogoutBtn').addEventListener('click', () => {
   initGoogleButton();
 });
 
-// إرسال طلب المساعدة من القائمة الجانبية
+// إرسال طلب المساعدة من القائمة الجانبية مع إظهار الحقيقة بدقة
 $('drawerSubmitSupportBtn').addEventListener('click', async () => {
   const msg = $('drawerSupportText').value.trim();
   if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
   $('drawerSubmitSupportBtn').disabled = true;
+  showToast('جاري إرسال الرسالة إلى بريدك...');
 
   try {
     const res = await req(WORKER_URL + '/report', {
@@ -1494,19 +1495,23 @@ $('drawerSubmitSupportBtn').addEventListener('click', async () => {
       body: JSON.stringify({ message: msg, page: location.pathname })
     });
     const data = await res.json();
-    if (data.success) {
+    
+    if (res.ok && data.success) {
       $('drawerSupportText').value = '';
       closeModal(settingsDrawer);
-      showToast('تم تسجيل طلب المساعدة بنجاح');
+      showToast('وصلت الرسالة إلى بريدك بنجاح');
     } else {
-      showToast(data.error || 'تعذر الإرسال عبر الخادم');
-      // فتح تطبيق البريد كخيار مباشر بديل
-      window.open(`mailto:${data.targetEmail || 'redakune2333@gmail.com'}?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`);
+      // إظهار سبب الفشل الحقيقي للمستخدم
+      showToast(data.error || 'تعذر إرسال البريد تلقائياً');
+      
+      // فتح تطبيق Gmail مباشرة للمستخدم كحل بديل يضمن عدم ضياع رسالته
+      setTimeout(() => {
+        window.location.href = `mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`;
+      }, 1200);
     }
   } catch (e) {
-    // فتح البريد فوراً كبديل عند انقطاع الاتصال
-    window.open(`mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`);
-    showToast('تم فتح تطبيق البريد لإرسال رسالتك');
+    showToast('خطأ في الاتصال بالسيرفر، جاري فتح تطبيق البريد');
+    window.location.href = `mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`;
   }
   $('drawerSubmitSupportBtn').disabled = false;
 });
