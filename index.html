@@ -409,6 +409,87 @@ body {
   cursor: pointer;
 }
 
+/* Pro Showcase Modal UI */
+.pro-card {
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  gap: 18px;
+}
+.pro-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.pro-badge {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.pro-sub {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.pro-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pro-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.pro-feat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.pro-feat-icon svg { width: 16px; height: 16px; }
+.pro-feat-text { flex: 1; min-width: 0; }
+.pro-feat-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.pro-feat-desc {
+  font-size: 0.75rem;
+  color: var(--text-2);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.pro-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.pro-guarantee {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-weight: 700;
+}
+
 /* Settings Drawer */
 .drawer-overlay {
   position: fixed; inset: 0;
@@ -611,7 +692,7 @@ input:checked + .slider:before { transform: translateX(20px); }
       <span class="status-tag" id="statusBadge">نسخة تجريبية</span>
       <span id="userEmailBadge" style="display:none;color:var(--text-2);font-size:0.75rem;font-weight:700"></span>
     </div>
-    <button class="status-btn" id="activateBtn">تفعيل الاشتراك</button>
+    <button class="status-btn" id="activateBtn">ترقية الحساب</button>
   </div>
 
   <div id="g_id_signin" style="min-height:44px"></div>
@@ -678,6 +759,66 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 </div>
 
+<!-- Modal واجهة مزايا باقة المحترفين Pro (SaaS Showcase) -->
+<div class="modal-overlay" id="proModal" role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
+  <div class="modal-card pro-card">
+    <div class="pro-header">
+      <span class="pro-badge">باقة المحترفين PRO</span>
+      <div class="modal-title" id="proModalTitle">ضاعف مشاهداتك وسرعة إنتاجك مع Pro</div>
+      <p class="pro-sub">صُممت لصناع المحتوى المحترفين للتفوق على المنافسين وتوفير ساعات من التفكير والبحث اليدوي.</p>
+    </div>
+
+    <div class="pro-features-list">
+      <div class="pro-feature-item">
+        <div class="pro-feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        </div>
+        <div class="pro-feat-text">
+          <div class="pro-feat-title">استخراج فجوات المنافسين (Competitor Gap Intelligence)</div>
+          <div class="pro-feat-desc">حلل تعليقات منافسك واستخرج ما طلبه جمهوره ولم يجده، لتصنع الفيديو قبله وتجذب متابعيه.</div>
+        </div>
+      </div>
+
+      <div class="pro-feature-item">
+        <div class="pro-feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg>
+        </div>
+        <div class="pro-feat-text">
+          <div class="pro-feat-title">خطة فيديو فورية للتصوير (Instant Outline)</div>
+          <div class="pro-feat-desc">سنارة افتتاحية في أول 5 ثوانٍ + 3 محاور بالثواني + خاتمة ذكية، لتنتقل من الفكرة للتصوير في دقائق.</div>
+        </div>
+      </div>
+
+      <div class="pro-feature-item">
+        <div class="pro-feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.58 7.19a3 3 0 0 0-2.12-2.12C17.59 4.5 12 4.5 12 4.5s-5.59 0-7.46.57A3 3 0 0 0 2.42 7.19 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .42 4.81 3 3 0 0 0 2.12 2.12c1.87.57 7.46.57 7.46.57s5.59 0 7.46-.57a3 3 0 0 0 2.12-2.12A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </div>
+        <div class="pro-feat-text">
+          <div class="pro-feat-title">ربط القناة والاختيار التلقائي (1-Click Pro Channel)</div>
+          <div class="pro-feat-desc">استورد آخر فيديوهات قناتك واختر أي فيديو لتحليله فوراً دون الحاجة لنسخ ولصق الروابط يدوياً.</div>
+        </div>
+      </div>
+
+      <div class="pro-feature-item">
+        <div class="pro-feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="pro-feat-text">
+          <div class="pro-feat-title">سعة استهلاك مفتوحة (500 تحليل يومياً)</div>
+          <div class="pro-feat-desc">فحص حر غير مقيد لعدة قنوات ومنافسين مع حفظ سجل التحليلات بشكل سحابي دائم.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pro-cta-box">
+      <button class="submit-btn" id="openCodeFromProBtn">تفعيل اشتراكك الآن برمز التفعيل</button>
+      <span class="pro-guarantee">تفعيل فوري ودائم مربوط بحسابك على Google</span>
+    </div>
+
+    <button class="modal-close" id="closeProModal">إغلاق</button>
+  </div>
+</div>
+
 <!-- القائمة الجانبية (Settings Drawer) -->
 <div class="drawer-overlay" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
   <div class="drawer-content">
@@ -706,11 +847,12 @@ input:checked + .slider:before { transform: translateX(20px); }
       </label>
     </div>
 
+    <button class="status-btn" id="drawerProBtn" style="width:100%;padding:10px;text-align:center;background:var(--accent-soft);color:var(--accent);border-color:rgba(229,9,20,0.3)">ترقية الحساب إلى PRO</button>
     <button class="status-btn" id="drawerLogoutBtn" style="width:100%;padding:10px;text-align:center">تسجيل الخروج</button>
 
     <div class="support-box">
       <div class="support-title">طلب المساعدة</div>
-      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم :</p>
+      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم (redakune2333@gmail.com):</p>
       <textarea class="input-control" id="drawerSupportText" rows="3" placeholder="اكتب مشكلتك هنا..." style="resize:vertical"></textarea>
       <button class="submit-btn" id="drawerSubmitSupportBtn" style="padding:10px">إرسال للمشرف</button>
     </div>
@@ -740,14 +882,14 @@ input:checked + .slider:before { transform: translateX(20px); }
   </div>
 </div>
 
-<!-- Modal التفعيل -->
+<!-- Modal إدخال رمز التفعيل -->
 <div class="modal-overlay" id="codeModal" role="dialog" aria-modal="true" aria-labelledby="codeModalTitle">
   <div class="modal-card">
-    <div class="modal-title" id="codeModalTitle">تفعيل الاشتراك</div>
-    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه:</p>
+    <div class="modal-title" id="codeModalTitle">تفعيل رمز الاشتراك Pro</div>
+    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه لتفعيل ميزات باقة Pro فوراً:</p>
     <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: BETA2026" autocomplete="off">
-    <button class="submit-btn" id="submitPromoBtn">تفعيل</button>
-    <button class="modal-close" id="closeCodeModal">إغلاق</button>
+    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب</button>
+    <button class="modal-close" id="closeCodeModal">إلغاء</button>
   </div>
 </div>
 
@@ -778,7 +920,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
 const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
 
-// إدارة الثيم (فاتح افتراضياً)
 let currentTheme = localStorage.getItem('ciai_theme') || 'light';
 function applyTheme(theme) {
   if (theme === 'dark') {
@@ -818,7 +959,7 @@ const ICO = {
 };
 
 // ============================================
-// إدارة النوافذ والمودالات والقائمة الجانبية
+// إدارة النوافذ والمودالات
 // ============================================
 let lastFocusedEl = null;
 
@@ -850,6 +991,23 @@ $('themeToggleCheckbox').addEventListener('change', (e) => {
   applyTheme(e.target.checked ? 'dark' : 'light');
 });
 
+// نافذة عرض مزايا باقة Pro
+const proModal = $('proModal');
+$('closeProModal').addEventListener('click', () => closeModal(proModal));
+$('openCodeFromProBtn').addEventListener('click', () => {
+  closeModal(proModal);
+  openModal(codeModal);
+});
+
+$('drawerProBtn').addEventListener('click', () => {
+  closeModal(settingsDrawer);
+  if (isPro) {
+    showToast('حسابك مفعل بالفعل بباقة Pro');
+  } else {
+    openModal(proModal);
+  }
+});
+
 document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(overlay => {
   overlay.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.id !== 'welcomeModal') closeModal(overlay);
@@ -859,7 +1017,6 @@ document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(overlay => 
   });
 });
 
-// دوران Tab داخل الحوار النشط
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Tab') return;
   const active = document.querySelector('.modal-overlay.active, .drawer-overlay.active');
@@ -977,6 +1134,12 @@ async function loadSession() {
       statusBadge.style.color = '#16a34a';
       statusBadge.style.background = 'rgba(22, 163, 74, 0.1)';
       if (activateBtn) activateBtn.style.display = 'none';
+      $('drawerProBtn').textContent = 'أنت في باقة المحترفين PRO';
+    } else {
+      statusBadge.textContent = 'نسخة تجريبية';
+      activateBtn.style.display = 'inline-block';
+      activateBtn.onclick = () => openModal(proModal);
+      $('drawerProBtn').textContent = 'ترقية الحساب إلى PRO';
     }
 
     if (isPro) {
@@ -991,8 +1154,7 @@ async function loadSession() {
       channelNameDisplay.textContent = 'اختيار الفيديو من قناتك — ميزة Pro';
       channelVideosHolder.style.display = 'none';
       $('searchChannelBtn').onclick = () => {
-        showToast('ربط قناتك ميزة حصرية للمشتركين Pro');
-        openModal(codeModal);
+        openModal(proModal);
       };
     }
   } catch (e) {
@@ -1018,7 +1180,7 @@ async function runAnalysis() {
   if (compDrawer.classList.contains('open') && compUrl.value.trim()) {
     if (!isPro) {
       showMsg('مقارنة المنافسين ميزة حصرية للمشتركين Pro.');
-      openModal(codeModal);
+      openModal(proModal);
       return;
     }
     compareVideoId = extractId(compUrl.value);
@@ -1143,8 +1305,7 @@ function render(data) {
   });
   resBox.querySelectorAll('.pro-outline-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      showToast('خطة الفيديو حصرية للمشتركين Pro');
-      openModal(codeModal);
+      openModal(proModal);
     });
   });
 }
@@ -1157,8 +1318,7 @@ $('closeOutlineModal').addEventListener('click', () => closeModal(outlineModal))
 
 async function fetchOutline(idea) {
   if (!isPro) {
-    showToast('خطة الفيديو حصرية للمشتركين Pro');
-    openModal(codeModal);
+    openModal(proModal);
     return;
   }
   openModal(outlineModal);
@@ -1371,10 +1531,9 @@ loadMoreBtn.addEventListener('click', () => {
 });
 
 // ============================================
-// التفعيل
+// تفعيل رمز الاشتراك
 // ============================================
 const codeModal = $('codeModal');
-$('activateBtn').addEventListener('click', () => openModal(codeModal));
 $('closeCodeModal').addEventListener('click', () => closeModal(codeModal));
 
 $('promoCodeInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') $('submitPromoBtn').click(); });
@@ -1481,12 +1640,12 @@ $('drawerLogoutBtn').addEventListener('click', () => {
   initGoogleButton();
 });
 
-// إرسال طلب المساعدة من القائمة الجانبية مع إظهار الحقيقة بدقة
+// إرسال طلب المساعدة من القائمة الجانبية
 $('drawerSubmitSupportBtn').addEventListener('click', async () => {
   const msg = $('drawerSupportText').value.trim();
   if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
   $('drawerSubmitSupportBtn').disabled = true;
-  showToast('جاري إرسال الرسالة إلى المشرف...');
+  showToast('جاري إرسال الرسالة للمشرف...');
 
   try {
     const res = await req(WORKER_URL + '/report', {
@@ -1495,22 +1654,18 @@ $('drawerSubmitSupportBtn').addEventListener('click', async () => {
       body: JSON.stringify({ message: msg, page: location.pathname })
     });
     const data = await res.json();
-    
     if (res.ok && data.success) {
       $('drawerSupportText').value = '';
       closeModal(settingsDrawer);
-      showToast( 'وصلت الرسالة إلى المشرف بنجاح ');
+      showToast('وصلت رسالتك للمشرف بنجاح');
     } else {
-      // إظهار سبب الفشل الحقيقي للمستخدم
-      showToast(data.error || 'تعذر إرسال البريد تلقائياً');
-      
-      // فتح تطبيق Gmail مباشرة للمستخدم كحل بديل يضمن عدم ضياع رسالته
+      showToast(data.error || 'تعذر الإرسال التلقائي');
       setTimeout(() => {
         window.location.href = `mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`;
       }, 1200);
     }
   } catch (e) {
-    showToast('خطأ في الاتصال بالسيرفر، جاري فتح تطبيق البريد');
+    showToast('تعذر الاتصال، جاري فتح تطبيق البريد');
     window.location.href = `mailto:redakune2333@gmail.com?subject=${encodeURIComponent('طلب مساعدة Content Ideas AI')}&body=${encodeURIComponent(msg)}`;
   }
   $('drawerSubmitSupportBtn').disabled = false;
