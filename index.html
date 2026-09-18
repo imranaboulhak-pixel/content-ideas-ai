@@ -466,17 +466,8 @@ body {
 }
 .pro-feat-icon svg { width: 16px; height: 16px; }
 .pro-feat-text { flex: 1; min-width: 0; }
-.pro-feat-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.pro-feat-desc {
-  font-size: 0.75rem;
-  color: var(--text-2);
-  line-height: 1.4;
-  margin-top: 2px;
-}
+.pro-feat-title { font-size: 0.85rem; font-weight: 800; color: var(--text); }
+.pro-feat-desc { font-size: 0.75rem; color: var(--text-2); line-height: 1.4; margin-top: 2px; }
 .pro-cta-box {
   display: flex;
   flex-direction: column;
@@ -484,11 +475,7 @@ body {
   gap: 8px;
   margin-top: 4px;
 }
-.pro-guarantee {
-  font-size: 0.72rem;
-  color: var(--text-3);
-  font-weight: 700;
-}
+.pro-guarantee { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
 
 /* Settings Drawer */
 .drawer-overlay {
@@ -508,7 +495,7 @@ body {
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
@@ -597,6 +584,68 @@ input:checked + .slider:before { transform: translateX(20px); }
 .support-title { font-size: 0.875rem; font-weight: 800; }
 .support-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.4; }
 
+/* Owner Dashboard Styles */
+.admin-card {
+  max-width: 680px;
+  gap: 20px;
+}
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.admin-stat-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  text-align: center;
+}
+.admin-stat-num { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.admin-stat-label { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
+
+.admin-section-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-top: 10px;
+}
+.admin-table-wrap {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  text-align: right;
+}
+.admin-table th {
+  background: var(--surface-2);
+  padding: 8px 10px;
+  font-weight: 800;
+  position: sticky;
+  top: 0;
+}
+.admin-table td {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+}
+.code-pill {
+  display: inline-block;
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  user-select: all;
+}
+
 /* History */
 .history-list { list-style: none; display: flex; flex-direction: column; }
 .history-item {
@@ -655,7 +704,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 @media (max-width: 480px) {
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-grid, .admin-stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
   .video-thumb { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
@@ -692,7 +741,10 @@ input:checked + .slider:before { transform: translateX(20px); }
       <span class="status-tag" id="statusBadge">نسخة تجريبية</span>
       <span id="userEmailBadge" style="display:none;color:var(--text-2);font-size:0.75rem;font-weight:700"></span>
     </div>
-    <button class="status-btn" id="activateBtn">ترقية الحساب</button>
+    <div style="display:flex;gap:6px">
+      <button class="status-btn" id="adminHeaderBtn" style="display:none;background:var(--accent);color:#fff;border-color:var(--accent)">لوحة المالك</button>
+      <button class="status-btn" id="activateBtn">ترقية الحساب</button>
+    </div>
   </div>
 
   <div id="g_id_signin" style="min-height:44px"></div>
@@ -759,7 +811,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 </div>
 
-<!-- Modal واجهة مزايا باقة المحترفين Pro (SaaS Showcase) -->
+<!-- Modal واجهة مزايا باقة المحترفين Pro -->
 <div class="modal-overlay" id="proModal" role="dialog" aria-modal="true" aria-labelledby="proModalTitle">
   <div class="modal-card pro-card">
     <div class="pro-header">
@@ -804,18 +856,74 @@ input:checked + .slider:before { transform: translateX(20px); }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <div class="pro-feat-text">
-          <div class="pro-feat-title">سعة استهلاك مفتوحة (500 تحليل يومياً)</div>
-          <div class="pro-feat-desc">فحص حر غير مقيد لعدة قنوات ومنافسين مع حفظ سجل التحليلات بشكل سحابي دائم.</div>
+          <div class="pro-feat-title">سعة استهلاك مفتوحة (50 تحليلاً يومياً)</div>
+          <div class="pro-feat-desc">فحص مكثف وغير مقيد لعدة قنوات ومنافسين مع حفظ سجل التحليلات بشكل سحابي دائم لمدة 30 يوماً.</div>
         </div>
       </div>
     </div>
 
     <div class="pro-cta-box">
-      <button class="submit-btn" id="openCodeFromProBtn">تفعيل اشتراكك الآن برمز التفعيل</button>
-      <span class="pro-guarantee">تفعيل فوري ودائم مربوط بحسابك على Google</span>
+      <button class="submit-btn" id="openCodeFromProBtn">تفعيل اشتراكك برمز Pro</button>
+      <span class="pro-guarantee">اشتراك شهري دائم مربوط بحسابك على Google</span>
     </div>
 
     <button class="modal-close" id="closeProModal">إغلاق</button>
+  </div>
+</div>
+
+<!-- Modal لوحة تحكم المالك (Owner Dashboard) -->
+<div class="modal-overlay" id="adminDashboardModal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardTitle">
+  <div class="modal-card admin-card">
+    <div class="modal-title" id="adminDashboardTitle">لوحة تحكم مالك المنصة</div>
+    
+    <div class="admin-stat-grid">
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminTotalUsers">0</div>
+        <div class="admin-stat-label">المستخدمين المسجلين</div>
+      </div>
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminActivePro">0</div>
+        <div class="admin-stat-label">مشتركو Pro النشطين</div>
+      </div>
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminUsedToday">0</div>
+        <div class="admin-stat-label">تحليلات اليوم بالمنصة</div>
+      </div>
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminActiveToday">0</div>
+        <div class="admin-stat-label">المتصلون اليوم</div>
+      </div>
+    </div>
+
+    <div class="admin-section-title">توليد أكواد اشتراك Pro الشهرية (30 يوماً)</div>
+    <div style="display:flex;gap:8px">
+      <button class="submit-btn" id="adminGenCodesBtn" style="padding:10px 16px;width:auto">توليد 5 أكواد جديدة</button>
+      <span id="genStatus" style="font-size:0.8rem;color:var(--text-2);align-self:center"></span>
+    </div>
+    <div id="adminGeneratedCodesList" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+
+    <div class="admin-section-title">من دخل للموقع وسجل الزوار والمشتركين</div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>البريد الإلكتروني</th>
+            <th>الحالة</th>
+            <th>التحليلات</th>
+            <th>تاريخ الانتهاء</th>
+            <th>آخر ظهور</th>
+          </tr>
+        </thead>
+        <tbody id="adminUsersTableBody">
+          <tr><td colspan="5" style="text-align:center">جاري جلب البيانات...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="admin-section-title">رسائل الدعم وبلاغات المستخدمين</div>
+    <div id="adminReportsList" style="max-height:160px;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
+
+    <button class="modal-close" id="closeAdminDashboardModal">إغلاق لوحة التحكم</button>
   </div>
 </div>
 
@@ -847,6 +955,7 @@ input:checked + .slider:before { transform: translateX(20px); }
       </label>
     </div>
 
+    <button class="status-btn" id="drawerAdminBtn" style="display:none;width:100%;padding:10px;text-align:center;background:var(--accent);color:#fff;border-color:var(--accent)">فتح لوحة تحكم المالك</button>
     <button class="status-btn" id="drawerProBtn" style="width:100%;padding:10px;text-align:center;background:var(--accent-soft);color:var(--accent);border-color:rgba(229,9,20,0.3)">ترقية الحساب إلى PRO</button>
     <button class="status-btn" id="drawerLogoutBtn" style="width:100%;padding:10px;text-align:center">تسجيل الخروج</button>
 
@@ -886,9 +995,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="modal-overlay" id="codeModal" role="dialog" aria-modal="true" aria-labelledby="codeModalTitle">
   <div class="modal-card">
     <div class="modal-title" id="codeModalTitle">تفعيل رمز الاشتراك Pro</div>
-    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه لتفعيل ميزات باقة Pro فوراً:</p>
-    <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: BETA2026" autocomplete="off">
-    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب</button>
+    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه لتفعيل ميزات باقة Pro لمدة 30 يوماً:</p>
+    <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: PRO-XXXX-XXXX" autocomplete="off">
+    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب (30 يوماً)</button>
     <button class="modal-close" id="closeCodeModal">إلغاء</button>
   </div>
 </div>
@@ -1008,6 +1117,15 @@ $('drawerProBtn').addEventListener('click', () => {
   }
 });
 
+// لوحة تحكم المالك
+const adminDashboardModal = $('adminDashboardModal');
+$('closeAdminDashboardModal').addEventListener('click', () => closeModal(adminDashboardModal));
+$('adminHeaderBtn').addEventListener('click', openOwnerDashboard);
+$('drawerAdminBtn').addEventListener('click', () => {
+  closeModal(settingsDrawer);
+  openOwnerDashboard();
+});
+
 document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(overlay => {
   overlay.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.id !== 'welcomeModal') closeModal(overlay);
@@ -1094,6 +1212,7 @@ function esc(str) {
 // الجلسة والاستخدام
 // ============================================
 let isPro = false;
+let isOwnerUser = false;
 
 async function loadSession() {
   try {
@@ -1101,6 +1220,15 @@ async function loadSession() {
     const data = await res.json();
     usageLabel.textContent = 'تحليلات اليوم: ' + data.used + ' من ' + data.limit;
     isPro = !!(data.isSubscribed && !data.trialMode);
+    isOwnerUser = !!data.isAdmin;
+
+    if (isOwnerUser) {
+      $('adminHeaderBtn').style.display = 'inline-block';
+      $('drawerAdminBtn').style.display = 'block';
+    } else {
+      $('adminHeaderBtn').style.display = 'none';
+      $('drawerAdminBtn').style.display = 'none';
+    }
 
     if (!isPro) {
       compToggle.style.display = 'none';
@@ -1136,7 +1264,7 @@ async function loadSession() {
       if (activateBtn) activateBtn.style.display = 'none';
       $('drawerProBtn').textContent = 'أنت في باقة المحترفين PRO';
     } else {
-      statusBadge.textContent = 'نسخة تجريبية';
+      statusBadge.textContent = data.expiresAt ? 'انتهى الاشتراك' : 'نسخة تجريبية';
       activateBtn.style.display = 'inline-block';
       activateBtn.onclick = () => openModal(proModal);
       $('drawerProBtn').textContent = 'ترقية الحساب إلى PRO';
@@ -1161,6 +1289,91 @@ async function loadSession() {
     usageLabel.textContent = 'جاهز للتحليل';
   }
 }
+
+// ============================================
+// وظائف لوحة تحكم المالك
+// ============================================
+async function openOwnerDashboard() {
+  openModal(adminDashboardModal);
+  $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">جاري تحميل السجلات من قاعدة البيانات...</td></tr>';
+  
+  try {
+    const res = await req(WORKER_URL + '/admin/stats');
+    const data = await res.json();
+    if (!res.ok || data.error) {
+      showToast(data.error || 'تعذر جلب بيانات لوحة التحكم');
+      return;
+    }
+
+    $('adminTotalUsers').textContent = data.totalUsers || 0;
+    $('adminActivePro').textContent = data.activeSubscribers || 0;
+    $('adminUsedToday').textContent = data.usedToday || 0;
+    $('adminActiveToday').textContent = data.activeToday || 0;
+
+    // عرض الأكواد المتاحة
+    const codesList = data.unusedCodes || [];
+    $('adminGeneratedCodesList').innerHTML = codesList.length 
+      ? codesList.map(c => `<span class="code-pill">${c}</span>`).join('') 
+      : '<span style="font-size:0.75rem;color:var(--text-3)">لا توجد أكواد جاهزة حالياً. اضغط على الزر لتوليد دفعة جديدة.</span>';
+
+    // عرض جدول الزوار والمشتركين
+    const users = data.users || [];
+    if (!users.length) {
+      $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">لا يوجد مستخدمون مسجلون بعد.</td></tr>';
+    } else {
+      $('adminUsersTableBody').innerHTML = users.map(u => {
+        const statusText = u.isSubscribed ? '<span style="color:#16a34a;font-weight:700">مشترك Pro</span>' : '<span style="color:var(--text-3)">مجاني</span>';
+        const expDate = u.expiresAt ? new Date(u.expiresAt).toLocaleDateString('ar-MA') : '—';
+        const lastSeenDate = u.lastSeen ? new Date(u.lastSeen).toLocaleDateString('ar-MA') : '—';
+        return `<tr>
+          <td><strong>${esc(u.email)}</strong></td>
+          <td>${statusText}</td>
+          <td>${u.totalAnalyses}</td>
+          <td>${expDate}</td>
+          <td>${lastSeenDate}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // عرض البلاغات
+    const reports = data.reports || [];
+    $('adminReportsList').innerHTML = reports.length 
+      ? reports.map(r => `
+        <div style="background:var(--surface-2);padding:8px 10px;border-radius:6px;font-size:0.78rem">
+          <div style="display:flex;justify-content:space-between;color:var(--text-3);font-size:0.7rem">
+            <span>${esc(r.email)}</span>
+            <span>${new Date(r.date).toLocaleString('ar-MA')}</span>
+          </div>
+          <div style="margin-top:4px;color:var(--text)">${esc(r.message)}</div>
+        </div>
+      `).join('')
+      : '<div style="font-size:0.75rem;color:var(--text-3);text-align:center">لا توجد بلاغات مسجلة.</div>';
+
+  } catch (e) {
+    showToast('خطأ في الاتصال بالخادم لجلب بيانات المالك');
+  }
+}
+
+$('adminGenCodesBtn').addEventListener('click', async () => {
+  $('genStatus').textContent = 'جاري التوليد...';
+  $('adminGenCodesBtn').disabled = true;
+  try {
+    const res = await req(WORKER_URL + '/admin/gen?count=5', { method: 'POST' });
+    const data = await res.json();
+    if (res.ok && data.codes) {
+      $('genStatus').textContent = 'تم توليد 5 أكواد جديدة بنجاح';
+      const pills = data.codes.map(c => `<span class="code-pill">${c}</span>`).join('');
+      $('adminGeneratedCodesList').innerHTML = pills + $('adminGeneratedCodesList').innerHTML;
+      showToast('تم توليد الأكواد بنجاح');
+    } else {
+      $('genStatus').textContent = 'فشل التوليد';
+      showToast(data.error || 'تعذر توليد الأكواد');
+    }
+  } catch (e) {
+    $('genStatus').textContent = 'خطأ في الاتصال';
+  }
+  $('adminGenCodesBtn').disabled = false;
+});
 
 // ============================================
 // التحليل
@@ -1548,7 +1761,7 @@ $('submitPromoBtn').addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.success) {
-      showToast('تم التفعيل بنجاح');
+      showToast(data.message || 'تم التفعيل بنجاح لمدة 30 يوماً');
       closeModal(codeModal);
       loadSession();
     } else {
