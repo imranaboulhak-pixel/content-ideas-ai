@@ -585,105 +585,126 @@ input:checked + .slider:before { transform: translateX(20px); }
 .support-title { font-size: 0.875rem; font-weight: 800; }
 .support-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.4; }
 
-/* Owner Dashboard Enhanced Metrics */
+/* Owner Multi-Page Dashboard UI */
 .admin-card {
-  max-width: 680px;
-  gap: 16px;
+  max-width: 700px;
+  padding: 16px;
+  gap: 14px;
 }
+.admin-nav {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-2);
+  padding: 4px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.admin-tab-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.admin-tab-btn.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.admin-page { display: none; flex-direction: column; gap: 12px; }
+.admin-page.active { display: flex; }
+
 .admin-stat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
 .admin-stat-box {
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 10px;
+  padding: 12px;
   text-align: center;
 }
-.admin-stat-num { font-size: 1.25rem; font-weight: 800; color: var(--accent); }
+.admin-stat-num { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
 .admin-stat-label { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
 
-.admin-section-title {
-  font-size: 0.9rem;
-  font-weight: 800;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
-  margin-top: 6px;
-}
-.admin-table-wrap {
-  max-height: 220px;
-  overflow-y: auto;
+.user-card-item {
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
+.user-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.user-card-email { font-size: 0.85rem; font-weight: 800; color: var(--text); }
+.user-card-badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.badge-pro { background: rgba(22, 163, 74, 0.1); color: #16a34a; }
+.badge-trial { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
+.badge-free { background: var(--surface); color: var(--text-3); border: 1px solid var(--border); }
+
+.user-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
   font-size: 0.75rem;
-  text-align: right;
+  color: var(--text-2);
 }
-.admin-table th {
-  background: var(--surface-2);
+.user-metrics-row div strong { color: var(--text); }
+
+.user-history-box {
+  background: var(--surface);
+  border-radius: 6px;
   padding: 8px 10px;
-  font-weight: 800;
-  position: sticky;
-  top: 0;
+  font-size: 0.72rem;
+  border: 1px solid var(--border);
 }
-.admin-table td {
-  padding: 8px 10px;
-  border-top: 1px solid var(--border);
-}
+.user-history-title { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.user-history-item { color: var(--text-2); padding: 2px 0; border-bottom: 1px dashed var(--border); }
+.user-history-item:last-child { border-bottom: none; }
+
 .code-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: 100%;
+}
+.copy-subcode-btn {
   background: var(--surface-2);
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border);
+  color: var(--text);
   padding: 4px 8px;
   border-radius: 6px;
-  font-family: monospace;
-  font-size: 0.8rem;
-  font-weight: 700;
-  user-select: all;
-}
-
-/* History */
-.history-list { list-style: none; display: flex; flex-direction: column; }
-.history-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-family: var(--font);
   cursor: pointer;
 }
-.history-thumb {
-  width: 72px; aspect-ratio: 16 / 9;
-  border-radius: 6px;
-  object-fit: cover;
-  background: var(--surface-2);
-  flex-shrink: 0;
-}
-.history-info { flex: 1; min-width: 0; }
-.history-title { font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.history-date { font-size: 0.72rem; color: var(--text-3); }
-.load-more-btn {
-  width: 100%;
-  background: var(--surface);
-  border: 1px dashed var(--border);
-  color: var(--text-2);
-  padding: 12px;
-  border-radius: var(--radius);
-  font-family: var(--font); font-size: 0.85rem; font-weight: 700;
-  cursor: pointer;
-}
-.empty-note { text-align: center; padding: 32px 0; color: var(--text-3); font-size: 0.85rem; }
-
-/* Outline */
-.outline-item { background: var(--surface-2); border-radius: 8px; padding: 12px; }
-.outline-head { font-size: 0.78rem; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
-.outline-body { font-size: 0.875rem; line-height: 1.5; }
-.outline-point { margin-bottom: 8px; padding-inline-start: 10px; border-inline-start: 2px solid var(--border); }
-.outline-point:last-child { margin-bottom: 0; }
-.outline-dur { font-size: 0.72rem; color: var(--text-3); }
 
 /* Toast */
 .toast {
@@ -706,7 +727,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
-  .admin-stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
   .video-thumb { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
@@ -859,81 +879,93 @@ input:checked + .slider:before { transform: translateX(20px); }
         </div>
         <div class="pro-feat-text">
           <div class="pro-feat-title">سعة استهلاك مفتوحة (50 تحليلاً يومياً)</div>
-          <div class="pro-feat-desc">فحص مكثف وغير مقيد لعدة قنوات ومنافسين مع حفظ سجل التحليلات بشكل سحابي دائم لمدة 30 يوماً.</div>
+          <div class="pro-feat-desc">فحص مكثف للقنوات والمنافسين مع حفظ سجل التحليلات سحابياً.</div>
         </div>
       </div>
     </div>
 
     <div class="pro-cta-box">
-      <button class="submit-btn" id="openCodeFromProBtn">تفعيل اشتراكك برمز Pro</button>
-      <span class="pro-guarantee">اشتراك شهري دائم مربوط بحسابك على Google</span>
+      <button class="submit-btn" id="openCodeFromProBtn">تفعيل اشتراكك برمز التفعيل</button>
+      <span class="pro-guarantee">تفعيل فوري مربوط بحسابك على Google</span>
     </div>
 
     <button class="modal-close" id="closeProModal">إغلاق</button>
   </div>
 </div>
 
-<!-- Modal لوحة تحكم المالك المتطورة (Commercial Command Center) -->
+<!-- Modal لوحة تحكم المالك المقسمة على 4 صفحات مخصصة للهاتف -->
 <div class="modal-overlay" id="adminDashboardModal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardTitle">
   <div class="modal-card admin-card">
-    <div class="modal-title" id="adminDashboardTitle">لوحة التحكم والمؤشرات التجارية للمالك</div>
-    
-    <div class="admin-stat-grid">
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminTotalUsers">0</div>
-        <div class="admin-stat-label">إجمالي المسجلين</div>
-      </div>
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminActivePro">0</div>
-        <div class="admin-stat-label">المشتركون النشطون (Pro)</div>
-      </div>
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminConvRate">0%</div>
-        <div class="admin-stat-label">معدل التحويل المالي</div>
-      </div>
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminActiveToday">0</div>
-        <div class="admin-stat-label">حضور اليوم (Active)</div>
-      </div>
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminUsedToday">0</div>
-        <div class="admin-stat-label">تحليلات المنصة اليوم</div>
-      </div>
-      <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminExpiringSoon" style="color:#eab308">0</div>
-        <div class="admin-stat-label">ينتهي اشتراكهم خلال 3 أيام</div>
+    <div class="modal-title" id="adminDashboardTitle">لوحة تحكم المالك المفصلة</div>
+
+    <!-- شريط التنقل بين الصفحات الأربعة -->
+    <div class="admin-nav" role="tablist">
+      <button class="admin-tab-btn active" id="btnPageOverview">المؤشرات</button>
+      <button class="admin-tab-btn" id="btnPageUsers">سجل الزوار والمحتوى</button>
+      <button class="admin-tab-btn" id="btnPageCodes">توليد الأكواد</button>
+      <button class="admin-tab-btn" id="btnPageReports">الشكاوى والدعم</button>
+    </div>
+
+    <!-- الصفحة 1: المؤشرات العامة -->
+    <div class="admin-page active" id="adminPageOverview">
+      <div class="admin-stat-grid">
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminTotalUsers">0</div>
+          <div class="admin-stat-label">المستخدمين المسجلين</div>
+        </div>
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminActivePro">0</div>
+          <div class="admin-stat-label">المشتركين النشطين (Pro)</div>
+        </div>
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminActiveToday">0</div>
+          <div class="admin-stat-label">المتصلون اليوم فعلياً</div>
+        </div>
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminUsedToday">0</div>
+          <div class="admin-stat-label">تحليلات اليوم بالمنصة</div>
+        </div>
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminConvRate">0%</div>
+          <div class="admin-stat-label">معدل التحويل إلى Pro</div>
+        </div>
+        <div class="admin-stat-box">
+          <div class="admin-stat-num" id="adminExpiringSoon" style="color:#ca8a04">0</div>
+          <div class="admin-stat-label">ينتهي اشتراكهم خلال 3 أيام</div>
+        </div>
       </div>
     </div>
 
-    <div class="admin-section-title">توليد أكواد اشتراك Pro الشهرية (30 يوماً)</div>
-    <div style="display:flex;gap:8px">
-      <button class="submit-btn" id="adminGenCodesBtn" style="padding:10px 16px;width:auto">توليد 5 أكواد جديدة</button>
-      <span id="genStatus" style="font-size:0.8rem;color:var(--text-2);align-self:center"></span>
-    </div>
-    <div id="adminGeneratedCodesList" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
-
-    <div class="admin-section-title">سجل الزوار والمشتركين الفعليين</div>
-    <div class="admin-table-wrap">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>البريد الإلكتروني</th>
-            <th>حالة الاشتراك</th>
-            <th>التحليلات</th>
-            <th>تاريخ الانتهاء</th>
-            <th>آخر ظهور</th>
-          </tr>
-        </thead>
-        <tbody id="adminUsersTableBody">
-          <tr><td colspan="5" style="text-align:center">جاري جلب البيانات...</td></tr>
-        </tbody>
-      </table>
+    <!-- الصفحة 2: تفاصيل كل مستخدم (الموقع، التوكنز، الوقت، الفيديوهات) -->
+    <div class="admin-page" id="adminPageUsers">
+      <div style="font-size:0.75rem;color:var(--text-3)">قائمة تفصيلية بكل مستخدم وموقعه الجغرافي واستهلاكه:</div>
+      <div id="adminUsersCardsList" style="display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto">
+        <div style="text-align:center;padding:20px;font-size:0.8rem;color:var(--text-3)">جاري جلب تفاصيل المستخدمين...</div>
+      </div>
     </div>
 
-    <div class="admin-section-title">رسائل الدعم وبلاغات المستخدمين</div>
-    <div id="adminReportsList" style="max-height:140px;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
+    <!-- الصفحة 3: توليد الأكواد (30 يوماً وتجربة 3 أيام) -->
+    <div class="admin-page" id="adminPageCodes">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:0.8rem;font-weight:700">توليد أكواد جديدة للزبائن:</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="submit-btn" id="genProCodeBtn" style="padding:10px;font-size:0.8rem">كود شهري (30 يوماً)</button>
+          <button class="submit-btn" id="genTrialCodeBtn" style="padding:10px;font-size:0.8rem;background:var(--surface-2);color:var(--text);border:1px solid var(--border)">كود تجربة (3 أيام)</button>
+        </div>
+        <div id="genStatus" style="font-size:0.75rem;color:var(--text-2);text-align:center"></div>
+      </div>
 
-    <button class="modal-close" id="closeAdminDashboardModal">إغلاق لوحة التحكم</button>
+      <div style="font-size:0.8rem;font-weight:700;margin-top:8px">الأكواد الجاهزة غير المستخدمة حالياً:</div>
+      <div id="adminUnusedCodesContainer" style="display:flex;flex-direction:column;gap:6px;max-height:45vh;overflow-y:auto"></div>
+    </div>
+
+    <!-- الصفحة 4: الشكاوى والدعم ومن أرسلها -->
+    <div class="admin-page" id="adminPageReports">
+      <div style="font-size:0.75rem;color:var(--text-3)">الرسائل والبلاغات الواردة من المستخدمين:</div>
+      <div id="adminReportsContainer" style="display:flex;flex-direction:column;gap:8px;max-height:60vh;overflow-y:auto"></div>
+    </div>
+
+    <button class="modal-close" id="closeAdminDashboardModal">إغلاق لوحة المالك</button>
   </div>
 </div>
 
@@ -971,7 +1003,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     <div class="support-box">
       <div class="support-title">طلب المساعدة</div>
-      <p class="support-note">أرسل وصف المشكلة وسيتم تحويلها مباشرة إلى فريق الدعم (redakune2333@gmail.com):</p>
+      <p class="support-note">أرسل وصف المشكلة وسيصل مباشرة إلى فريق الدعم (redakune2333@gmail.com):</p>
       <textarea class="input-control" id="drawerSupportText" rows="3" placeholder="اكتب مشكلتك هنا..." style="resize:vertical"></textarea>
       <button class="submit-btn" id="drawerSubmitSupportBtn" style="padding:10px">إرسال للمشرف</button>
     </div>
@@ -1005,9 +1037,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="modal-overlay" id="codeModal" role="dialog" aria-modal="true" aria-labelledby="codeModalTitle">
   <div class="modal-card">
     <div class="modal-title" id="codeModalTitle">تفعيل رمز الاشتراك Pro</div>
-    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه لتفعيل ميزات باقة Pro لمدة 30 يوماً:</p>
-    <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: PRO-XXXX-XXXX" autocomplete="off">
-    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب (30 يوماً)</button>
+    <p style="font-size:0.85rem;color:var(--text-2)">أدخل رمز التفعيل الذي حصلت عليه لتفعيل ميزات باقة Pro:</p>
+    <input type="text" class="input-control" id="promoCodeInput" placeholder="مثال: PRO-XXXX-XXXX أو TRIAL-XXXX-XXXX" autocomplete="off">
+    <button class="submit-btn" id="submitPromoBtn">تفعيل الحساب</button>
     <button class="modal-close" id="closeCodeModal">إلغاء</button>
   </div>
 </div>
@@ -1034,7 +1066,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
 // ============================================
-// الإعداد والهوية والسمة (Theme)
+// الإعداد والهوية والسمة
 // ============================================
 const WORKER_URL = 'https://youtube-api.imranaboulhak.workers.dev';
 const GOOGLE_CLIENT_ID = '362233037525-joge9s8giejs8isq1af59duu966jdguf.apps.googleusercontent.com';
@@ -1061,6 +1093,13 @@ function req(url, opt = {}) {
   opt.headers['X-User-Token'] = userToken;
   return fetch(url, opt);
 }
+
+// نبضات تسجيل الوقت الفعلي للمستخدم (كل دقيقة نشطة)
+setInterval(() => {
+  if (document.visibilityState === 'visible' && userToken && userToken.startsWith('gtok_')) {
+    req(WORKER_URL + '/ping', { method: 'POST' }).catch(() => {});
+  }
+}, 60000);
 
 const $ = (id) => document.getElementById(id);
 const mainUrl = $('mainUrl'), compUrl = $('compUrl');
@@ -1151,6 +1190,25 @@ document.addEventListener('keydown', (e) => {
   const first = focusables[0], last = focusables[focusables.length - 1];
   if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+// ============================================
+// التنقل بين صفحات لوحة تحكم المالك الأربعة
+// ============================================
+const adminPages = {
+  btnPageOverview: $('adminPageOverview'),
+  btnPageUsers: $('adminPageUsers'),
+  btnPageCodes: $('adminPageCodes'),
+  btnPageReports: $('adminPageReports')
+};
+
+Object.keys(adminPages).forEach(btnId => {
+  $(btnId).addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    $(btnId).classList.add('active');
+    adminPages[btnId].classList.add('active');
+  });
 });
 
 // ============================================
@@ -1265,13 +1323,13 @@ async function loadSession() {
     }
 
     if (data.isSubscribed && !data.trialMode) {
-      statusBadge.textContent = 'مشترك PRO';
+      statusBadge.textContent = data.planDurationDays === 3 ? 'تجربة Pro (3 أيام)' : 'مشترك PRO';
       statusBadge.style.color = '#16a34a';
       statusBadge.style.background = 'rgba(22, 163, 74, 0.1)';
       if (activateBtn) activateBtn.style.display = 'none';
       $('drawerProBtn').textContent = 'أنت في باقة المحترفين PRO';
     } else {
-      statusBadge.textContent = data.expiresAt ? 'انتهى الاشتراك' : 'نسخة تجريبية';
+      statusBadge.textContent = data.expiresAt ? 'انتهت الصلاحية' : 'نسخة تجريبية';
       activateBtn.style.display = 'inline-block';
       activateBtn.onclick = () => openModal(proModal);
       $('drawerProBtn').textContent = 'ترقية الحساب إلى PRO';
@@ -1298,11 +1356,11 @@ async function loadSession() {
 }
 
 // ============================================
-// وظائف لوحة تحكم المالك والمؤشرات التجارية
+// لوحة تحكم المالك المفصلة والمقسمة
 // ============================================
 async function openOwnerDashboard() {
   openModal(adminDashboardModal);
-  $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">جاري استرجاع السجلات المتوازية...</td></tr>';
+  $('adminUsersCardsList').innerHTML = '<div style="text-align:center;padding:20px;font-size:0.8rem;color:var(--text-3)">جاري استرجاع تفاصيل كل مستخدم...</div>';
   
   try {
     const res = await req(WORKER_URL + '/admin/stats');
@@ -1312,6 +1370,7 @@ async function openOwnerDashboard() {
       return;
     }
 
+    // 1. تحديث صفحة المؤشرات
     $('adminTotalUsers').textContent = data.totalUsers ?? 0;
     $('adminActivePro').textContent = data.activeSubscribers ?? 0;
     $('adminConvRate').textContent = data.conversionRate ?? '0%';
@@ -1319,67 +1378,113 @@ async function openOwnerDashboard() {
     $('adminUsedToday').textContent = data.usedToday ?? 0;
     $('adminExpiringSoon').textContent = data.expiringSoon ?? 0;
 
-    const codesList = data.unusedCodes || [];
-    $('adminGeneratedCodesList').innerHTML = codesList.length 
-      ? codesList.map(c => `<span class="code-pill">${c}</span>`).join('') 
-      : '<span style="font-size:0.75rem;color:var(--text-3)">لا توجد أكواد جاهزة للبيع حالياً. اضغط على الزر لتوليد دفعة جديدة.</span>';
-
+    // 2. تحديث صفحة سجل الزوار والمحتوى المفصل
     const users = data.users || [];
     if (!users.length) {
-      $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">لا يوجد مستخدمون مسجلون بعد.</td></tr>';
+      $('adminUsersCardsList').innerHTML = '<div style="text-align:center;padding:20px;font-size:0.8rem;color:var(--text-3)">لا يوجد مستخدمون مسجلون بعد.</div>';
     } else {
-      $('adminUsersTableBody').innerHTML = users.map(u => {
-        const statusText = u.isSubscribed ? '<span style="color:#16a34a;font-weight:700">مشترك Pro</span>' : '<span style="color:var(--text-3)">مجاني</span>';
-        const expDate = u.expiresAt ? new Date(u.expiresAt).toLocaleDateString('ar-MA') : '—';
-        const lastSeenDate = u.lastSeen ? new Date(u.lastSeen).toLocaleDateString('ar-MA') : '—';
-        return `<tr>
-          <td><strong>${esc(u.email)}</strong></td>
-          <td>${statusText}</td>
-          <td>${u.totalAnalyses}</td>
-          <td>${expDate}</td>
-          <td>${lastSeenDate}</td>
-        </tr>`;
+      $('adminUsersCardsList').innerHTML = users.map(u => {
+        let badgeHtml = '<span class="user-card-badge badge-free">مجاني</span>';
+        if (u.isSubscribed) {
+          badgeHtml = u.planDurationDays === 3 
+            ? `<span class="user-card-badge badge-trial">تجربة 3 أيام (متبقي ${u.remainingDays} يوم)</span>`
+            : `<span class="user-card-badge badge-pro">مشترك Pro (متبقي ${u.remainingDays} يوم)</span>`;
+        }
+
+        const recentListHtml = (u.recentAnalyses && u.recentAnalyses.length)
+          ? u.recentAnalyses.map(v => `<div class="user-history-item">- ${esc(v.title)} (${v.tokens} توكن)</div>`).join('')
+          : '<div style="color:var(--text-3)">لم يحلل أي فيديو بعد.</div>';
+
+        return `
+          <div class="user-card-item">
+            <div class="user-card-header">
+              <span class="user-card-email">${esc(u.email)}</span>
+              ${badgeHtml}
+            </div>
+            <div class="user-metrics-row">
+              <div>الموقع: <strong>${esc(u.country)} - ${esc(u.city)}</strong></div>
+              <div>وقت الاستخدام النشط: <strong>${u.activeMinutes} دقيقة</strong></div>
+              <div>إجمالي التوكنز: <strong>${u.totalTokens.toLocaleString()} توكن</strong></div>
+              <div>عدد التحليلات: <strong>${u.totalAnalyses} تحليل</strong></div>
+              <div>القناة المربوطة: <strong>${esc(u.channelTitle)}</strong></div>
+              <div>آخر ظهور: <strong>${u.lastSeen ? new Date(u.lastSeen).toLocaleDateString('ar-MA') : '—'}</strong></div>
+            </div>
+            <div class="user-history-box">
+              <div class="user-history-title">آخر المحتويات التي حللها:</div>
+              ${recentListHtml}
+            </div>
+          </div>
+        `;
       }).join('');
     }
 
+    // 3. تحديث صفحة الأكواد الجاهزة
+    renderUnusedCodes(data.unusedCodes || []);
+
+    // 4. تحديث صفحة الشكاوى مع معرفة من أرسلها
     const reports = data.reports || [];
-    $('adminReportsList').innerHTML = reports.length 
+    $('adminReportsContainer').innerHTML = reports.length 
       ? reports.map(r => `
-        <div style="background:var(--surface-2);padding:8px 10px;border-radius:6px;font-size:0.78rem">
-          <div style="display:flex;justify-content:space-between;color:var(--text-3);font-size:0.7rem">
-            <span>${esc(r.email)}</span>
+        <div style="background:var(--surface-2);border:1px solid var(--border);padding:10px 12px;border-radius:8px;font-size:0.8rem">
+          <div style="display:flex;justify-content:space-between;color:var(--text-3);font-size:0.72rem;margin-bottom:4px">
+            <strong style="color:var(--accent)">المرسل: ${esc(r.email)}</strong>
             <span>${new Date(r.date).toLocaleString('ar-MA')}</span>
           </div>
-          <div style="margin-top:4px;color:var(--text)">${esc(r.message)}</div>
+          <div style="color:var(--text);margin-top:2px;line-height:1.5">${esc(r.message)}</div>
+          <div style="margin-top:6px">
+            <a href="mailto:${esc(r.email)}?subject=بخصوص طلب المساعدة في Content Ideas AI" style="font-size:0.72rem;color:var(--accent);text-decoration:underline">مراسلة المستخدم عبر البريد</a>
+          </div>
         </div>
       `).join('')
-      : '<div style="font-size:0.75rem;color:var(--text-3);text-align:center">لا توجد بلاغات مسجلة.</div>';
+      : '<div style="font-size:0.8rem;color:var(--text-3);text-align:center;padding:24px">لا توجد رسائل دعم واردة.</div>';
 
   } catch (e) {
     showToast('خطأ في الاتصال بالخادم لجلب بيانات المالك');
   }
 }
 
-$('adminGenCodesBtn').addEventListener('click', async () => {
+function renderUnusedCodes(codes) {
+  $('adminUnusedCodesContainer').innerHTML = codes.length 
+    ? codes.map(item => `
+      <div class="code-pill">
+        <div>
+          <span>${item.code}</span>
+          <span style="font-size:0.7rem;color:var(--accent);margin-inline-start:6px">(${item.durationDays} أيام)</span>
+        </div>
+        <button class="copy-subcode-btn" data-code="${item.code}">نسخ</button>
+      </div>
+    `).join('')
+    : '<div style="font-size:0.75rem;color:var(--text-3);text-align:center;padding:12px">لا توجد أكواد جاهزة. ولد دفعة جديدة من الأزرار أعلاه.</div>';
+
+  document.querySelectorAll('.copy-subcode-btn').forEach(btn => {
+    btn.onclick = () => {
+      navigator.clipboard.writeText(btn.getAttribute('data-code')).then(() => showToast('تم نسخ الكود'));
+    };
+  });
+}
+
+// توليد كود Pro شهري (30 يوماً)
+$('genProCodeBtn').onclick = () => generateBatch('pro', 5);
+// توليد كود تجريبي (3 أيام)
+$('genTrialCodeBtn').onclick = () => generateBatch('trial', 5);
+
+async function generateBatch(type, count) {
   $('genStatus').textContent = 'جاري التوليد...';
-  $('adminGenCodesBtn').disabled = true;
   try {
-    const res = await req(WORKER_URL + '/admin/gen?count=5', { method: 'POST' });
+    const res = await req(`${WORKER_URL}/admin/gen?type=${type}&count=${count}`, { method: 'POST' });
     const data = await res.json();
     if (res.ok && data.codes) {
-      $('genStatus').textContent = 'تم توليد 5 أكواد جديدة بنجاح';
-      const pills = data.codes.map(c => `<span class="code-pill">${c}</span>`).join('');
-      $('adminGeneratedCodesList').innerHTML = pills + $('adminGeneratedCodesList').innerHTML;
-      showToast('تم توليد الأكواد بنجاح');
+      $('genStatus').textContent = `تم توليد 5 أكواد (${data.durationDays} أيام) بنجاح`;
+      showToast('تم إنشاء الأكواد بنجاح');
+      openOwnerDashboard(); // إعادة تحميل السجلات
     } else {
       $('genStatus').textContent = 'فشل التوليد';
       showToast(data.error || 'تعذر توليد الأكواد');
     }
   } catch (e) {
-    $('genStatus').textContent = 'خطأ في الاتصال';
+    $('genStatus').textContent = 'خطأ في الاتصال بالسيرفر';
   }
-  $('adminGenCodesBtn').disabled = false;
-});
+}
 
 // ============================================
 // التحليل
@@ -1750,7 +1855,7 @@ loadMoreBtn.addEventListener('click', () => {
 });
 
 // ============================================
-// تفعيل رمز الاشتراك
+// تفعيل رمز الاشتراك (يدعم 30 يوماً و 3 أيام تجريبية)
 // ============================================
 const codeModal = $('codeModal');
 $('closeCodeModal').addEventListener('click', () => closeModal(codeModal));
@@ -1767,7 +1872,7 @@ $('submitPromoBtn').addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.success) {
-      showToast(data.message || 'تم التفعيل بنجاح لمدة 30 يوماً');
+      showToast(data.message || `تم تفعيل الحساب بنجاح`);
       closeModal(codeModal);
       loadSession();
     } else {
