@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -584,14 +585,14 @@ input:checked + .slider:before { transform: translateX(20px); }
 .support-title { font-size: 0.875rem; font-weight: 800; }
 .support-note { font-size: 0.75rem; color: var(--text-3); line-height: 1.4; }
 
-/* Owner Dashboard Styles */
+/* Owner Dashboard Enhanced Metrics */
 .admin-card {
   max-width: 680px;
-  gap: 20px;
+  gap: 16px;
 }
 .admin-stat-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 .admin-stat-box {
@@ -601,18 +602,18 @@ input:checked + .slider:before { transform: translateX(20px); }
   padding: 10px;
   text-align: center;
 }
-.admin-stat-num { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.admin-stat-num { font-size: 1.25rem; font-weight: 800; color: var(--accent); }
 .admin-stat-label { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
 
 .admin-section-title {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 800;
   border-bottom: 1px solid var(--border);
   padding-bottom: 6px;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 .admin-table-wrap {
-  max-height: 240px;
+  max-height: 220px;
   overflow-y: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -704,7 +705,8 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 @media (max-width: 480px) {
-  .stat-grid, .admin-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
   .video-thumb { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
@@ -871,27 +873,35 @@ input:checked + .slider:before { transform: translateX(20px); }
   </div>
 </div>
 
-<!-- Modal لوحة تحكم المالك (Owner Dashboard) -->
+<!-- Modal لوحة تحكم المالك المتطورة (Commercial Command Center) -->
 <div class="modal-overlay" id="adminDashboardModal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardTitle">
   <div class="modal-card admin-card">
-    <div class="modal-title" id="adminDashboardTitle">لوحة تحكم مالك المنصة</div>
+    <div class="modal-title" id="adminDashboardTitle">لوحة التحكم والمؤشرات التجارية للمالك</div>
     
     <div class="admin-stat-grid">
       <div class="admin-stat-box">
         <div class="admin-stat-num" id="adminTotalUsers">0</div>
-        <div class="admin-stat-label">المستخدمين المسجلين</div>
+        <div class="admin-stat-label">إجمالي المسجلين</div>
       </div>
       <div class="admin-stat-box">
         <div class="admin-stat-num" id="adminActivePro">0</div>
-        <div class="admin-stat-label">مشتركو Pro النشطين</div>
+        <div class="admin-stat-label">المشتركون النشطون (Pro)</div>
       </div>
       <div class="admin-stat-box">
-        <div class="admin-stat-num" id="adminUsedToday">0</div>
-        <div class="admin-stat-label">تحليلات اليوم بالمنصة</div>
+        <div class="admin-stat-num" id="adminConvRate">0%</div>
+        <div class="admin-stat-label">معدل التحويل المالي</div>
       </div>
       <div class="admin-stat-box">
         <div class="admin-stat-num" id="adminActiveToday">0</div>
-        <div class="admin-stat-label">المتصلون اليوم</div>
+        <div class="admin-stat-label">حضور اليوم (Active)</div>
+      </div>
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminUsedToday">0</div>
+        <div class="admin-stat-label">تحليلات المنصة اليوم</div>
+      </div>
+      <div class="admin-stat-box">
+        <div class="admin-stat-num" id="adminExpiringSoon" style="color:#eab308">0</div>
+        <div class="admin-stat-label">ينتهي اشتراكهم خلال 3 أيام</div>
       </div>
     </div>
 
@@ -902,13 +912,13 @@ input:checked + .slider:before { transform: translateX(20px); }
     </div>
     <div id="adminGeneratedCodesList" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
 
-    <div class="admin-section-title">من دخل للموقع وسجل الزوار والمشتركين</div>
+    <div class="admin-section-title">سجل الزوار والمشتركين الفعليين</div>
     <div class="admin-table-wrap">
       <table class="admin-table">
         <thead>
           <tr>
             <th>البريد الإلكتروني</th>
-            <th>الحالة</th>
+            <th>حالة الاشتراك</th>
             <th>التحليلات</th>
             <th>تاريخ الانتهاء</th>
             <th>آخر ظهور</th>
@@ -921,7 +931,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     </div>
 
     <div class="admin-section-title">رسائل الدعم وبلاغات المستخدمين</div>
-    <div id="adminReportsList" style="max-height:160px;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
+    <div id="adminReportsList" style="max-height:140px;overflow-y:auto;display:flex;flex-direction:column;gap:8px"></div>
 
     <button class="modal-close" id="closeAdminDashboardModal">إغلاق لوحة التحكم</button>
   </div>
@@ -1091,7 +1101,6 @@ function closeModal(el) {
   lastFocusedEl = null;
 }
 
-// القائمة الجانبية (Drawer)
 const settingsDrawer = $('settingsDrawer');
 $('openSettingsBtn').addEventListener('click', () => openModal(settingsDrawer));
 $('closeDrawerBtn').addEventListener('click', () => closeModal(settingsDrawer));
@@ -1100,7 +1109,6 @@ $('themeToggleCheckbox').addEventListener('change', (e) => {
   applyTheme(e.target.checked ? 'dark' : 'light');
 });
 
-// نافذة عرض مزايا باقة Pro
 const proModal = $('proModal');
 $('closeProModal').addEventListener('click', () => closeModal(proModal));
 $('openCodeFromProBtn').addEventListener('click', () => {
@@ -1117,7 +1125,6 @@ $('drawerProBtn').addEventListener('click', () => {
   }
 });
 
-// لوحة تحكم المالك
 const adminDashboardModal = $('adminDashboardModal');
 $('closeAdminDashboardModal').addEventListener('click', () => closeModal(adminDashboardModal));
 $('adminHeaderBtn').addEventListener('click', openOwnerDashboard);
@@ -1291,11 +1298,11 @@ async function loadSession() {
 }
 
 // ============================================
-// وظائف لوحة تحكم المالك
+// وظائف لوحة تحكم المالك والمؤشرات التجارية
 // ============================================
 async function openOwnerDashboard() {
   openModal(adminDashboardModal);
-  $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">جاري تحميل السجلات من قاعدة البيانات...</td></tr>';
+  $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">جاري استرجاع السجلات المتوازية...</td></tr>';
   
   try {
     const res = await req(WORKER_URL + '/admin/stats');
@@ -1305,18 +1312,18 @@ async function openOwnerDashboard() {
       return;
     }
 
-    $('adminTotalUsers').textContent = data.totalUsers || 0;
-    $('adminActivePro').textContent = data.activeSubscribers || 0;
-    $('adminUsedToday').textContent = data.usedToday || 0;
-    $('adminActiveToday').textContent = data.activeToday || 0;
+    $('adminTotalUsers').textContent = data.totalUsers ?? 0;
+    $('adminActivePro').textContent = data.activeSubscribers ?? 0;
+    $('adminConvRate').textContent = data.conversionRate ?? '0%';
+    $('adminActiveToday').textContent = data.activeToday ?? 0;
+    $('adminUsedToday').textContent = data.usedToday ?? 0;
+    $('adminExpiringSoon').textContent = data.expiringSoon ?? 0;
 
-    // عرض الأكواد المتاحة
     const codesList = data.unusedCodes || [];
     $('adminGeneratedCodesList').innerHTML = codesList.length 
       ? codesList.map(c => `<span class="code-pill">${c}</span>`).join('') 
-      : '<span style="font-size:0.75rem;color:var(--text-3)">لا توجد أكواد جاهزة حالياً. اضغط على الزر لتوليد دفعة جديدة.</span>';
+      : '<span style="font-size:0.75rem;color:var(--text-3)">لا توجد أكواد جاهزة للبيع حالياً. اضغط على الزر لتوليد دفعة جديدة.</span>';
 
-    // عرض جدول الزوار والمشتركين
     const users = data.users || [];
     if (!users.length) {
       $('adminUsersTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center">لا يوجد مستخدمون مسجلون بعد.</td></tr>';
@@ -1335,7 +1342,6 @@ async function openOwnerDashboard() {
       }).join('');
     }
 
-    // عرض البلاغات
     const reports = data.reports || [];
     $('adminReportsList').innerHTML = reports.length 
       ? reports.map(r => `
@@ -1842,7 +1848,7 @@ function initGoogleButton() {
   }
 }
 
-// تسجيل الخروج من القائمة الجانبية
+// تسجيل الخروج
 $('drawerLogoutBtn').addEventListener('click', () => {
   localStorage.removeItem('ciai_token');
   userToken = '';
@@ -1853,7 +1859,7 @@ $('drawerLogoutBtn').addEventListener('click', () => {
   initGoogleButton();
 });
 
-// إرسال طلب المساعدة من القائمة الجانبية
+// إرسال طلب المساعدة
 $('drawerSubmitSupportBtn').addEventListener('click', async () => {
   const msg = $('drawerSupportText').value.trim();
   if (msg.length < 5) { showToast('اكتب وصفاً واضحاً للمشكلة'); return; }
