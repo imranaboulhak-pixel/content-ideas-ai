@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -725,6 +724,98 @@ input:checked + .slider:before { transform: translateX(20px); }
   .toast { transition: all 0.25s ease; }
 }
 
+/* ============================================
+   [v3.0] CSS المفقود سابقاً — كان يسبب عرض
+   المحفوظات وخطة الفيديو ونتائج القناة بدون تنسيق
+   ============================================ */
+.empty-note {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.load-more-btn {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.load-more-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+#historyListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+.history-item:hover, .history-item:focus-visible { border-color: var(--accent); }
+.history-thumb {
+  width: 96px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--surface-2);
+}
+.history-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.history-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.history-date { font-size: 0.72rem; color: var(--text-3); }
+
+.outline-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.outline-head { font-size: 0.8rem; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+.outline-body { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+.outline-point {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.outline-point:last-child { border-bottom: none; }
+.outline-dur { font-size: 0.72rem; color: var(--text-3); font-weight: 700; }
+
+.select-channel-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.select-channel-row:hover, .select-channel-row:focus-visible { border-color: var(--accent); }
+
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .video-card { flex-direction: column; }
@@ -741,6 +832,7 @@ input:checked + .slider:before { transform: translateX(20px); }
   }
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 <div class="container" id="app">
@@ -799,8 +891,8 @@ input:checked + .slider:before { transform: translateX(20px); }
       </div>
 
       <button type="button" class="comp-toggle" id="compToggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
-        <span id="compToggleLabel">مقارنة بفيديو منافس (اختياري)</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        <span>مقارنة بفيديو منافس (اختياري)</span>
       </button>
 
       <div class="comp-drawer" id="compDrawer">
@@ -981,7 +1073,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     <div class="user-profile-box">
       <div class="user-profile-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
       <div class="user-profile-info">
         <div class="user-profile-label">حسابك المسجل</div>
@@ -1103,7 +1195,7 @@ setInterval(() => {
 
 const $ = (id) => document.getElementById(id);
 const mainUrl = $('mainUrl'), compUrl = $('compUrl');
-const compToggle = $('compToggle'), compDrawer = $('compDrawer'), compToggleLabel = $('compToggleLabel');
+const compToggle = $('compToggle'), compDrawer = $('compDrawer');
 const analyzeBtn = $('analyzeBtn'), msgBox = $('msgBox'), loaderBox = $('loaderBox');
 const resBox = $('resBox'), toast = $('toast'), usageLabel = $('usageLabel');
 const channelNameDisplay = $('channelNameDisplay');
@@ -1301,7 +1393,7 @@ async function loadSession() {
     } else {
       compToggle.style.display = 'inline-flex';
     }
-    
+
     const gBtn = $('g_id_signin');
     const emailBadge = $('userEmailBadge');
     const activateBtn = $('activateBtn');
@@ -1361,7 +1453,7 @@ async function loadSession() {
 async function openOwnerDashboard() {
   openModal(adminDashboardModal);
   $('adminUsersCardsList').innerHTML = '<div style="text-align:center;padding:20px;font-size:0.8rem;color:var(--text-3)">جاري استرجاع تفاصيل كل مستخدم...</div>';
-  
+
   try {
     const res = await req(WORKER_URL + '/admin/stats');
     const data = await res.json();
@@ -1386,7 +1478,7 @@ async function openOwnerDashboard() {
       $('adminUsersCardsList').innerHTML = users.map(u => {
         let badgeHtml = '<span class="user-card-badge badge-free">مجاني</span>';
         if (u.isSubscribed) {
-          badgeHtml = u.planDurationDays === 3 
+          badgeHtml = u.planDurationDays === 3
             ? `<span class="user-card-badge badge-trial">تجربة 3 أيام (متبقي ${u.remainingDays} يوم)</span>`
             : `<span class="user-card-badge badge-pro">مشترك Pro (متبقي ${u.remainingDays} يوم)</span>`;
         }
@@ -1423,7 +1515,7 @@ async function openOwnerDashboard() {
 
     // 4. تحديث صفحة الشكاوى مع معرفة من أرسلها
     const reports = data.reports || [];
-    $('adminReportsContainer').innerHTML = reports.length 
+    $('adminReportsContainer').innerHTML = reports.length
       ? reports.map(r => `
         <div style="background:var(--surface-2);border:1px solid var(--border);padding:10px 12px;border-radius:8px;font-size:0.8rem">
           <div style="display:flex;justify-content:space-between;color:var(--text-3);font-size:0.72rem;margin-bottom:4px">
@@ -1444,7 +1536,7 @@ async function openOwnerDashboard() {
 }
 
 function renderUnusedCodes(codes) {
-  $('adminUnusedCodesContainer').innerHTML = codes.length 
+  $('adminUnusedCodesContainer').innerHTML = codes.length
     ? codes.map(item => `
       <div class="code-pill">
         <div>
@@ -1474,7 +1566,7 @@ async function generateBatch(type, count) {
     const res = await req(`${WORKER_URL}/admin/gen?type=${type}&count=${count}`, { method: 'POST' });
     const data = await res.json();
     if (res.ok && data.codes) {
-      $('genStatus').textContent = `تم توليد 5 أكواد (${data.durationDays} أيام) بنجاح`;
+      $('genStatus').textContent = `تم توليد ${data.count} أكواد (${data.durationDays} أيام) بنجاح`;
       showToast('تم إنشاء الأكواد بنجاح');
       openOwnerDashboard(); // إعادة تحميل السجلات
     } else {
@@ -1698,11 +1790,11 @@ async function searchChannels() {
   const q = $('searchChannelInput').value.trim();
   if (!q) return;
   $('channelResults').innerHTML = '<div class="empty-note">جاري البحث في YouTube...</div>';
-  
+
   try {
     const res = await req(WORKER_URL + '/channel/search?q=' + encodeURIComponent(q));
     const data = await res.json();
-    
+
     if (!res.ok || data.error) {
       $('channelResults').innerHTML = '<div class="empty-note" style="color:var(--accent);font-weight:700">' + esc(data.error || 'حدث خطأ أثناء البحث.') + '</div>';
       return;
@@ -1715,7 +1807,7 @@ async function searchChannels() {
     }
 
     $('channelResults').innerHTML = channels.map(c =>
-      '<div class="history-item select-channel-row" role="button" tabindex="0" data-id="' + esc(c.channelId) + '" data-title="' + esc(c.title) + '">' +
+      '<div class="select-channel-row" role="button" tabindex="0" data-id="' + esc(c.channelId) + '" data-title="' + esc(c.title) + '">' +
         (c.thumb ? '<img src="' + esc(c.thumb) + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="">' : '<div style="width:36px;height:36px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)">' + ICO.play + '</div>') +
         '<div class="history-info"><div class="history-title">' + esc(c.title) + '</div>' +
         '<div class="history-date">' + esc((c.description || '').substring(0, 45)) + '</div></div></div>'
@@ -1890,7 +1982,7 @@ window.handleGoogleSignIn = async (response) => {
   try {
     const res = await fetch(WORKER_URL + '/auth/google', {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'X-User-Token': userToken
       },
@@ -1901,15 +1993,15 @@ window.handleGoogleSignIn = async (response) => {
       showMsg(data.error || 'فشل تسجيل الدخول.');
       return;
     }
-    
+
     localStorage.setItem('ciai_token', data.token);
     userToken = data.token;
-    
+
     closeModal(welcomeModal);
 
     const gBtn = $('g_id_signin');
     if (gBtn) gBtn.style.display = 'none';
-    
+
     showToast(data.returning ? 'مرحباً بعودتك' : 'تم ربط الحساب بنجاح');
     loadSession();
   } catch (e) {
@@ -1919,7 +2011,7 @@ window.handleGoogleSignIn = async (response) => {
 
 function initGoogleButton() {
   if (!window.google || !google.accounts) { setTimeout(initGoogleButton, 300); return; }
-  
+
   google.accounts.id.initialize({
     client_id: GOOGLE_CLIENT_ID,
     callback: window.handleGoogleSignIn,
@@ -1955,6 +2047,12 @@ function initGoogleButton() {
 
 // تسجيل الخروج
 $('drawerLogoutBtn').addEventListener('click', () => {
+  // [v3.0] إيقاف الاختيار التلقائي حتى لا يعيد One Tap تسجيل الدخول فوراً
+  try {
+    if (window.google && google.accounts && google.accounts.id) {
+      google.accounts.id.disableAutoSelect();
+    }
+  } catch (e) {}
   localStorage.removeItem('ciai_token');
   userToken = '';
   closeModal(settingsDrawer);
